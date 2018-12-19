@@ -1,6 +1,8 @@
 package com.fqcheng220.model;
 
-public class UpmsUser {
+import java.io.Serializable;
+
+public class UpmsUser implements Serializable {
     private Integer userid;
 
     private String username;
