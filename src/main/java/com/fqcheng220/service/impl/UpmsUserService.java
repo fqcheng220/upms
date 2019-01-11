@@ -1,13 +1,27 @@
 package com.fqcheng220.service.impl;
 
+import com.fqcheng220.common.constants.ResponseConstants;
+import com.fqcheng220.common.resp.BaseResponseBody;
 import com.fqcheng220.dao.UpmsUserMapper;
 import com.fqcheng220.model.UpmsUser;
 import com.fqcheng220.model.UpmsUserExample;
 import com.fqcheng220.service.IUpmsUserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.Permission;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.ExecutionException;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 @Service
 public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsUserExample>*/ implements IUpmsUserService {
@@ -15,6 +29,33 @@ public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsU
     public List<UpmsUser> listAllUser() {
         UpmsUserExample example = new UpmsUserExample();
         return mapper.selectByExample(example);
+    }
+
+    @Override
+    public BaseResponseBody<UpmsUser> login(String userName, String pwd) {
+        BaseResponseBody<UpmsUser> ret = new BaseResponseBody<>();
+        Subject subject = SecurityUtils.getSubject();
+        AuthenticationToken authenticationToken = new UsernamePasswordToken(userName,pwd);
+        try{
+            subject.login(authenticationToken);
+            List<UpmsUser> list = new ArrayList<>();
+            list.add((UpmsUser)subject.getPrincipal());
+            ret.setmStatusCode(ResponseConstants.STATUS_SUC).setmResult(list).setmMsg("");
+        }catch (IncorrectCredentialsException e){
+            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("密码错误");
+        } catch (LockedAccountException e) {
+            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("登录失败，该用户已被冻结");
+        } catch (AuthenticationException e) {
+            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("该用户不存在");
+        } catch (Exception e) {
+            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN);
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public BaseResponseBody loginOut(String userName, String pwd) {
+        return null;
     }
 
     @Autowired
