@@ -9,7 +9,7 @@ import java.util.List;
 public interface IUpmsUserService  extends IBaseService<UpmsUser,UpmsUserExample> {
     List<UpmsUser> listAllUser();
 
-    BaseResponseBody<UpmsUser> login(String userName, String pwd);
-
-    BaseResponseBody loginOut(String userName, String pwd);
+//    BaseResponseBody<UpmsUser> login(String userName, String pwd);
+//
+//    BaseResponseBody loginOut(String userName, String pwd);
 }

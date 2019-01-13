@@ -11,13 +11,13 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class UpmsRealm extends AuthorizingRealm {
-    @Service
-    private IUpmsUserService mUpmsUserService;
+    @Autowired
+    private IUpmsUserService upmsUserService;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -32,7 +32,7 @@ public class UpmsRealm extends AuthorizingRealm {
         UpmsUserExample upmsUserExample = new UpmsUserExample();
         UpmsUserExample.Criteria criteria = upmsUserExample.createCriteria();
         criteria.andUsernameEqualTo(userName);
-        List<UpmsUser> list = mUpmsUserService.selectByExample(upmsUserExample);
+        List<UpmsUser> list = upmsUserService.selectByExample(upmsUserExample);
         if (list == null || list.isEmpty()) {
             return null;
         } else {

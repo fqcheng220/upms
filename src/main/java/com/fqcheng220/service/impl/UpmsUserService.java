@@ -31,32 +31,33 @@ public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsU
         return mapper.selectByExample(example);
     }
 
-    @Override
-    public BaseResponseBody<UpmsUser> login(String userName, String pwd) {
-        BaseResponseBody<UpmsUser> ret = new BaseResponseBody<>();
-        Subject subject = SecurityUtils.getSubject();
-        AuthenticationToken authenticationToken = new UsernamePasswordToken(userName,pwd);
-        try{
-            subject.login(authenticationToken);
-            List<UpmsUser> list = new ArrayList<>();
-            list.add((UpmsUser)subject.getPrincipal());
-            ret.setmStatusCode(ResponseConstants.STATUS_SUC).setmResult(list).setmMsg("");
-        }catch (IncorrectCredentialsException e){
-            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("密码错误");
-        } catch (LockedAccountException e) {
-            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("登录失败，该用户已被冻结");
-        } catch (AuthenticationException e) {
-            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("该用户不存在");
-        } catch (Exception e) {
-            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN);
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public BaseResponseBody loginOut(String userName, String pwd) {
-        return null;
-    }
+//    @Override
+//    public BaseResponseBody<UpmsUser> login(String userName, String pwd) {
+//        BaseResponseBody<UpmsUser> ret = new BaseResponseBody<>();
+//        Subject subject = SecurityUtils.getSubject();
+//        AuthenticationToken authenticationToken = new UsernamePasswordToken(userName,pwd);
+//        try{
+//            subject.login(authenticationToken);
+//            List<UpmsUser> list = new ArrayList<>();
+//            list.add((UpmsUser)subject.getPrincipal());
+//            ret.setmStatusCode(ResponseConstants.STATUS_SUC).setmResult(list).setmMsg("");
+//        }catch (IncorrectCredentialsException e){
+//            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("密码错误");
+//        } catch (LockedAccountException e) {
+//            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("登录失败，该用户已被冻结");
+//        } catch (AuthenticationException e) {
+//            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("该用户不存在");
+//        } catch (Exception e) {
+//            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN);
+//            e.printStackTrace();
+//        }
+//        return ret;
+//    }
+//
+//    @Override
+//    public BaseResponseBody loginOut(String userName, String pwd) {
+//        return null;
+//    }
 
     @Autowired
     protected UpmsUserMapper mapper;
