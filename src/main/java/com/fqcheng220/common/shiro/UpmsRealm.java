@@ -41,4 +41,9 @@ public class UpmsRealm extends AuthorizingRealm {
             return simpleAuthenticationInfo;
         }
     }
+
+    @Override
+    public boolean supports(AuthenticationToken token) {
+        return super.supports(token);
+    }
 }

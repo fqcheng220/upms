@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/unauthc"/>
+        <property name="filters">
+            <util:map>
+                <entry key="authcToken" value-ref="jwtShiroFilter"></entry>
+            </util:map>
+        </property>
         <property name="filterChainDefinitions">
             <value>
                 <!--anon 表示不需要认证以及授权-->
@@ -18,19 +23,21 @@
     <bean id="upmsRealm" class="com.fqcheng220.common.shiro.UpmsRealm"/>
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <!--<property name="cacheManager" ref="shiroCacheManager"/>-->
+        <property name="realms">
+            <util:list>
+                <value type=""/>
+            </util:list>
+        </property>
         <property name="realm" ref="upmsRealm"/>
     </bean>
 
-    <!--<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">-->
-        <!--<property name="cacheManager" ref="cacheManager"/>-->
-    <!--</bean>-->
-
-    <!--&lt;!&ndash; 缓存 &ndash;&gt;-->
-    <!--<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">-->
-        <!--<property name="configLocation" value="classpath:${ehcache.file}"></property>-->
-    <!--</bean>-->
-
     <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+
+    <bean id="jwtShiroFilter" class="com.fqcheng220.common.shiro.jwt.JwtShiroFilter"/>
+    <bean id="jwtShiroRealm" class="com.fqcheng220.common.shiro.jwt.JwtShiroRealm">
+        <property name="credentialsMatcher" ref="jWTCredentialsMatcher"/>
+    </bean>
+    <bean id="jWTCredentialsMatcher" class="com.fqcheng220.common.shiro.jwt.JWTCredentialsMatcher"/>
 </beans>

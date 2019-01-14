@@ -2,6 +2,7 @@ package com.fqcheng220.service.impl;
 
 import com.fqcheng220.common.constants.ResponseConstants;
 import com.fqcheng220.common.resp.BaseResponseBody;
+import com.fqcheng220.common.shiro.jwt.JwtUtils;
 import com.fqcheng220.dao.UpmsUserMapper;
 import com.fqcheng220.model.UpmsUser;
 import com.fqcheng220.model.UpmsUserExample;
@@ -16,6 +17,8 @@ import org.apache.shiro.subject.ExecutionException;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,13 +28,28 @@ import java.util.concurrent.Callable;
 
 @Service
 public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsUserExample>*/ implements IUpmsUserService {
+    @Autowired
+    StringRedisTemplate redisTemplate;
+
     @Override
     public List<UpmsUser> listAllUser() {
         UpmsUserExample example = new UpmsUserExample();
         return mapper.selectByExample(example);
     }
 
-//    @Override
+    @Override
+    public String generateSalt(String userName) {
+        String salt = JwtUtils.generateSalt();
+        redisTemplate.opsForSet().add("token:"+userName,salt);
+        return salt;
+    }
+
+    @Override
+    public String getSalt(String userName) {
+        return redisTemplate.opsForSet().pop("token:"+userName);
+    }
+
+    //    @Override
 //    public BaseResponseBody<UpmsUser> login(String userName, String pwd) {
 //        BaseResponseBody<UpmsUser> ret = new BaseResponseBody<>();
 //        Subject subject = SecurityUtils.getSubject();
