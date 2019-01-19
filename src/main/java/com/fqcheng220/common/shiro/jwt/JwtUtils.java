@@ -21,7 +21,7 @@ public class JwtUtils {
 
     public static String getUserName(String token) {
         DecodedJWT decodedJWT = JWT.decode(token);
-        decodedJWT.getClaim("username").asString();
+        return decodedJWT.getClaim("username").asString();
     }
 
     public static String sign(String userName, String salt, long time) {

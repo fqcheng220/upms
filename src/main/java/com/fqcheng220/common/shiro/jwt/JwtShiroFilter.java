@@ -9,8 +9,8 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.HttpServletRequest;
-import javax.servlet.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class JwtShiroFilter extends AuthenticatingFilter {
     @Override
@@ -47,6 +47,7 @@ public class JwtShiroFilter extends AuthenticatingFilter {
                 return isPermissive(mappedValue) || executeLogin(request,response);
             } catch (Exception e) {
                 e.printStackTrace();
+                return true;
             }
         }
     }

@@ -1,0 +1,1 @@
+start cmd /k "cd E:\MyWork\CommonTools\redis-64.3.0.503 & E: & redis-server redis.windows.conf"

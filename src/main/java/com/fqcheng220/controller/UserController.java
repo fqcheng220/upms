@@ -132,6 +132,7 @@ public class UserController {
             subject.login(authenticationToken);
             List<UpmsUser> list = new ArrayList<>();
             UpmsUser upmsUser = (UpmsUser)subject.getPrincipal();
+            upmsUserService.generateSalt(upmsUser.getUsername());
             list.add(upmsUser);
             ret.setmStatusCode(ResponseConstants.STATUS_SUC).setmResult(list).setmMsg("登录成功");
         }catch (IncorrectCredentialsException e){
