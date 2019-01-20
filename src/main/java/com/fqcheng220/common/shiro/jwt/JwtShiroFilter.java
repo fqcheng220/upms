@@ -47,7 +47,7 @@ public class JwtShiroFilter extends AuthenticatingFilter {
                 return isPermissive(mappedValue) || executeLogin(request,response);
             } catch (Exception e) {
                 e.printStackTrace();
-                return true;
+                return false;
             }
         }
     }

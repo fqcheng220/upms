@@ -22,7 +22,7 @@ public class JwtShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String token = ((JwtToken)authenticationToken).getmToken();
         String userName = JwtUtils.getUserName(token);
-        String salt = upmsUserService.getSalt(userName);
+        String salt = upmsUserService.getTokenSalt(userName);
         return new SimpleAuthenticationInfo(userName,salt,getName());
     }
 

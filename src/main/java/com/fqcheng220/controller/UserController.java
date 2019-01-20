@@ -14,6 +14,8 @@ import com.fqcheng220.service.IUpmsUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,7 @@ import java.util.List;
 
 @RestController
 public class UserController {
+    private final Logger mLogger = LoggerFactory.getLogger(getClass());
     @Autowired
     private IUpmsUserService upmsUserService;
 
@@ -132,7 +135,7 @@ public class UserController {
             subject.login(authenticationToken);
             List<UpmsUser> list = new ArrayList<>();
             UpmsUser upmsUser = (UpmsUser)subject.getPrincipal();
-            upmsUserService.generateSalt(upmsUser.getUsername());
+            String token = upmsUserService.generateToken(upmsUser.getUsername());
             list.add(upmsUser);
             ret.setmStatusCode(ResponseConstants.STATUS_SUC).setmResult(list).setmMsg("登录成功");
         }catch (IncorrectCredentialsException e){

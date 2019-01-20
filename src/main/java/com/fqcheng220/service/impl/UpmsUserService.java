@@ -16,6 +16,8 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.ExecutionException;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -28,6 +30,7 @@ import java.util.concurrent.Callable;
 
 @Service
 public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsUserExample>*/ implements IUpmsUserService {
+    private final Logger mLogger = LoggerFactory.getLogger(getClass());
     @Autowired
     StringRedisTemplate redisTemplate;
 
@@ -38,15 +41,18 @@ public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsU
     }
 
     @Override
-    public String generateSalt(String userName) {
+    public String generateToken(String userName) {
         String salt = JwtUtils.generateSalt();
         redisTemplate.opsForSet().add("token:"+userName,salt);
-        return salt;
+        int defaultTimeout = 3600*1000;//ms单位
+        String token = JwtUtils.sign(userName,salt,defaultTimeout);
+        mLogger.info("generateToken:token="+token+",salt="+salt);
+        return token;
     }
 
     @Override
-    public String getSalt(String userName) {
-        return redisTemplate.opsForSet().pop("token:"+userName);
+    public String getTokenSalt(String userName) {
+        return redisTemplate.opsForSet().randomMember("token:"+userName);
     }
 
     //    @Override

@@ -2,6 +2,7 @@ package com.fqcheng220.common.shiro.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 
@@ -20,8 +21,13 @@ public class JwtUtils {
     }
 
     public static String getUserName(String token) {
-        DecodedJWT decodedJWT = JWT.decode(token);
-        return decodedJWT.getClaim("username").asString();
+        try{
+            DecodedJWT decodedJWT = JWT.decode(token);
+            return decodedJWT.getClaim("username").asString();
+        }catch (JWTDecodeException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static String sign(String userName, String salt, long time) {

@@ -13,7 +13,7 @@ public interface IUpmsUserService  extends IBaseService<UpmsUser,UpmsUserExample
 //
 //    BaseResponseBody loginOut(String userName, String pwd);
 
-    String generateSalt(String userName);
+    String generateToken(String userName);
 
-    String getSalt(String userName);
+    String getTokenSalt(String userName);
 }
