@@ -79,9 +79,9 @@ public class UserController {
      * @param requestBody
      * @return
      */
-    @RequestMapping(value = "/user/update",method = RequestMethod.POST)
+    @RequestMapping(value = UrlPathConstants.USER_UPDATE,method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponseBody delUser(@RequestBody UpmsRequestUserUpdate requestBody){
+    public BaseResponseBody updateUser(@RequestBody UpmsRequestUserUpdate requestBody){
         try{
             //如何直接获取path??
             RequestHandler.handle(UrlPathConstants.USER_UPDATE,requestBody);
@@ -111,7 +111,7 @@ public class UserController {
      * 查询用户列表
      * @return
      */
-    @RequestMapping(value = "/user/list/all",method = RequestMethod.GET)
+    @RequestMapping(value = UrlPathConstants.USER_LIST,method = RequestMethod.GET)
     @ResponseBody
     public BaseResponseBody listAllUser(@RequestBody BaseRequestBody requestBody){
         try{
@@ -123,34 +123,5 @@ public class UserController {
         }
         List<UpmsUser> list =  upmsUserService.listAllUser();
         return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC).setmResult(list);
-    }
-
-    @RequestMapping(value = "/user/login",method = RequestMethod.POST)
-    @ResponseBody
-    public BaseResponseBody<UpmsUser> login(String userName, String pwd){
-        BaseResponseBody<UpmsUser> ret = new BaseResponseBody<>();
-        Subject subject = SecurityUtils.getSubject();
-        AuthenticationToken authenticationToken = new UsernamePasswordToken(userName,pwd);
-        try{
-            subject.login(authenticationToken);
-            List<UpmsUser> list = new ArrayList<>();
-            UpmsUser upmsUser = (UpmsUser)subject.getPrincipal();
-            String token = upmsUserService.generateToken(upmsUser.getUsername());
-            list.add(upmsUser);
-            ret.setmStatusCode(ResponseConstants.STATUS_SUC).setmResult(list).setmMsg("登录成功");
-        }catch (IncorrectCredentialsException e){
-            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("密码错误");
-            e.printStackTrace();
-        } catch (LockedAccountException e) {
-            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("登录失败，该用户已被冻结");
-            e.printStackTrace();
-        } catch (AuthenticationException e) {
-            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("该用户不存在");
-            e.printStackTrace();
-        } catch (Exception e) {
-            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("未知错误");
-            e.printStackTrace();
-        }
-        return ret;
     }
 }

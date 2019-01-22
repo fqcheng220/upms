@@ -6,4 +6,7 @@ public interface UrlPathConstants {
     public static final String USER_DEL = "/user/del";
     public static final String USER_UPDATE = "/user/update";
     public static final String USER_LIST = "/user/list/all";
+
+    public static final String USER_LOGIN= "/user/login";
+    public static final String USER_LOGINOUT= "/user/loginOut";
 }
