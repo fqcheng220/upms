@@ -3,6 +3,7 @@ package com.fqcheng220.controller;
 import com.fqcheng220.common.constants.ResponseConstants;
 import com.fqcheng220.common.constants.UrlPathConstants;
 import com.fqcheng220.common.resp.BaseResponseBody;
+import com.fqcheng220.dto.UpmsUserDto;
 import com.fqcheng220.model.UpmsUser;
 import com.fqcheng220.service.IUpmsUserService;
 import org.apache.shiro.SecurityUtils;
@@ -27,16 +28,18 @@ public class UserLoginController {
 
     @RequestMapping(value = UrlPathConstants.USER_LOGIN,method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponseBody<UpmsUser> login(String userName, String pwd){
-        BaseResponseBody<UpmsUser> ret = new BaseResponseBody<>();
+    public BaseResponseBody<UpmsUserDto> login(String userName, String pwd){
+        BaseResponseBody<UpmsUserDto> ret = new BaseResponseBody<>();
         Subject subject = SecurityUtils.getSubject();
         AuthenticationToken authenticationToken = new UsernamePasswordToken(userName,pwd);
         try{
             subject.login(authenticationToken);
-            List<UpmsUser> list = new ArrayList<>();
             UpmsUser upmsUser = (UpmsUser)subject.getPrincipal();
             String token = upmsUserService.generateToken(upmsUser.getUsername());
-            list.add(upmsUser);
+            UpmsUserDto upmsUserDto = new UpmsUserDto().clone(upmsUser);
+            upmsUserDto.setmToken(token);
+            List<UpmsUserDto> list = new ArrayList<>();
+            list.add(upmsUserDto);
             ret.setmStatusCode(ResponseConstants.STATUS_SUC).setmResult(list).setmMsg("登录成功");
         }catch (IncorrectCredentialsException e){
             ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("密码错误");

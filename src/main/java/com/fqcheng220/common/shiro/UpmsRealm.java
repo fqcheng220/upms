@@ -13,6 +13,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UpmsRealm extends AuthorizingRealm {
@@ -22,8 +23,17 @@ public class UpmsRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        UpmsUser upmsUser = (UpmsUser) principalCollection.getPrimaryPrincipal();
-        return null;
+        Object object = principalCollection.getPrimaryPrincipal();
+        List<String> roleNameList = new ArrayList<>();
+        if (object instanceof UpmsUser) {
+            UpmsUser upmsUser = (UpmsUser) principalCollection.getPrimaryPrincipal();
+            roleNameList = upmsUserService.selectRolesForUser(upmsUser.getUserid());
+        } else if (object instanceof String) {
+            String userName = (String) principalCollection.getPrimaryPrincipal();
+            roleNameList = upmsUserService.selectRolesForUser(userName);
+        }
+        simpleAuthorizationInfo.addRoles(roleNameList);
+        return simpleAuthorizationInfo;
     }
 
     @Override

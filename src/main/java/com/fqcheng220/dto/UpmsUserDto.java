@@ -1,5 +1,7 @@
 package com.fqcheng220.dto;
 
+import com.fqcheng220.model.UpmsUser;
+
 public class UpmsUserDto {
     private Integer userid;
 
@@ -70,4 +72,15 @@ public class UpmsUserDto {
     private String createtime;
 
     private String mToken;
+
+    public UpmsUserDto clone(UpmsUser upmsUser){
+        if(upmsUser != null){
+            this.userid = upmsUser.getUserid();
+            this.username = upmsUser.getUsername();
+            this.pwd = upmsUser.getPwd();
+            this.realname = upmsUser.getRealname();
+            this.phone = upmsUser.getPhone();
+        }
+        return this;
+    }
 }

@@ -16,4 +16,8 @@ public interface IUpmsUserService  extends IBaseService<UpmsUser,UpmsUserExample
     String generateToken(String userName);
 
     String getTokenSalt(String userName);
+
+    List<String> selectRolesForUser(Integer userId);
+
+    List<String> selectRolesForUser(String userName);
 }

@@ -24,10 +24,10 @@
                 /user/login = noSessionCreation,anon
                 /user/loginOut = noSessionCreation,authcToken[permissive]
 
-                /user/add = oSessionCreation,authcToken
-                /user/del = oSessionCreation,authcToken
-                /user/update = oSessionCreation,authcToken
-                /user/list/all = oSessionCreation,authcToken
+                /user/add = noSessionCreation,authcToken
+                /user/del = noSessionCreation,authcToken
+                /user/update = noSessionCreation,authcToken
+                /user/list/all = noSessionCreation,authcToken,roles[super]
             </value>
         </property>
     </bean>

@@ -3,9 +3,10 @@ package com.fqcheng220.service.impl;
 import com.fqcheng220.common.constants.ResponseConstants;
 import com.fqcheng220.common.resp.BaseResponseBody;
 import com.fqcheng220.common.shiro.jwt.JwtUtils;
+import com.fqcheng220.dao.UpmsRoleMapper;
 import com.fqcheng220.dao.UpmsUserMapper;
-import com.fqcheng220.model.UpmsUser;
-import com.fqcheng220.model.UpmsUserExample;
+import com.fqcheng220.dao.UpmsUserRoleMapper;
+import com.fqcheng220.model.*;
 import com.fqcheng220.service.IUpmsUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -33,6 +34,10 @@ public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsU
     private final Logger mLogger = LoggerFactory.getLogger(getClass());
     @Autowired
     StringRedisTemplate redisTemplate;
+    @Autowired
+    protected UpmsUserRoleMapper upmsUserRoleMapper;
+    @Autowired
+    protected UpmsRoleMapper upmsRoleMapper;
 
     @Override
     public List<UpmsUser> listAllUser() {
@@ -43,7 +48,7 @@ public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsU
     @Override
     public String generateToken(String userName) {
         String salt = JwtUtils.generateSalt();
-        redisTemplate.opsForSet().add("token:"+userName,salt);
+        redisTemplate.opsForValue().set("token:"+userName,salt);
         int defaultTimeout = 3600*1000;//ms单位
         String token = JwtUtils.sign(userName,salt,defaultTimeout);
         mLogger.info("generateToken:token="+token+",salt="+salt);
@@ -52,7 +57,46 @@ public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsU
 
     @Override
     public String getTokenSalt(String userName) {
-        return redisTemplate.opsForSet().randomMember("token:"+userName);
+        String salt = redisTemplate.opsForValue().get("token:"+userName);
+        mLogger.info("getTokenSalt:userName="+userName+",salt="+salt);
+        return salt;
+    }
+
+    @Override
+    public List<String> selectRolesForUser(Integer userId) {
+        UpmsUserRoleExample upmsUserRoleExample = new UpmsUserRoleExample();
+        upmsUserRoleExample.createCriteria().andUseridEqualTo(userId);
+        List<UpmsUserRole> list = upmsUserRoleMapper.selectByExample(upmsUserRoleExample);
+
+        List<String> roleNameList = new ArrayList<>();
+        if(list != null){
+            for(UpmsUserRole upmsUserRole:list){
+                Integer roleId = upmsUserRole.getRoleid();
+                UpmsRoleExample upmsRoleExample = new UpmsRoleExample();
+                upmsRoleExample.createCriteria().andRoleidEqualTo(roleId);
+                List<UpmsRole> listRole = upmsRoleMapper.selectByExample(upmsRoleExample);
+                if(listRole != null && !list.isEmpty()){
+                    roleNameList.add(listRole.get(0).getName());
+                }
+            }
+        }
+        return roleNameList;
+    }
+
+    @Override
+    public List<String> selectRolesForUser(String userName) {
+        if (userName != null) {
+            UpmsUserExample upmsUserExample = new UpmsUserExample();
+            upmsUserExample.createCriteria().andUsernameEqualTo(userName);
+            List<UpmsUser> upmsUserList = selectByExample(upmsUserExample);
+            if(upmsUserList != null && !upmsUserList.isEmpty()){
+                UpmsUser upmsUser = upmsUserList.get(0);
+                if(upmsUser != null){
+                    return selectRolesForUser(upmsUser.getUserid());
+                }
+            }
+        }
+        return null;
     }
 
     //    @Override

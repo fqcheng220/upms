@@ -74,11 +74,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_stone_mall`.`upms_system`
+-- Table `db_stone_mall`.`tb_upms_system`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_stone_mall`.`upms_system` ;
+DROP TABLE IF EXISTS `db_stone_mall`.`tb_upms_system` ;
 
-CREATE TABLE IF NOT EXISTS `db_stone_mall`.`upms_system` (
+CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_system` (
   `systemId` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) NULL,
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_permission` (
   INDEX `fk_tb_upms_permission_upms_system1_idx` (`upms_system_systemId` ASC),
   CONSTRAINT `fk_tb_upms_permission_upms_system1`
     FOREIGN KEY (`upms_system_systemId`)
-    REFERENCES `db_stone_mall`.`upms_system` (`systemId`)
+    REFERENCES `db_stone_mall`.`tb_upms_system` (`systemId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -162,22 +162,6 @@ CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_user_permission` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `db_stone_mall`.`tb_upms_user_copy1`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_stone_mall`.`tb_upms_user_copy1` ;
-
-CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_user_copy1` (
-  `userId` INT NOT NULL AUTO_INCREMENT,
-  `userName` VARCHAR(45) NOT NULL,
-  `pwd` VARCHAR(45) NOT NULL,
-  `realName` VARCHAR(45) NULL,
-  `phone` VARCHAR(45) NOT NULL,
-  `createTime` BIGINT(20) NOT NULL,
-  PRIMARY KEY (`userId`))
-ENGINE = InnoDB;
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -192,7 +176,7 @@ insert into tb_upms_role values(2,'super',20180101,'super');
 insert into tb_upms_user_role values(1,1,1);
 insert into tb_upms_user_role values(2,2,2);
 
-insert into upms_system values(1,'upms','',1,20180101);
+insert into tb_upms_system values(1,'upms','',1,20180101);
 
 insert into tb_upms_permission values(1,'upms:user:add','增加用户',20180101,0,1,1);
 insert into tb_upms_permission values(2,'upms:user:add','删除用户',20180101,0,1,1);

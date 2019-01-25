@@ -1,7 +1,7 @@
 package com.fqcheng220.dao;
 
+import com.fqcheng220.model.UpmsUserRole;
 import com.fqcheng220.model.UpmsUserRoleExample;
-import com.fqcheng220.model.UpmsUserRoleKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,15 +10,21 @@ public interface UpmsUserRoleMapper {
 
     int deleteByExample(UpmsUserRoleExample example);
 
-    int deleteByPrimaryKey(UpmsUserRoleKey key);
+    int deleteByPrimaryKey(Integer id);
 
-    int insert(UpmsUserRoleKey record);
+    int insert(UpmsUserRole record);
 
-    int insertSelective(UpmsUserRoleKey record);
+    int insertSelective(UpmsUserRole record);
 
-    List<UpmsUserRoleKey> selectByExample(UpmsUserRoleExample example);
+    List<UpmsUserRole> selectByExample(UpmsUserRoleExample example);
 
-    int updateByExampleSelective(@Param("record") UpmsUserRoleKey record, @Param("example") UpmsUserRoleExample example);
+    UpmsUserRole selectByPrimaryKey(Integer id);
 
-    int updateByExample(@Param("record") UpmsUserRoleKey record, @Param("example") UpmsUserRoleExample example);
+    int updateByExampleSelective(@Param("record") UpmsUserRole record, @Param("example") UpmsUserRoleExample example);
+
+    int updateByExample(@Param("record") UpmsUserRole record, @Param("example") UpmsUserRoleExample example);
+
+    int updateByPrimaryKeySelective(UpmsUserRole record);
+
+    int updateByPrimaryKey(UpmsUserRole record);
 }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fqcheng220.dao.UpmsRoleMapper">
-  <resultMap id="BaseResultMap" type="com.fqcheng220.model.UpmsRole">
+<mapper namespace="com.fqcheng220.dao.UpmsPermissionRoleMapper">
+  <resultMap id="BaseResultMap" type="com.fqcheng220.model.UpmsPermissionRole">
     <constructor>
-      <idArg column="roleId" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="createTime" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="permissionId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="roleId" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    roleId, name, createTime, description
+    id, permissionId, roleId
   </sql>
-  <select id="selectByExample" parameterType="com.fqcheng220.model.UpmsRoleExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.fqcheng220.model.UpmsPermissionRoleExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tb_upms_role
+    from tb_upms_permission_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,76 +86,67 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_upms_role
-    where roleId = #{roleid,jdbcType=INTEGER}
+    from tb_upms_permission_role
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from tb_upms_role
-    where roleId = #{roleid,jdbcType=INTEGER}
+    delete from tb_upms_permission_role
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fqcheng220.model.UpmsRoleExample">
-    delete from tb_upms_role
+  <delete id="deleteByExample" parameterType="com.fqcheng220.model.UpmsPermissionRoleExample">
+    delete from tb_upms_permission_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fqcheng220.model.UpmsRole">
-    insert into tb_upms_role (roleId, name, createTime, 
-      description)
-    values (#{roleid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createtime,jdbcType=BIGINT}, 
-      #{description,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.fqcheng220.model.UpmsPermissionRole">
+    insert into tb_upms_permission_role (id, permissionId, roleId
+      )
+    values (#{id,jdbcType=INTEGER}, #{permissionid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.fqcheng220.model.UpmsRole">
-    insert into tb_upms_role
+  <insert id="insertSelective" parameterType="com.fqcheng220.model.UpmsPermissionRole">
+    insert into tb_upms_permission_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="permissionid != null">
+        permissionId,
+      </if>
       <if test="roleid != null">
         roleId,
       </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="createtime != null">
-        createTime,
-      </if>
-      <if test="description != null">
-        description,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="permissionid != null">
+        #{permissionid,jdbcType=INTEGER},
+      </if>
       <if test="roleid != null">
         #{roleid,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=BIGINT},
-      </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fqcheng220.model.UpmsRoleExample" resultType="java.lang.Long">
-    select count(*) from tb_upms_role
+  <select id="countByExample" parameterType="com.fqcheng220.model.UpmsPermissionRoleExample" resultType="java.lang.Long">
+    select count(*) from tb_upms_permission_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update tb_upms_role
+    update tb_upms_permission_role
     <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.permissionid != null">
+        permissionId = #{record.permissionid,jdbcType=INTEGER},
+      </if>
       <if test="record.roleid != null">
         roleId = #{record.roleid,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=BIGINT},
-      </if>
-      <if test="record.description != null">
-        description = #{record.description,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -164,35 +154,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update tb_upms_role
-    set roleId = #{record.roleid,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=BIGINT},
-      description = #{record.description,jdbcType=VARCHAR}
+    update tb_upms_permission_role
+    set id = #{record.id,jdbcType=INTEGER},
+      permissionId = #{record.permissionid,jdbcType=INTEGER},
+      roleId = #{record.roleid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fqcheng220.model.UpmsRole">
-    update tb_upms_role
+  <update id="updateByPrimaryKeySelective" parameterType="com.fqcheng220.model.UpmsPermissionRole">
+    update tb_upms_permission_role
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="permissionid != null">
+        permissionId = #{permissionid,jdbcType=INTEGER},
       </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=BIGINT},
-      </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
+      <if test="roleid != null">
+        roleId = #{roleid,jdbcType=INTEGER},
       </if>
     </set>
-    where roleId = #{roleid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.UpmsRole">
-    update tb_upms_role
-    set name = #{name,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=BIGINT},
-      description = #{description,jdbcType=VARCHAR}
-    where roleId = #{roleid,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.UpmsPermissionRole">
+    update tb_upms_permission_role
+    set permissionId = #{permissionid,jdbcType=INTEGER},
+      roleId = #{roleid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

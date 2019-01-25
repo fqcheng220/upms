@@ -1,8 +1,6 @@
 package com.fqcheng220.model;
 
-import java.io.Serializable;
-
-public class UpmsUser implements Serializable {
+public class UpmsUser {
     private Integer userid;
 
     private String username;
@@ -13,9 +11,9 @@ public class UpmsUser implements Serializable {
 
     private String phone;
 
-    private String createtime;
+    private Long createtime;
 
-    public UpmsUser(Integer userid, String username, String pwd, String realname, String phone, String createtime) {
+    public UpmsUser(Integer userid, String username, String pwd, String realname, String phone, Long createtime) {
         this.userid = userid;
         this.username = username;
         this.pwd = pwd;
@@ -68,11 +66,11 @@ public class UpmsUser implements Serializable {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getCreatetime() {
+    public Long getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(String createtime) {
-        this.createtime = createtime == null ? null : createtime.trim();
+    public void setCreatetime(Long createtime) {
+        this.createtime = createtime;
     }
 }

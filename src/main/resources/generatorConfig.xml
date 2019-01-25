@@ -66,5 +66,8 @@
         <table tableName="tb_upms_user" domainObjectName="UpmsUser" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
         <table tableName="tb_upms_role" domainObjectName="UpmsRole" />
         <table tableName="tb_upms_user_role" domainObjectName="UpmsUserRole"/>
+        <table tableName="tb_upms_system" domainObjectName="UpmsSystem"/>
+        <table tableName="tb_upms_permission" domainObjectName="UpmsPermission" />
+        <table tableName="tb_upms_permission_role" domainObjectName="UpmsPermissionRole"/>
     </context>
 </generatorConfiguration>

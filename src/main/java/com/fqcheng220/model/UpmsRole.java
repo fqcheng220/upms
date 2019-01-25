@@ -5,11 +5,11 @@ public class UpmsRole {
 
     private String name;
 
-    private String createtime;
+    private Long createtime;
 
     private String description;
 
-    public UpmsRole(Integer roleid, String name, String createtime, String description) {
+    public UpmsRole(Integer roleid, String name, Long createtime, String description) {
         this.roleid = roleid;
         this.name = name;
         this.createtime = createtime;
@@ -36,12 +36,12 @@ public class UpmsRole {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getCreatetime() {
+    public Long getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(String createtime) {
-        this.createtime = createtime == null ? null : createtime.trim();
+    public void setCreatetime(Long createtime) {
+        this.createtime = createtime;
     }
 
     public String getDescription() {
