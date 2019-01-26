@@ -13,6 +13,7 @@
         <property name="filters">
             <util:map>
                 <entry key="authcToken" value-ref="jwtShiroFilter"></entry>
+                <entry key="roles" value-ref="customRolesAuthorizationFilter"></entry>
             </util:map>
         </property>
         <property name="filterChainDefinitions">
@@ -47,6 +48,7 @@
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
 
+    <bean id="customRolesAuthorizationFilter" class="com.fqcheng220.common.shiro.CustomRolesAuthorizationFilter"/>
     <bean id="jwtShiroFilter" class="com.fqcheng220.common.shiro.jwt.JwtShiroFilter"/>
     <bean id="jwtShiroRealm" class="com.fqcheng220.common.shiro.jwt.JwtShiroRealm">
         <property name="credentialsMatcher" ref="jWTCredentialsMatcher"/>

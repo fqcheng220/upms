@@ -1,5 +1,6 @@
 package com.fqcheng220.common.shiro.jwt;
 
+import com.fqcheng220.common.utils.FilterUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
@@ -27,11 +28,7 @@ public class JwtShiroFilter extends AuthenticatingFilter {
      */
     @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
-        HttpServletResponse httpResponse = WebUtils.toHttp(servletResponse);
-        httpResponse.setCharacterEncoding("UTF-8");
-        httpResponse.setContentType("application/json;charset=UTF-8");
-        httpResponse.setStatus(-1);
-        fillCorsHeader(WebUtils.toHttp(servletRequest),httpResponse);
+        FilterUtils.outAuthcFail(servletRequest,servletResponse);
         return false;
     }
 

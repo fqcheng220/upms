@@ -97,6 +97,7 @@ public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsU
             }
         }
         return null;
+//        return selectRolesForUser(1);
     }
 
     //    @Override
