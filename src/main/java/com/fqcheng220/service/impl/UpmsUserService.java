@@ -97,52 +97,23 @@ public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsU
             }
         }
         return null;
-//        return selectRolesForUser(1);
     }
-
-    //    @Override
-//    public BaseResponseBody<UpmsUser> login(String userName, String pwd) {
-//        BaseResponseBody<UpmsUser> ret = new BaseResponseBody<>();
-//        Subject subject = SecurityUtils.getSubject();
-//        AuthenticationToken authenticationToken = new UsernamePasswordToken(userName,pwd);
-//        try{
-//            subject.login(authenticationToken);
-//            List<UpmsUser> list = new ArrayList<>();
-//            list.add((UpmsUser)subject.getPrincipal());
-//            ret.setmStatusCode(ResponseConstants.STATUS_SUC).setmResult(list).setmMsg("");
-//        }catch (IncorrectCredentialsException e){
-//            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("密码错误");
-//        } catch (LockedAccountException e) {
-//            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("登录失败，该用户已被冻结");
-//        } catch (AuthenticationException e) {
-//            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN).setmMsg("该用户不存在");
-//        } catch (Exception e) {
-//            ret.setmStatusCode(ResponseConstants.STATUS_FAIL_UNKOWN);
-//            e.printStackTrace();
-//        }
-//        return ret;
-//    }
-//
-//    @Override
-//    public BaseResponseBody loginOut(String userName, String pwd) {
-//        return null;
-//    }
 
     @Autowired
     protected UpmsUserMapper mapper;
     @Override
     public long countByExample(UpmsUserExample example) {
-        return 0;
+        return mapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(UpmsUserExample example) {
-        return 0;
+        return mapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Integer userid) {
-        return 0;
+        return mapper.deleteByPrimaryKey(userid);
     }
 
     @Override
@@ -152,7 +123,7 @@ public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsU
 
     @Override
     public int insertSelective(UpmsUser record) {
-        return 0;
+        return mapper.insertSelective(record);
     }
 
     @Override
@@ -162,26 +133,26 @@ public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsU
 
     @Override
     public UpmsUser selectByPrimaryKey(Integer userid) {
-        return null;
+        return mapper.selectByPrimaryKey(userid);
     }
 
     @Override
     public int updateByExampleSelective(UpmsUser record, UpmsUserExample example) {
-        return 0;
+        return mapper.updateByExampleSelective(record,example);
     }
 
     @Override
     public int updateByExample(UpmsUser record, UpmsUserExample example) {
-        return 0;
+        return mapper.updateByExample(record, example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(UpmsUser record) {
-        return 0;
+        return mapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(UpmsUser record) {
-        return 0;
+        return mapper.updateByPrimaryKey(record);
     }
 }

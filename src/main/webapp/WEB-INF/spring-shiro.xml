@@ -22,13 +22,17 @@
                 <!--authc 表示需要认证 没有登录是不能进行访问的-->
                 <!--perms 表示需要该权限才能访问的页面 /user/* = perms[/*] -->
                 <!--roles 表示需要角色才能访问的页面 /* = roles[管理员]-->
+                /user/register = noSessionCreation,anon
                 /user/login = noSessionCreation,anon
                 /user/loginOut = noSessionCreation,authcToken[permissive]
 
-                /user/add = noSessionCreation,authcToken
-                /user/del = noSessionCreation,authcToken
-                /user/update = noSessionCreation,authcToken
+                /user/add = noSessionCreation,authcToken,roles[super]
+                /user/del = noSessionCreation,authcToken,roles[super]
+                /user/update = noSessionCreation,authcToken,roles[super]
                 /user/list/all = noSessionCreation,authcToken,roles[super]
+
+                /user/updateSelf = noSessionCreation,authcToken
+                /user/listSelf = noSessionCreation,authcToken
             </value>
         </property>
     </bean>

@@ -14,11 +14,14 @@ public class RequestHandler {
         sTypeMap.put(RequestConstants.TYPE_UPMS_USER_ADD,UrlPathConstants.USER_ADD);
         sTypeMap.put(RequestConstants.TYPE_UPMS_USER_DEL,UrlPathConstants.USER_DEL);
         sTypeMap.put(RequestConstants.TYPE_UPMS_USER_UPDATE,UrlPathConstants.USER_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_UPMS_USER_UPDATE_SELF,UrlPathConstants.USER_UPDATE_SELF);
         sTypeMap.put(RequestConstants.TYPE_UPMS_USER_LIST,UrlPathConstants.USER_LIST);
     }
     public static void handle(String pathUrl, BaseRequestBody baseRequestBody) throws Exception{
         //功能号判断
-        if(!sTypeMap.containsKey(baseRequestBody.mType)){
+        if(!sTypeMap.containsKey(baseRequestBody.mType)
+                || sTypeMap.get(baseRequestBody.mType) == null
+                || !sTypeMap.get(baseRequestBody.mType).equals(pathUrl)){
             throw new ReqTypeMisMatchException();
         }
         //token认证

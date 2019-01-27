@@ -25,10 +25,10 @@ public class UpmsRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         Object object = principalCollection.getPrimaryPrincipal();
         List<String> roleNameList = new ArrayList<>();
-        if (object instanceof UpmsUser) {
+        /*if (object instanceof UpmsUser) {
             UpmsUser upmsUser = (UpmsUser) principalCollection.getPrimaryPrincipal();
             roleNameList = upmsUserService.selectRolesForUser(upmsUser.getUserid());
-        } else if (object instanceof String) {
+        } else */if (object instanceof String) {
             String userName = (String) principalCollection.getPrimaryPrincipal();
             roleNameList = upmsUserService.selectRolesForUser(userName);
         }
@@ -43,11 +43,10 @@ public class UpmsRealm extends AuthorizingRealm {
         UpmsUserExample.Criteria criteria = upmsUserExample.createCriteria();
         criteria.andUsernameEqualTo(userName);
         List<UpmsUser> list = upmsUserService.selectByExample(upmsUserExample);
-        if (list == null || list.isEmpty()) {
+        if (list == null || list.isEmpty() || list.get(0) == null) {
             return null;
         } else {
-            UpmsUser upmsUser = list.get(0);
-            SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(upmsUser, upmsUser.getPwd(),  getName());
+            SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(list.get(0), list.get(0).getPwd(),  getName());
             return simpleAuthenticationInfo;
         }
     }

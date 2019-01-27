@@ -12,17 +12,17 @@ public class BaseService<Mapper extends IBaseMapper<Model,Example>,Model,Example
     protected Mapper mapper;
     @Override
     public long countByExample(Example example) {
-        return 0;
+        return mapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(Example example) {
-        return 0;
+        return mapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Integer userid) {
-        return 0;
+        return mapper.deleteByPrimaryKey(userid);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class BaseService<Mapper extends IBaseMapper<Model,Example>,Model,Example
 
     @Override
     public int insertSelective(Model record) {
-        return 0;
+        return mapper.insertSelective(record);
     }
 
     @Override
@@ -42,26 +42,26 @@ public class BaseService<Mapper extends IBaseMapper<Model,Example>,Model,Example
 
     @Override
     public Model selectByPrimaryKey(Integer userid) {
-        return null;
+        return mapper.selectByPrimaryKey(userid);
     }
 
     @Override
     public int updateByExampleSelective(Model record, Example example) {
-        return 0;
+        return mapper.updateByExampleSelective(record,example);
     }
 
     @Override
     public int updateByExample(Model record, Example example) {
-        return 0;
+        return mapper.updateByExample(record, example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Model record) {
-        return 0;
+        return mapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Model record) {
-        return 0;
+        return mapper.updateByPrimaryKey(record);
     }
 }

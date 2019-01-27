@@ -6,6 +6,8 @@ import com.fqcheng220.common.resp.BaseResponseBody;
 import com.fqcheng220.dto.UpmsUserDto;
 import com.fqcheng220.model.UpmsUser;
 import com.fqcheng220.service.IUpmsUserService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -16,19 +18,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@EnableWebMvc
+@EnableSwagger2
 @RestController
 public class UserLoginController {
     private final Logger mLogger = LoggerFactory.getLogger(getClass());
     @Autowired
     private IUpmsUserService upmsUserService;
 
+    @ApiOperation(httpMethod = "POST",notes = "登录",value = "登录")
     @RequestMapping(value = UrlPathConstants.USER_LOGIN,method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponseBody<UpmsUserDto> login(String userName, String pwd){
+    public BaseResponseBody<UpmsUserDto> login(@ApiParam(name="userName",value = "账号",required = true) String userName,
+                                               @ApiParam(name="pwd",value = "密码",required = true) String pwd){
         BaseResponseBody<UpmsUserDto> ret = new BaseResponseBody<>();
         Subject subject = SecurityUtils.getSubject();
         AuthenticationToken authenticationToken = new UsernamePasswordToken(userName,pwd);
