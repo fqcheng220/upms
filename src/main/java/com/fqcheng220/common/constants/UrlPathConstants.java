@@ -11,4 +11,7 @@ public interface UrlPathConstants {
 
     public static final String USER_LOGIN= "/user/login";
     public static final String USER_LOGINOUT= "/user/loginOut";
+
+    public static final String QINIU_GET_UPLOADTOKEN= "/uploadToken";
+    public static final String QINIU_CALLBACK_UPLOAD= "/callback/upload";
 }
