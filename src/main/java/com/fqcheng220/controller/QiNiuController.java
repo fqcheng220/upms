@@ -37,8 +37,13 @@ public class QiNiuController {
                 key = "user/avater/" + userId;
                 break;
             case QiNiuConstants.BUCKET_CHILD_CATEGORY_PRODUCT:
+                key = "imgTest";
+                break;
+            case 3:
+                key = "user/avater/" + userId +"/test.jpg";
+                break;
             default:
-                key = "user/avater/testUser";
+                key = "imgTest.jpg";
         }
         StringMap putPolicy = new StringMap();
         putPolicy.put("callbackUrl", Constants.DEPLOY_DOMAIN + UrlPathConstants.QINIU_CALLBACK_UPLOAD);
@@ -75,13 +80,12 @@ public class QiNiuController {
                                    @RequestParam(value = "domain") String domain,
                                    @RequestParam(value = "key") String key) {
         Auth auth = Auth.create(QiNiuConstants.ACCESS_KEY, QiNiuConstants.SECRET_KEY);
-        String baseUrl = null;
-        key = "user/avater/123";
-        try {
-            baseUrl = domain + new String(Base64.encode(key.getBytes("UTF-8"),Base64.DEFAULT),"UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        String baseUrl = domain + key;
+//        try {
+//            baseUrl = domain + new String(Base64.encode(key.getBytes("UTF-8"),Base64.DEFAULT),"UTF-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
         if(baseUrl != null){
             return auth.privateDownloadUrl(baseUrl, expires);
         }else{
