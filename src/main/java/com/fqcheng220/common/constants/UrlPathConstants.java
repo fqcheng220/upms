@@ -14,4 +14,5 @@ public interface UrlPathConstants {
 
     public static final String QINIU_GET_UPLOADTOKEN= "/uploadToken";
     public static final String QINIU_CALLBACK_UPLOAD= "/callback/upload";
+    public static final String QINIU_GET_DOWNLOADTOKEN= "/downloadToken";
 }
