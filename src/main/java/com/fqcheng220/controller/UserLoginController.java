@@ -14,10 +14,7 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -35,11 +32,12 @@ public class UserLoginController {
     @ApiOperation(httpMethod = "POST",notes = "登录",value = "登录")
     @RequestMapping(value = UrlPathConstants.USER_LOGIN,method = RequestMethod.POST)
     @ResponseBody
+    @CrossOrigin
     public BaseResponseBody<UpmsUserDto> login(@ApiParam(name="userName",value = "账号",required = true) String userName,
-                                               @ApiParam(name="pwd",value = "密码",required = true) String pwd){
+                                               @ApiParam(name="userPwd",value = "密码",required = true) String userPwd){
         BaseResponseBody<UpmsUserDto> ret = new BaseResponseBody<>();
         Subject subject = SecurityUtils.getSubject();
-        AuthenticationToken authenticationToken = new UsernamePasswordToken(userName,pwd);
+        AuthenticationToken authenticationToken = new UsernamePasswordToken(userName,userPwd);
         try{
             subject.login(authenticationToken);
             UpmsUser upmsUser = (UpmsUser)subject.getPrincipal();
