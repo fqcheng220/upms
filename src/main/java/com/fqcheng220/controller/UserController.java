@@ -165,7 +165,7 @@ public class UserController {
     public BaseResponseBody listUserSelf(@RequestBody BaseRequestBody requestBody){
         try{
             //如何直接获取path??
-            RequestHandler.handle(UrlPathConstants.USER_LIST,requestBody);
+            RequestHandler.handle(UrlPathConstants.USER_LIST_SELF,requestBody);
         }catch (Exception e){
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
@@ -184,8 +184,9 @@ public class UserController {
      * 查询用户列表
      * @return
      */
-    @RequestMapping(value = UrlPathConstants.USER_LIST,method = RequestMethod.GET)
+    @RequestMapping(value = UrlPathConstants.USER_LIST,method = RequestMethod.POST)
     @ResponseBody
+    @CrossOrigin
     public BaseResponseBody listAllUser(@RequestBody BaseRequestBody requestBody){
         try{
             //如何直接获取path??
