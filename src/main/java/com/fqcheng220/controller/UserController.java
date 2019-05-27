@@ -42,7 +42,13 @@ public class UserController {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
         }
-        int result = upmsUserService.insert(requestBody.mUpmsUser);
+        int result = -1;
+        try{
+            result = upmsUserService.insert(requestBody.mUpmsUser);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+        }
         if(result > 0){
             return new BaseResponseBody<>()
                     .setmStatusCode(ResponseConstants.STATUS_SUC)
@@ -68,7 +74,13 @@ public class UserController {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
         }
-        int result = upmsUserService.deleteByPrimaryKey(requestBody.mUserId);
+        int result = -1;
+        try{
+            result = upmsUserService.deleteByPrimaryKey(requestBody.mUserId);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+        }
         if(result > 0){
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
                     .setmMsg(ResponseConstants.MSG_SUC_DEL)
@@ -93,7 +105,13 @@ public class UserController {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
         }
-        int result = upmsUserService.updateByPrimaryKey(requestBody.mUpmsUser);
+        int result = -1;
+        try{
+            result = upmsUserService.updateByPrimaryKey(requestBody.mUpmsUser);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+        }
         if(result > 0){
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
                     .setmMsg(ResponseConstants.MSG_SUC_UPDATE)
@@ -134,7 +152,13 @@ public class UserController {
                 return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
             }
         }
-        int result = upmsUserService.updateByPrimaryKey(requestBody.mUpmsUser);
+        int result = -1;
+        try{
+            result = upmsUserService.updateByPrimaryKey(requestBody.mUpmsUser);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+        }
         if(result > 0){
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
                     .setmMsg(ResponseConstants.MSG_SUC_UPDATE)
@@ -174,10 +198,15 @@ public class UserController {
         String userName = getLoginUserNameForToken();
         UpmsUserExample upmsUserExample = new UpmsUserExample();
         upmsUserExample.createCriteria().andUsernameEqualTo(userName);
-        List<UpmsUser> list =  upmsUserService.selectByExample(upmsUserExample);
-        return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
-                .setmMsg(ResponseConstants.MSG_SUC_LIST)
-                .setmResult(list);
+        try{
+            List<UpmsUser> list =  upmsUserService.selectByExample(upmsUserExample);
+            return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
+                    .setmMsg(ResponseConstants.MSG_SUC_LIST)
+                    .setmResult(list);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+        }
     }
 
     /**
@@ -195,10 +224,15 @@ public class UserController {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
         }
-        List<UpmsUser> list =  upmsUserService.listAllUser();
-        return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
-                .setmMsg(ResponseConstants.MSG_SUC_LIST)
-                .setmResult(list);
+        try{
+            List<UpmsUser> list =  upmsUserService.listAllUser();
+            return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
+                    .setmMsg(ResponseConstants.MSG_SUC_LIST)
+                    .setmResult(list);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+        }
     }
 
     private String getLoginUserNameForToken(){
