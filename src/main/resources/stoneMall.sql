@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_upms_user` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_user` (
   `userId` INT NOT NULL AUTO_INCREMENT,
-  `userName` VARCHAR(45) NOT NULL,
+  `userName` VARCHAR(45) NOT NULL UNIQUE,
   `pwd` VARCHAR(45) NOT NULL,
   `realName` VARCHAR(45) NULL,
   `phone` VARCHAR(45) NOT NULL,
@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_upms_role` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_role` (
   `roleId` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NOT NULL UNIQUE,
   `createTime` BIGINT(20) NOT NULL,
   `description` VARCHAR(45) NULL,
   PRIMARY KEY (`roleId`))
@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_user_role` (
   `userId` INT NOT NULL,
   `roleId` INT NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY(`userId`,`roleId`),
   INDEX `fk_tb_upms_user_role_tb_upms_user_idx` (`userId` ASC),
   INDEX `fk_tb_upms_user_role_tb_upms_role1_idx` (`roleId` ASC),
   CONSTRAINT `fk_tb_upms_user_role_tb_upms_user`
@@ -80,7 +81,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_upms_system` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_system` (
   `systemId` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NOT NULL UNIQUE,
   `description` VARCHAR(200) NULL,
   `status` TINYINT(4) NULL COMMENT '0禁止 1正常',
   `createTime` BIGINT(20) NOT NULL,
@@ -96,7 +97,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_upms_permission` ;
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_permission` (
   `permissionId` INT NOT NULL AUTO_INCREMENT,
   `permissionValue` VARCHAR(45) NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NOT NULL UNIQUE,
   `createTime` BIGINT(20) NULL,
   `type` TINYINT(4) NULL,
   `status` TINYINT(4) NOT NULL COMMENT '0禁止 1正常',
@@ -122,6 +123,7 @@ CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_permission_role` (
   `permissionId` INT NOT NULL AUTO_INCREMENT,
   `roleId` INT NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY(`permissionId`,`roleId`),
   INDEX `fk_tb_upms_permission_has_tb_upms_role_tb_upms_role1_idx` (`roleId` ASC),
   INDEX `fk_tb_upms_permission_has_tb_upms_role_tb_upms_permission1_idx` (`permissionId` ASC),
   CONSTRAINT `fk_tb_upms_permission_has_tb_upms_role_tb_upms_permission1`
@@ -146,6 +148,7 @@ CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_user_permission` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `userId` INT NOT NULL,
   `permissionId` INT NOT NULL,
+  UNIQUE KEY(`userId`,`permissionId`),
   INDEX `fk_tb_upms_user_has_tb_upms_permission_tb_upms_permission1_idx` (`permissionId` ASC),
   INDEX `fk_tb_upms_user_has_tb_upms_permission_tb_upms_user1_idx` (`userId` ASC),
   PRIMARY KEY (`id`),
