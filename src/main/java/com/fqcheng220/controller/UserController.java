@@ -47,7 +47,7 @@ public class UserController {
             result = upmsUserService.insert(requestBody.mUpmsUser);
         }catch (Exception e){
             e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
         }
         if(result > 0){
             return new BaseResponseBody<>()
@@ -76,15 +76,16 @@ public class UserController {
         }
         int result = -1;
         try{
-            result = upmsUserService.deleteByPrimaryKey(requestBody.mUserId);
+            UpmsUserExample upmsUserExample = new UpmsUserExample();
+            upmsUserExample.createCriteria().andUseridIn(requestBody.mUserIdList);
+            result = upmsUserService.deleteByExample(upmsUserExample);
         }catch (Exception e){
             e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
         }
         if(result > 0){
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(ResponseConstants.MSG_SUC_DEL)
-                    .setmResult(Arrays.asList(requestBody.mUserId));
+                    .setmMsg(ResponseConstants.MSG_SUC_DEL);
         }else{
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
         }
@@ -110,7 +111,7 @@ public class UserController {
             result = upmsUserService.updateByPrimaryKey(requestBody.mUpmsUser);
         }catch (Exception e){
             e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
         }
         if(result > 0){
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
@@ -157,7 +158,7 @@ public class UserController {
             result = upmsUserService.updateByPrimaryKey(requestBody.mUpmsUser);
         }catch (Exception e){
             e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
         }
         if(result > 0){
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
@@ -205,7 +206,7 @@ public class UserController {
                     .setmResult(list);
         }catch (Exception e){
             e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
         }
     }
 
@@ -231,7 +232,7 @@ public class UserController {
                     .setmResult(list);
         }catch (Exception e){
             e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
         }
     }
 
