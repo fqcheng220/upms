@@ -52,7 +52,7 @@ public class UserController {
         if(result > 0){
             return new BaseResponseBody<>()
                     .setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(ResponseConstants.MSG_SUC_ADD)
+                    .setmMsg(ResponseConstants.MSG_SUC_USER_ADD)
                     .setmResult(Arrays.asList(requestBody.mUpmsUser));
         }else{
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
@@ -85,7 +85,7 @@ public class UserController {
         }
         if(result > 0){
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(ResponseConstants.MSG_SUC_DEL);
+                    .setmMsg(ResponseConstants.MSG_SUC_USER_DEL);
         }else{
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
         }
@@ -115,7 +115,7 @@ public class UserController {
         }
         if(result > 0){
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(ResponseConstants.MSG_SUC_UPDATE)
+                    .setmMsg(ResponseConstants.MSG_SUC_USER_UPDATE)
                     .setmResult(Arrays.asList(requestBody.mUpmsUser));
         }else{
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
@@ -162,7 +162,7 @@ public class UserController {
         }
         if(result > 0){
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(ResponseConstants.MSG_SUC_UPDATE)
+                    .setmMsg(ResponseConstants.MSG_SUC_USER_UPDATE)
                     .setmResult(Arrays.asList(requestBody.mUpmsUser));
         }else{
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE)
@@ -202,7 +202,7 @@ public class UserController {
         try{
             List<UpmsUser> list =  upmsUserService.selectByExample(upmsUserExample);
             return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(ResponseConstants.MSG_SUC_LIST)
+                    .setmMsg(ResponseConstants.MSG_SUC_USER_LIST)
                     .setmResult(list);
         }catch (Exception e){
             e.printStackTrace();
@@ -228,7 +228,7 @@ public class UserController {
         try{
             List<UpmsUser> list =  upmsUserService.listAllUser();
             return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(ResponseConstants.MSG_SUC_LIST)
+                    .setmMsg(ResponseConstants.MSG_SUC_USER_LIST)
                     .setmResult(list);
         }catch (Exception e){
             e.printStackTrace();

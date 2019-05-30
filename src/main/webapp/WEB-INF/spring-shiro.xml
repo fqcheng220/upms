@@ -33,6 +33,12 @@
 
                 /user/updateSelf = noSessionCreation,authcToken
                 /user/listSelf = noSessionCreation,authcToken
+
+                /role/add = noSessionCreation,authcToken,roles[super]
+                /role/del = noSessionCreation,authcToken,roles[super]
+                /role/update = noSessionCreation,authcToken,roles[super]
+                /role/list/all = noSessionCreation,authcToken,roles[super]
+
             </value>
         </property>
     </bean>

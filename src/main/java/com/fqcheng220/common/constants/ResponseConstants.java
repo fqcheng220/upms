@@ -18,8 +18,13 @@ public interface ResponseConstants {
     public static String MSG_ERROR_LOGIN = "未知错误";
 
     public static String MSG_SUC_LOGIN = "登录成功";
-    public static String MSG_SUC_UPDATE= "更新用户成功";
-    public static String MSG_SUC_LIST= "查询用户成功";
-    public static String MSG_SUC_ADD= "添加用户成功";
-    public static String MSG_SUC_DEL= "删除用户成功";
+    public static String MSG_SUC_USER_UPDATE = "更新用户成功";
+    public static String MSG_SUC_USER_LIST = "查询用户成功";
+    public static String MSG_SUC_USER_ADD = "添加用户成功";
+    public static String MSG_SUC_USER_DEL = "删除用户成功";
+
+    public static String MSG_SUC_ROLE_UPDATE = "更新角色成功";
+    public static String MSG_SUC_ROLE_LIST = "查询角色成功";
+    public static String MSG_SUC_ROLE_ADD = "添加角色成功";
+    public static String MSG_SUC_ROLE_DEL = "删除角色成功";
 }
