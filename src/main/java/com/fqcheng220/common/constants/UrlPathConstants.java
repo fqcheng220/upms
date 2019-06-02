@@ -22,4 +22,16 @@ public interface UrlPathConstants {
     public static final String ROLE_DEL = "/role/del";
     public static final String ROLE_UPDATE = "/role/update";
     public static final String ROLE_LIST = "/role/list/all";
+
+    //角色
+    public static final String USERROLE_ADD = "/userrole/add";
+    public static final String USERROLE_DEL = "/userrole/del";
+    public static final String USERROLE_UPDATE = "/userrole/update";
+    public static final String USERROLE_LIST = "/userrole/list/all";
+
+    //权限
+    public static final String PERMISSION_ADD = "/permission/add";
+    public static final String PERMISSION_DEL = "/permission/del";
+    public static final String PERMISSION_UPDATE = "/permission/update";
+    public static final String PERMISSION_LIST = "/permission/list/all";
 }

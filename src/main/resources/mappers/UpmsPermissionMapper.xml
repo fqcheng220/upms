@@ -6,7 +6,7 @@
       <idArg column="permissionId" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="permissionValue" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="createTime" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="createTime" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="type" javaType="java.lang.Byte" jdbcType="TINYINT" />
       <arg column="status" javaType="java.lang.Byte" jdbcType="TINYINT" />
       <arg column="upms_system_systemId" javaType="java.lang.Integer" jdbcType="INTEGER" />
@@ -108,7 +108,7 @@
       createTime, type, status, 
       upms_system_systemId)
     values (#{permissionid,jdbcType=INTEGER}, #{permissionvalue,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, 
+      #{createtime,jdbcType=DATE}, #{type,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, 
       #{upmsSystemSystemid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.UpmsPermission">
@@ -147,7 +147,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
-        #{createtime,jdbcType=BIGINT},
+        #{createtime,jdbcType=DATE},
       </if>
       <if test="type != null">
         #{type,jdbcType=TINYINT},
@@ -179,7 +179,7 @@
         name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=BIGINT},
+        createTime = #{record.createtime,jdbcType=DATE},
       </if>
       <if test="record.type != null">
         type = #{record.type,jdbcType=TINYINT},
@@ -200,7 +200,7 @@
     set permissionId = #{record.permissionid,jdbcType=INTEGER},
       permissionValue = #{record.permissionvalue,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=BIGINT},
+      createTime = #{record.createtime,jdbcType=DATE},
       type = #{record.type,jdbcType=TINYINT},
       status = #{record.status,jdbcType=TINYINT},
       upms_system_systemId = #{record.upmsSystemSystemid,jdbcType=INTEGER}
@@ -218,7 +218,7 @@
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
-        createTime = #{createtime,jdbcType=BIGINT},
+        createTime = #{createtime,jdbcType=DATE},
       </if>
       <if test="type != null">
         type = #{type,jdbcType=TINYINT},
@@ -236,7 +236,7 @@
     update tb_upms_permission
     set permissionValue = #{permissionvalue,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=BIGINT},
+      createTime = #{createtime,jdbcType=DATE},
       type = #{type,jdbcType=TINYINT},
       status = #{status,jdbcType=TINYINT},
       upms_system_systemId = #{upmsSystemSystemid,jdbcType=INTEGER}

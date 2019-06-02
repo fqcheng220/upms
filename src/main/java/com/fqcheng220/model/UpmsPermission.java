@@ -1,5 +1,7 @@
 package com.fqcheng220.model;
 
+import java.util.Date;
+
 public class UpmsPermission {
     private Integer permissionid;
 
@@ -7,7 +9,7 @@ public class UpmsPermission {
 
     private String name;
 
-    private Long createtime;
+    private Date createtime;
 
     private Byte type;
 
@@ -15,7 +17,7 @@ public class UpmsPermission {
 
     private Integer upmsSystemSystemid;
 
-    public UpmsPermission(Integer permissionid, String permissionvalue, String name, Long createtime, Byte type, Byte status, Integer upmsSystemSystemid) {
+    public UpmsPermission(Integer permissionid, String permissionvalue, String name, Date createtime, Byte type, Byte status, Integer upmsSystemSystemid) {
         this.permissionid = permissionid;
         this.permissionvalue = permissionvalue;
         this.name = name;
@@ -53,11 +55,11 @@ public class UpmsPermission {
         this.name = name == null ? null : name.trim();
     }
 
-    public Long getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Long createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 

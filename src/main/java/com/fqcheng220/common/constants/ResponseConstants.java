@@ -27,4 +27,14 @@ public interface ResponseConstants {
     public static String MSG_SUC_ROLE_LIST = "查询角色成功";
     public static String MSG_SUC_ROLE_ADD = "添加角色成功";
     public static String MSG_SUC_ROLE_DEL = "删除角色成功";
+
+    public static String MSG_SUC_USERROLE_UPDATE = "更新用户-角色成功";
+    public static String MSG_SUC_USERROLE_LIST = "查询用户-角色成功";
+    public static String MSG_SUC_USERROLE_ADD = "添加用户-角色成功";
+    public static String MSG_SUC_USERROLE_DEL = "删除用户-角色成功";
+
+    public static String MSG_SUC_PERMISSION_UPDATE = "更新权限成功";
+    public static String MSG_SUC_PERMISSION_LIST = "查询权限成功";
+    public static String MSG_SUC_PERMISSION_ADD = "添加权限成功";
+    public static String MSG_SUC_PERMISSION_DEL = "删除权限成功";
 }

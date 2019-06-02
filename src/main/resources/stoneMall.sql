@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_permission` (
   `permissionId` INT NOT NULL AUTO_INCREMENT,
   `permissionValue` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL UNIQUE,
-  `createTime` BIGINT(20) NULL,
+  `createTime` DATE NULL,
   `type` TINYINT(4) NULL,
   `status` TINYINT(4) NOT NULL COMMENT '0禁止 1正常',
   `upms_system_systemId` INT NOT NULL,

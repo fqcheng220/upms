@@ -39,6 +39,15 @@
                 /role/update = noSessionCreation,authcToken,roles[super]
                 /role/list/all = noSessionCreation,authcToken,roles[super]
 
+                /permission/add = noSessionCreation,authcToken,roles[super]
+                /permission/del = noSessionCreation,authcToken,roles[super]
+                /permission/update = noSessionCreation,authcToken,roles[super]
+                /permission/list/all = noSessionCreation,authcToken,roles[super]
+
+                /userrole/add = noSessionCreation,authcToken,roles[super]
+                /userrole/del = noSessionCreation,authcToken,roles[super]
+                /userrole/update = noSessionCreation,authcToken,roles[super]
+                /userrole/list/all = noSessionCreation,authcToken,roles[super]
             </value>
         </property>
     </bean>
