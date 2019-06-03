@@ -1,5 +1,7 @@
 package com.fqcheng220.model;
 
+import java.util.Date;
+
 public class UpmsSystem {
     private Integer systemid;
 
@@ -9,9 +11,9 @@ public class UpmsSystem {
 
     private Byte status;
 
-    private Long createtime;
+    private Date createtime;
 
-    public UpmsSystem(Integer systemid, String name, String description, Byte status, Long createtime) {
+    public UpmsSystem(Integer systemid, String name, String description, Byte status, Date createtime) {
         this.systemid = systemid;
         this.name = name;
         this.description = description;
@@ -55,11 +57,11 @@ public class UpmsSystem {
         this.status = status;
     }
 
-    public Long getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Long createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 }

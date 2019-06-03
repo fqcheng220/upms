@@ -2,10 +2,7 @@ package com.fqcheng220.controller;
 
 import com.fqcheng220.common.constants.ResponseConstants;
 import com.fqcheng220.common.constants.UrlPathConstants;
-import com.fqcheng220.common.req.BaseRequestBody;
-import com.fqcheng220.common.req.UpmsRequestUserAdd;
-import com.fqcheng220.common.req.UpmsRequestUserDel;
-import com.fqcheng220.common.req.UpmsRequestUserUpdate;
+import com.fqcheng220.common.req.*;
 import com.fqcheng220.common.req.handler.RequestHandler;
 import com.fqcheng220.common.resp.BaseResponseBody;
 import com.fqcheng220.model.UpmsUser;
@@ -34,29 +31,9 @@ public class UserController {
      */
     @RequestMapping(value = UrlPathConstants.USER_ADD,method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponseBody addUser(@RequestBody UpmsRequestUserAdd requestBody){
-        try{
-            //如何直接获取path??
-            RequestHandler.handle(UrlPathConstants.USER_ADD,requestBody);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
-        }
-        int result = -1;
-        try{
-            result = upmsUserService.insert(requestBody.mUpmsUser);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
-        }
-        if(result > 0){
-            return new BaseResponseBody<>()
-                    .setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(ResponseConstants.MSG_SUC_USER_ADD)
-                    .setmResult(Arrays.asList(requestBody.mUpmsUser));
-        }else{
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
-        }
+    @CrossOrigin
+    public BaseResponseBody addUser(@RequestBody BaseRequestAddBody<UpmsUser> requestBody){
+        return BaseController.add(requestBody,UrlPathConstants.USER_ADD,upmsUserService,ResponseConstants.MSG_SUC_USER_ADD);
     }
 
     /**
@@ -66,29 +43,11 @@ public class UserController {
      */
     @RequestMapping(value = UrlPathConstants.USER_DEL,method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponseBody delUser(@RequestBody UpmsRequestUserDel requestBody){
-        try{
-            //如何直接获取path??
-            RequestHandler.handle(UrlPathConstants.USER_DEL,requestBody);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
-        }
-        int result = -1;
-        try{
-            UpmsUserExample upmsUserExample = new UpmsUserExample();
-            upmsUserExample.createCriteria().andUseridIn(requestBody.mUserIdList);
-            result = upmsUserService.deleteByExample(upmsUserExample);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
-        }
-        if(result > 0){
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(ResponseConstants.MSG_SUC_USER_DEL);
-        }else{
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
-        }
+    @CrossOrigin
+    public BaseResponseBody delUser(@RequestBody BaseRequestDelBody requestBody){
+        UpmsUserExample example = new UpmsUserExample();
+        example.createCriteria().andUseridIn(requestBody.mEntityList);
+        return BaseController.del(requestBody,UrlPathConstants.USER_DEL,upmsUserService,example,ResponseConstants.MSG_SUC_USER_DEL);
     }
 
     /**
@@ -98,28 +57,21 @@ public class UserController {
      */
     @RequestMapping(value = UrlPathConstants.USER_UPDATE,method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponseBody updateUser(@RequestBody UpmsRequestUserUpdate requestBody){
-        try{
-            //如何直接获取path??
-            RequestHandler.handle(UrlPathConstants.USER_UPDATE,requestBody);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
-        }
-        int result = -1;
-        try{
-            result = upmsUserService.updateByPrimaryKey(requestBody.mUpmsUser);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
-        }
-        if(result > 0){
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(ResponseConstants.MSG_SUC_USER_UPDATE)
-                    .setmResult(Arrays.asList(requestBody.mUpmsUser));
-        }else{
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
-        }
+    @CrossOrigin
+    public BaseResponseBody updateUser(@RequestBody BaseRequestUpdateBody<UpmsUser> requestBody){
+        return BaseController.update(requestBody,UrlPathConstants.USER_UPDATE,upmsUserService,ResponseConstants.MSG_SUC_USER_UPDATE);
+    }
+
+    /**
+     * 查询用户列表
+     * @return
+     */
+    @RequestMapping(value = UrlPathConstants.USER_LIST,method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody listAllUser(@RequestBody BaseRequestBody requestBody){
+        UpmsUserExample example = new UpmsUserExample();
+        return BaseController.listAll(requestBody,UrlPathConstants.USER_LIST,upmsUserService,example,ResponseConstants.MSG_SUC_USER_LIST);
     }
 
     @RequestMapping(value = UrlPathConstants.USER_UPDATE_SELF,method = RequestMethod.POST)
@@ -201,32 +153,6 @@ public class UserController {
         upmsUserExample.createCriteria().andUsernameEqualTo(userName);
         try{
             List<UpmsUser> list =  upmsUserService.selectByExample(upmsUserExample);
-            return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(ResponseConstants.MSG_SUC_USER_LIST)
-                    .setmResult(list);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
-        }
-    }
-
-    /**
-     * 查询用户列表
-     * @return
-     */
-    @RequestMapping(value = UrlPathConstants.USER_LIST,method = RequestMethod.POST)
-    @ResponseBody
-    @CrossOrigin
-    public BaseResponseBody listAllUser(@RequestBody BaseRequestBody requestBody){
-        try{
-            //如何直接获取path??
-            RequestHandler.handle(UrlPathConstants.USER_LIST,requestBody);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
-        }
-        try{
-            List<UpmsUser> list =  upmsUserService.listAllUser();
             return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
                     .setmMsg(ResponseConstants.MSG_SUC_USER_LIST)
                     .setmResult(list);

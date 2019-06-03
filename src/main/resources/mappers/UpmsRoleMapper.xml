@@ -5,7 +5,7 @@
     <constructor>
       <idArg column="roleId" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="createTime" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="createTime" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
@@ -103,7 +103,7 @@
   <insert id="insert" parameterType="com.fqcheng220.model.UpmsRole">
     insert into tb_upms_role (roleId, name, createTime, 
       description)
-    values (#{roleid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createtime,jdbcType=BIGINT}, 
+    values (#{roleid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, 
       #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.UpmsRole">
@@ -130,7 +130,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
-        #{createtime,jdbcType=BIGINT},
+        #{createtime,jdbcType=DATE},
       </if>
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
@@ -153,7 +153,7 @@
         name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=BIGINT},
+        createTime = #{record.createtime,jdbcType=DATE},
       </if>
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
@@ -167,7 +167,7 @@
     update tb_upms_role
     set roleId = #{record.roleid,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=BIGINT},
+      createTime = #{record.createtime,jdbcType=DATE},
       description = #{record.description,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -180,7 +180,7 @@
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
-        createTime = #{createtime,jdbcType=BIGINT},
+        createTime = #{createtime,jdbcType=DATE},
       </if>
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
@@ -191,7 +191,7 @@
   <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.UpmsRole">
     update tb_upms_role
     set name = #{name,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=BIGINT},
+      createTime = #{createtime,jdbcType=DATE},
       description = #{description,jdbcType=VARCHAR}
     where roleId = #{roleid,jdbcType=INTEGER}
   </update>

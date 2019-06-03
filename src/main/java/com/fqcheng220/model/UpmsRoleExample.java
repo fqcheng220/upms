@@ -1,6 +1,8 @@
 package com.fqcheng220.model;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class UpmsRoleExample {
@@ -102,6 +104,32 @@ public class UpmsRoleExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andRoleidIsNull() {
@@ -244,53 +272,53 @@ public class UpmsRoleExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeEqualTo(Long value) {
-            addCriterion("createTime =", value, "createtime");
+        public Criteria andCreatetimeEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime =", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotEqualTo(Long value) {
-            addCriterion("createTime <>", value, "createtime");
+        public Criteria andCreatetimeNotEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime <>", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThan(Long value) {
-            addCriterion("createTime >", value, "createtime");
+        public Criteria andCreatetimeGreaterThan(Date value) {
+            addCriterionForJDBCDate("createTime >", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThanOrEqualTo(Long value) {
-            addCriterion("createTime >=", value, "createtime");
+        public Criteria andCreatetimeGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime >=", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThan(Long value) {
-            addCriterion("createTime <", value, "createtime");
+        public Criteria andCreatetimeLessThan(Date value) {
+            addCriterionForJDBCDate("createTime <", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThanOrEqualTo(Long value) {
-            addCriterion("createTime <=", value, "createtime");
+        public Criteria andCreatetimeLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("createTime <=", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIn(List<Long> values) {
-            addCriterion("createTime in", values, "createtime");
+        public Criteria andCreatetimeIn(List<Date> values) {
+            addCriterionForJDBCDate("createTime in", values, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotIn(List<Long> values) {
-            addCriterion("createTime not in", values, "createtime");
+        public Criteria andCreatetimeNotIn(List<Date> values) {
+            addCriterionForJDBCDate("createTime not in", values, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeBetween(Long value1, Long value2) {
-            addCriterion("createTime between", value1, value2, "createtime");
+        public Criteria andCreatetimeBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("createTime between", value1, value2, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotBetween(Long value1, Long value2) {
-            addCriterion("createTime not between", value1, value2, "createtime");
+        public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("createTime not between", value1, value2, "createtime");
             return (Criteria) this;
         }
 

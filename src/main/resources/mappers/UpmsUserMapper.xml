@@ -8,7 +8,7 @@
       <arg column="pwd" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="realName" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="createTime" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="createTime" javaType="java.util.Date" jdbcType="DATE" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -108,7 +108,7 @@
       realName, phone, createTime
       )
     values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
-      #{realname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{createtime,jdbcType=BIGINT}
+      #{realname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.UpmsUser">
@@ -150,7 +150,7 @@
         #{phone,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
-        #{createtime,jdbcType=BIGINT},
+        #{createtime,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -179,7 +179,7 @@
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
       <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=BIGINT},
+        createTime = #{record.createtime,jdbcType=DATE},
       </if>
     </set>
     <if test="_parameter != null">
@@ -193,7 +193,7 @@
       pwd = #{record.pwd,jdbcType=VARCHAR},
       realName = #{record.realname,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=BIGINT}
+      createTime = #{record.createtime,jdbcType=DATE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -214,7 +214,7 @@
         phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
-        createTime = #{createtime,jdbcType=BIGINT},
+        createTime = #{createtime,jdbcType=DATE},
       </if>
     </set>
     where userId = #{userid,jdbcType=INTEGER}
@@ -225,7 +225,7 @@
       pwd = #{pwd,jdbcType=VARCHAR},
       realName = #{realname,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=BIGINT}
+      createTime = #{createtime,jdbcType=DATE}
     where userId = #{userid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,15 +1,17 @@
 package com.fqcheng220.model;
 
+import java.util.Date;
+
 public class UpmsRole {
     private Integer roleid;
 
     private String name;
 
-    private Long createtime;
+    private Date createtime;
 
     private String description;
 
-    public UpmsRole(Integer roleid, String name, Long createtime, String description) {
+    public UpmsRole(Integer roleid, String name, Date createtime, String description) {
         this.roleid = roleid;
         this.name = name;
         this.createtime = createtime;
@@ -36,11 +38,11 @@ public class UpmsRole {
         this.name = name == null ? null : name.trim();
     }
 
-    public Long getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Long createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 

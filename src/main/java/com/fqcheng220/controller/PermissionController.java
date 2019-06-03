@@ -29,7 +29,7 @@ public class PermissionController {
     @RequestMapping(value = UrlPathConstants.PERMISSION_ADD,method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public BaseResponseBody addUserRole(@RequestBody BaseRequestAddBody<UpmsPermission> requestBody){
+    public BaseResponseBody addPermission(@RequestBody BaseRequestAddBody<UpmsPermission> requestBody){
         return BaseController.add(requestBody,UrlPathConstants.PERMISSION_ADD,upmsService,ResponseConstants.MSG_SUC_PERMISSION_ADD);
     }
 
@@ -41,7 +41,7 @@ public class PermissionController {
     @RequestMapping(value = UrlPathConstants.PERMISSION_DEL,method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public BaseResponseBody delUserRole(@RequestBody BaseRequestDelBody requestBody){
+    public BaseResponseBody delPermission(@RequestBody BaseRequestDelBody requestBody){
         UpmsPermissionExample example = new UpmsPermissionExample();
         example.createCriteria().andPermissionidIn(requestBody.mEntityList);
         return BaseController.del(requestBody,UrlPathConstants.PERMISSION_DEL,upmsService,example,ResponseConstants.MSG_SUC_PERMISSION_DEL);
@@ -55,7 +55,7 @@ public class PermissionController {
     @RequestMapping(value = UrlPathConstants.PERMISSION_UPDATE,method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public BaseResponseBody updateUserRole(@RequestBody BaseRequestUpdateBody<UpmsPermission> requestBody){
+    public BaseResponseBody updatePermission(@RequestBody BaseRequestUpdateBody<UpmsPermission> requestBody){
         return BaseController.update(requestBody,UrlPathConstants.PERMISSION_UPDATE,upmsService,ResponseConstants.MSG_SUC_PERMISSION_UPDATE);
     }
 
@@ -66,7 +66,7 @@ public class PermissionController {
     @RequestMapping(value = UrlPathConstants.PERMISSION_LIST,method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public BaseResponseBody listAllUserRole(@RequestBody BaseRequestBody requestBody){
+    public BaseResponseBody listAllPermission(@RequestBody BaseRequestBody requestBody){
         UpmsPermissionExample example = new UpmsPermissionExample();
         return BaseController.listAll(requestBody,UrlPathConstants.PERMISSION_LIST,upmsService,example,ResponseConstants.MSG_SUC_PERMISSION_LIST);
     }

@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_user` (
   `pwd` VARCHAR(45) NOT NULL,
   `realName` VARCHAR(45) NULL,
   `phone` VARCHAR(45) NOT NULL,
-  `createTime` BIGINT(20) NOT NULL,
+  `createTime` DATE NOT NULL,
   PRIMARY KEY (`userId`))
 ENGINE = InnoDB;
 
@@ -42,7 +42,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_upms_role` ;
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_role` (
   `roleId` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL UNIQUE,
-  `createTime` BIGINT(20) NOT NULL,
+  `createTime` DATE NOT NULL,
   `description` VARCHAR(45) NULL,
   PRIMARY KEY (`roleId`))
 ENGINE = InnoDB;
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_system` (
   `name` VARCHAR(45) NOT NULL UNIQUE,
   `description` VARCHAR(200) NULL,
   `status` TINYINT(4) NULL COMMENT '0禁止 1正常',
-  `createTime` BIGINT(20) NOT NULL,
+  `createTime` DATE NOT NULL,
   PRIMARY KEY (`systemId`))
 ENGINE = InnoDB;
 
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_permission` (
   `permissionId` INT NOT NULL AUTO_INCREMENT,
   `permissionValue` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL UNIQUE,
-  `createTime` DATE NULL,
+  `createTime` DATE NOT NULL,
   `type` TINYINT(4) NULL,
   `status` TINYINT(4) NOT NULL COMMENT '0禁止 1正常',
   `upms_system_systemId` INT NOT NULL,

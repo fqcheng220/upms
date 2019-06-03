@@ -7,7 +7,7 @@
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="status" javaType="java.lang.Byte" jdbcType="TINYINT" />
-      <arg column="createTime" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="createTime" javaType="java.util.Date" jdbcType="DATE" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -105,7 +105,7 @@
     insert into tb_upms_system (systemId, name, description, 
       status, createTime)
     values (#{systemid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{status,jdbcType=TINYINT}, #{createtime,jdbcType=BIGINT})
+      #{status,jdbcType=TINYINT}, #{createtime,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.UpmsSystem">
     insert into tb_upms_system
@@ -140,7 +140,7 @@
         #{status,jdbcType=TINYINT},
       </if>
       <if test="createtime != null">
-        #{createtime,jdbcType=BIGINT},
+        #{createtime,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -166,7 +166,7 @@
         status = #{record.status,jdbcType=TINYINT},
       </if>
       <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=BIGINT},
+        createTime = #{record.createtime,jdbcType=DATE},
       </if>
     </set>
     <if test="_parameter != null">
@@ -179,7 +179,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=TINYINT},
-      createTime = #{record.createtime,jdbcType=BIGINT}
+      createTime = #{record.createtime,jdbcType=DATE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,7 +197,7 @@
         status = #{status,jdbcType=TINYINT},
       </if>
       <if test="createtime != null">
-        createTime = #{createtime,jdbcType=BIGINT},
+        createTime = #{createtime,jdbcType=DATE},
       </if>
     </set>
     where systemId = #{systemid,jdbcType=INTEGER}
@@ -207,7 +207,7 @@
     set name = #{name,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT},
-      createTime = #{createtime,jdbcType=BIGINT}
+      createTime = #{createtime,jdbcType=DATE}
     where systemId = #{systemid,jdbcType=INTEGER}
   </update>
 </mapper>

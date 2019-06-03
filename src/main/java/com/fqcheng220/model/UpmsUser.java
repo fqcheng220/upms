@@ -1,5 +1,7 @@
 package com.fqcheng220.model;
 
+import java.util.Date;
+
 public class UpmsUser {
     private Integer userid;
 
@@ -11,9 +13,9 @@ public class UpmsUser {
 
     private String phone;
 
-    private Long createtime;
+    private Date createtime;
 
-    public UpmsUser(Integer userid, String username, String pwd, String realname, String phone, Long createtime) {
+    public UpmsUser(Integer userid, String username, String pwd, String realname, String phone, Date createtime) {
         this.userid = userid;
         this.username = username;
         this.pwd = pwd;
@@ -66,11 +68,11 @@ public class UpmsUser {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public Long getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Long createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 }
