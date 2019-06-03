@@ -76,7 +76,7 @@ public class UpmsUserService /*extends BaseService<UpmsUserMapper,UpmsUser,UpmsU
                 upmsRoleExample.createCriteria().andRoleidEqualTo(roleId);
                 List<UpmsRole> listRole = upmsRoleMapper.selectByExample(upmsRoleExample);
                 if(listRole != null && !list.isEmpty()){
-                    roleNameList.add(listRole.get(0).getName());
+                    roleNameList.add(listRole.get(0).getRolename());
                 }
             }
         }

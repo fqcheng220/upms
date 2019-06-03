@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_upms_role` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_role` (
   `roleId` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL UNIQUE,
+  `roleName` VARCHAR(45) NOT NULL UNIQUE,
   `createTime` DATE NOT NULL,
   `description` VARCHAR(45) NULL,
   PRIMARY KEY (`roleId`))
@@ -96,8 +96,8 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_upms_permission` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_permission` (
   `permissionId` INT NOT NULL AUTO_INCREMENT,
-  `permissionValue` VARCHAR(45) NOT NULL,
-  `name` VARCHAR(45) NOT NULL UNIQUE,
+  `permissionValue` VARCHAR(45) UNIQUE NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
   `createTime` DATE NOT NULL,
   `type` TINYINT(4) NULL,
   `status` TINYINT(4) NOT NULL COMMENT '0禁止 1正常',
@@ -182,14 +182,14 @@ insert into tb_upms_user_role values(2,2,2);
 insert into tb_upms_system values(1,'upms','',1,20180101);
 
 insert into tb_upms_permission values(1,'upms:user:add','增加用户',20180101,0,1,1);
-insert into tb_upms_permission values(2,'upms:user:add','删除用户',20180101,0,1,1);
-insert into tb_upms_permission values(3,'upms:user:add','修改用户',20180101,0,1,1);
-insert into tb_upms_permission values(4,'upms:user:add','查询所有用户',20180101,0,1,1);
-insert into tb_upms_permission values(5,'upms:user:add','用户登录',20180101,0,1,1);
--- insert into tb_upms_permission values(2,'upms:user:del','删除用户',20180101,0,1,1);
--- insert into tb_upms_permission values(3,'upms:user:update','修改用户',20180101,0,1,1);
--- insert into tb_upms_permission values(4,'upms:user:listall','查询所有用户',20180101,0,1,1);
--- insert into tb_upms_permission values(5,'upms:user:login','用户登录',20180101,0,1,1);
+-- insert into tb_upms_permission values(2,'upms:user:add','删除用户',20180101,0,1,1);
+-- insert into tb_upms_permission values(3,'upms:user:add','修改用户',20180101,0,1,1);
+-- insert into tb_upms_permission values(4,'upms:user:add','查询所有用户',20180101,0,1,1);
+-- insert into tb_upms_permission values(5,'upms:user:add','用户登录',20180101,0,1,1);
+insert into tb_upms_permission values(2,'upms:user:del','删除用户',20180101,0,1,1);
+insert into tb_upms_permission values(3,'upms:user:update','修改用户',20180101,0,1,1);
+insert into tb_upms_permission values(4,'upms:user:listall','查询所有用户',20180101,0,1,1);
+insert into tb_upms_permission values(5,'upms:user:login','用户登录',20180101,0,1,1);
 
 insert into tb_upms_role_permission values(1,2,1);
 insert into tb_upms_role_permission values(2,2,2);

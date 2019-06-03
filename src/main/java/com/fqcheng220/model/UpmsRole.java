@@ -5,15 +5,15 @@ import java.util.Date;
 public class UpmsRole {
     private Integer roleid;
 
-    private String name;
+    private String rolename;
 
     private Date createtime;
 
     private String description;
 
-    public UpmsRole(Integer roleid, String name, Date createtime, String description) {
+    public UpmsRole(Integer roleid, String rolename, Date createtime, String description) {
         this.roleid = roleid;
-        this.name = name;
+        this.rolename = rolename;
         this.createtime = createtime;
         this.description = description;
     }
@@ -30,12 +30,12 @@ public class UpmsRole {
         this.roleid = roleid;
     }
 
-    public String getName() {
-        return name;
+    public String getRolename() {
+        return rolename;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setRolename(String rolename) {
+        this.rolename = rolename == null ? null : rolename.trim();
     }
 
     public Date getCreatetime() {

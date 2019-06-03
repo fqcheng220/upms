@@ -2,6 +2,7 @@ package com.fqcheng220.common.shiro;
 
 import com.fqcheng220.model.UpmsUser;
 import com.fqcheng220.model.UpmsUserExample;
+import com.fqcheng220.service.IBaseService;
 import com.fqcheng220.service.IUpmsUserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
