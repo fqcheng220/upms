@@ -27,4 +27,10 @@ public interface RequestConstants {
     public static final int TYPE_UPMS_PERMISSION_DEL = 15;
     public static final int TYPE_UPMS_PERMISSION_UPDATE = 16;
     public static final int TYPE_UPMS_PERMISSION_LIST = 17;
+
+    //角色-权限操作
+    public static final int TYPE_UPMS_ROLEPERMISSION_ADD = 18;
+    public static final int TYPE_UPMS_ROLEPERMISSION_DEL = 19;
+    public static final int TYPE_UPMS_ROLEPERMISSION_UPDATE = 20;
+    public static final int TYPE_UPMS_ROLEPERMISSION_LIST = 21;
 }

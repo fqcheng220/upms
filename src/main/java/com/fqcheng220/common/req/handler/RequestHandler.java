@@ -32,6 +32,11 @@ public class RequestHandler {
         sTypeMap.put(RequestConstants.TYPE_UPMS_PERMISSION_DEL,UrlPathConstants.PERMISSION_DEL);
         sTypeMap.put(RequestConstants.TYPE_UPMS_PERMISSION_UPDATE,UrlPathConstants.PERMISSION_UPDATE);
         sTypeMap.put(RequestConstants.TYPE_UPMS_PERMISSION_LIST,UrlPathConstants.PERMISSION_LIST);
+        //角色-权限
+        sTypeMap.put(RequestConstants.TYPE_UPMS_ROLEPERMISSION_ADD,UrlPathConstants.ROLEPERMISSION_ADD);
+        sTypeMap.put(RequestConstants.TYPE_UPMS_ROLEPERMISSION_DEL,UrlPathConstants.ROLEPERMISSION_DEL);
+        sTypeMap.put(RequestConstants.TYPE_UPMS_ROLEPERMISSION_UPDATE,UrlPathConstants.ROLEPERMISSION_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_UPMS_ROLEPERMISSION_LIST,UrlPathConstants.ROLEPERMISSION_LIST);
     }
     public static void handle(String pathUrl, BaseRequestBody baseRequestBody) throws Exception{
         //功能号判断

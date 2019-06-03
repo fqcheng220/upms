@@ -37,4 +37,9 @@ public interface ResponseConstants {
     public static String MSG_SUC_PERMISSION_LIST = "查询权限成功";
     public static String MSG_SUC_PERMISSION_ADD = "添加权限成功";
     public static String MSG_SUC_PERMISSION_DEL = "删除权限成功";
+
+    public static String MSG_SUC_ROLEPERMISSION_UPDATE = "更新角色-权限成功";
+    public static String MSG_SUC_ROLEPERMISSION_LIST = "查询角色-权限成功";
+    public static String MSG_SUC_ROLEPERMISSION_ADD = "添加角色-权限成功";
+    public static String MSG_SUC_ROLEPERMISSION_DEL = "删除角色-权限成功";
 }

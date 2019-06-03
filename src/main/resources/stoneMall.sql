@@ -114,14 +114,14 @@ alter table `db_stone_mall`.`tb_upms_permission` modify `name` VARCHAR(45) chara
 
 
 -- -----------------------------------------------------
--- Table `db_stone_mall`.`tb_upms_permission_role`
+-- Table `db_stone_mall`.`tb_upms_role_permission`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_stone_mall`.`tb_upms_permission_role` ;
+DROP TABLE IF EXISTS `db_stone_mall`.`tb_upms_role_permission` ;
 
-CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_permission_role` (
-  `id` INT NOT NULL,
-  `permissionId` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_upms_role_permission` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `roleId` INT NOT NULL,
+  `permissionId` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY(`permissionId`,`roleId`),
   INDEX `fk_tb_upms_permission_has_tb_upms_role_tb_upms_role1_idx` (`roleId` ASC),
@@ -191,12 +191,12 @@ insert into tb_upms_permission values(5,'upms:user:add','用户登录',20180101,
 -- insert into tb_upms_permission values(4,'upms:user:listall','查询所有用户',20180101,0,1,1);
 -- insert into tb_upms_permission values(5,'upms:user:login','用户登录',20180101,0,1,1);
 
-insert into tb_upms_permission_role values(1,1,2);
-insert into tb_upms_permission_role values(2,2,2);
-insert into tb_upms_permission_role values(3,3,2);
-insert into tb_upms_permission_role values(4,4,2);
-insert into tb_upms_permission_role values(5,5,2);
-insert into tb_upms_permission_role values(6,5,1);
+insert into tb_upms_role_permission values(1,2,1);
+insert into tb_upms_role_permission values(2,2,2);
+insert into tb_upms_role_permission values(3,2,3);
+insert into tb_upms_role_permission values(4,2,4);
+insert into tb_upms_role_permission values(5,2,5);
+insert into tb_upms_role_permission values(6,1,5);
 
 
 

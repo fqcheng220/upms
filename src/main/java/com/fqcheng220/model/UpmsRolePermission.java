@@ -1,19 +1,19 @@
 package com.fqcheng220.model;
 
-public class UpmsPermissionRole {
+public class UpmsRolePermission {
     private Integer id;
-
-    private Integer permissionid;
 
     private Integer roleid;
 
-    public UpmsPermissionRole(Integer id, Integer permissionid, Integer roleid) {
+    private Integer permissionid;
+
+    public UpmsRolePermission(Integer id, Integer roleid, Integer permissionid) {
         this.id = id;
-        this.permissionid = permissionid;
         this.roleid = roleid;
+        this.permissionid = permissionid;
     }
 
-    public UpmsPermissionRole() {
+    public UpmsRolePermission() {
         super();
     }
 
@@ -25,19 +25,19 @@ public class UpmsPermissionRole {
         this.id = id;
     }
 
-    public Integer getPermissionid() {
-        return permissionid;
-    }
-
-    public void setPermissionid(Integer permissionid) {
-        this.permissionid = permissionid;
-    }
-
     public Integer getRoleid() {
         return roleid;
     }
 
     public void setRoleid(Integer roleid) {
         this.roleid = roleid;
+    }
+
+    public Integer getPermissionid() {
+        return permissionid;
+    }
+
+    public void setPermissionid(Integer permissionid) {
+        this.permissionid = permissionid;
     }
 }

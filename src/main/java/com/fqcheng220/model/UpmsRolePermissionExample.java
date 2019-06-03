@@ -3,14 +3,14 @@ package com.fqcheng220.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpmsPermissionRoleExample {
+public class UpmsRolePermissionExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UpmsPermissionRoleExample() {
+    public UpmsRolePermissionExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -164,66 +164,6 @@ public class UpmsPermissionRoleExample {
             return (Criteria) this;
         }
 
-        public Criteria andPermissionidIsNull() {
-            addCriterion("permissionId is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPermissionidIsNotNull() {
-            addCriterion("permissionId is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPermissionidEqualTo(Integer value) {
-            addCriterion("permissionId =", value, "permissionid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPermissionidNotEqualTo(Integer value) {
-            addCriterion("permissionId <>", value, "permissionid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPermissionidGreaterThan(Integer value) {
-            addCriterion("permissionId >", value, "permissionid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPermissionidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("permissionId >=", value, "permissionid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPermissionidLessThan(Integer value) {
-            addCriterion("permissionId <", value, "permissionid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPermissionidLessThanOrEqualTo(Integer value) {
-            addCriterion("permissionId <=", value, "permissionid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPermissionidIn(List<Integer> values) {
-            addCriterion("permissionId in", values, "permissionid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPermissionidNotIn(List<Integer> values) {
-            addCriterion("permissionId not in", values, "permissionid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPermissionidBetween(Integer value1, Integer value2) {
-            addCriterion("permissionId between", value1, value2, "permissionid");
-            return (Criteria) this;
-        }
-
-        public Criteria andPermissionidNotBetween(Integer value1, Integer value2) {
-            addCriterion("permissionId not between", value1, value2, "permissionid");
-            return (Criteria) this;
-        }
-
         public Criteria andRoleidIsNull() {
             addCriterion("roleId is null");
             return (Criteria) this;
@@ -281,6 +221,66 @@ public class UpmsPermissionRoleExample {
 
         public Criteria andRoleidNotBetween(Integer value1, Integer value2) {
             addCriterion("roleId not between", value1, value2, "roleid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidIsNull() {
+            addCriterion("permissionId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidIsNotNull() {
+            addCriterion("permissionId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidEqualTo(Integer value) {
+            addCriterion("permissionId =", value, "permissionid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidNotEqualTo(Integer value) {
+            addCriterion("permissionId <>", value, "permissionid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidGreaterThan(Integer value) {
+            addCriterion("permissionId >", value, "permissionid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("permissionId >=", value, "permissionid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidLessThan(Integer value) {
+            addCriterion("permissionId <", value, "permissionid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidLessThanOrEqualTo(Integer value) {
+            addCriterion("permissionId <=", value, "permissionid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidIn(List<Integer> values) {
+            addCriterion("permissionId in", values, "permissionid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidNotIn(List<Integer> values) {
+            addCriterion("permissionId not in", values, "permissionid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidBetween(Integer value1, Integer value2) {
+            addCriterion("permissionId between", value1, value2, "permissionid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionidNotBetween(Integer value1, Integer value2) {
+            addCriterion("permissionId not between", value1, value2, "permissionid");
             return (Criteria) this;
         }
     }
