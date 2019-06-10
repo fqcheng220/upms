@@ -64,11 +64,26 @@
         </javaClientGenerator>
 
         <!-- 配置表格映射 -->
+        <!--upms子系统表-->
         <table tableName="tb_upms_user" domainObjectName="UpmsUser" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
         <table tableName="tb_upms_role" domainObjectName="UpmsRole" />
         <table tableName="tb_upms_user_role" domainObjectName="UpmsUserRole"/>
         <table tableName="tb_upms_system" domainObjectName="UpmsSystem"/>
         <table tableName="tb_upms_permission" domainObjectName="UpmsPermission" />
         <table tableName="tb_upms_role_permission" domainObjectName="UpmsRolePermission"/>
+        <!--商品子系统表-->
+        <table tableName="tb_upms_product_category" domainObjectName="ProductCategory" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="tb_product_attr" domainObjectName="ProductAttr" />
+        <table tableName="tb_product_attr_value" domainObjectName="ProductAttrValue"/>
+        <table tableName="tb_product_spec" domainObjectName="ProductSpec"/>
+        <table tableName="tb_product_spec_value" domainObjectName="ProductSpecValue" />
+
+        <table tableName="tb_product_brand" domainObjectName="ProductBrand"/>
+        <table tableName="tb_product_spu" domainObjectName="ProductSpu"/>
+        <table tableName="tb_product_spu_img" domainObjectName="ProductSpuImg"/>
+
+        <table tableName="tb_product_sku" domainObjectName="ProductSku"/>
+        <table tableName="tb_product_sku_attr_value" domainObjectName="ProductSkuAttrValue"/>
+        <table tableName="tb_product_sku_spec_value" domainObjectName="ProductSkuSpecValue"/>
     </context>
 </generatorConfiguration>
