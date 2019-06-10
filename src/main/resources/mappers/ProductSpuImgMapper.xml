@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fqcheng220.dao.ProductSpuImgMapper">
+  <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSpuImg">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="path" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sort" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="statue" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="tb_product_spu_spuId" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, path, sort, statue, tb_product_spu_spuId
+  </sql>
+  <select id="selectByExample" parameterType="com.fqcheng220.model.ProductSpuImgExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_product_spu_img
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_product_spu_img
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_product_spu_img
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fqcheng220.model.ProductSpuImgExample">
+    delete from tb_product_spu_img
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fqcheng220.model.ProductSpuImg">
+    insert into tb_product_spu_img (id, path, sort, 
+      statue, tb_product_spu_spuId)
+    values (#{id,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{statue,jdbcType=TINYINT}, #{tbProductSpuSpuid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductSpuImg">
+    insert into tb_product_spu_img
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+      <if test="tbProductSpuSpuid != null">
+        tb_product_spu_spuId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=TINYINT},
+      </if>
+      <if test="tbProductSpuSpuid != null">
+        #{tbProductSpuSpuid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fqcheng220.model.ProductSpuImgExample" resultType="java.lang.Long">
+    select count(*) from tb_product_spu_img
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_product_spu_img
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.path != null">
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.statue != null">
+        statue = #{record.statue,jdbcType=TINYINT},
+      </if>
+      <if test="record.tbProductSpuSpuid != null">
+        tb_product_spu_spuId = #{record.tbProductSpuSpuid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_product_spu_img
+    set id = #{record.id,jdbcType=INTEGER},
+      path = #{record.path,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
+      statue = #{record.statue,jdbcType=TINYINT},
+      tb_product_spu_spuId = #{record.tbProductSpuSpuid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fqcheng220.model.ProductSpuImg">
+    update tb_product_spu_img
+    <set>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=TINYINT},
+      </if>
+      <if test="tbProductSpuSpuid != null">
+        tb_product_spu_spuId = #{tbProductSpuSpuid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpuImg">
+    update tb_product_spu_img
+    set path = #{path,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      statue = #{statue,jdbcType=TINYINT},
+      tb_product_spu_spuId = #{tbProductSpuSpuid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

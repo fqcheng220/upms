@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fqcheng220.dao.ProductAttrValueMapper">
+  <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductAttrValue">
+    <constructor>
+      <idArg column="attrValueId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="attrValue" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tb_product_attr_attrId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    attrValueId, attrValue, tb_product_attr_attrId
+  </sql>
+  <select id="selectByExample" parameterType="com.fqcheng220.model.ProductAttrValueExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_product_attr_value
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_product_attr_value
+    where attrValueId = #{attrvalueid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_product_attr_value
+    where attrValueId = #{attrvalueid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fqcheng220.model.ProductAttrValueExample">
+    delete from tb_product_attr_value
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fqcheng220.model.ProductAttrValue">
+    insert into tb_product_attr_value (attrValueId, attrValue, tb_product_attr_attrId
+      )
+    values (#{attrvalueid,jdbcType=INTEGER}, #{attrvalue,jdbcType=VARCHAR}, #{tbProductAttrAttrid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductAttrValue">
+    insert into tb_product_attr_value
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attrvalueid != null">
+        attrValueId,
+      </if>
+      <if test="attrvalue != null">
+        attrValue,
+      </if>
+      <if test="tbProductAttrAttrid != null">
+        tb_product_attr_attrId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attrvalueid != null">
+        #{attrvalueid,jdbcType=INTEGER},
+      </if>
+      <if test="attrvalue != null">
+        #{attrvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="tbProductAttrAttrid != null">
+        #{tbProductAttrAttrid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fqcheng220.model.ProductAttrValueExample" resultType="java.lang.Long">
+    select count(*) from tb_product_attr_value
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_product_attr_value
+    <set>
+      <if test="record.attrvalueid != null">
+        attrValueId = #{record.attrvalueid,jdbcType=INTEGER},
+      </if>
+      <if test="record.attrvalue != null">
+        attrValue = #{record.attrvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tbProductAttrAttrid != null">
+        tb_product_attr_attrId = #{record.tbProductAttrAttrid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_product_attr_value
+    set attrValueId = #{record.attrvalueid,jdbcType=INTEGER},
+      attrValue = #{record.attrvalue,jdbcType=VARCHAR},
+      tb_product_attr_attrId = #{record.tbProductAttrAttrid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fqcheng220.model.ProductAttrValue">
+    update tb_product_attr_value
+    <set>
+      <if test="attrvalue != null">
+        attrValue = #{attrvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="tbProductAttrAttrid != null">
+        tb_product_attr_attrId = #{tbProductAttrAttrid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where attrValueId = #{attrvalueid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductAttrValue">
+    update tb_product_attr_value
+    set attrValue = #{attrvalue,jdbcType=VARCHAR},
+      tb_product_attr_attrId = #{tbProductAttrAttrid,jdbcType=INTEGER}
+    where attrValueId = #{attrvalueid,jdbcType=INTEGER}
+  </update>
+</mapper>

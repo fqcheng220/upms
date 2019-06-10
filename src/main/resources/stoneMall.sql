@@ -214,40 +214,26 @@ insert into tb_upms_role_permission values(6,1,5);
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_category` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_category` (
-  `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '分类ID',
-  `parent_id` BIGINT(20) NULL COMMENT '父分类ID',
+  `categoryId` BIGINT(20) NOT NULL COMMENT '分类ID',
+  `parentId` BIGINT(20) NULL COMMENT '父分类ID',
   `name` VARCHAR(64) NULL COMMENT '分类名称',
   `sort` INT NULL COMMENT '排序',
   `status` TINYINT(2) NULL DEFAULT 0 COMMENT '状态 1-显示 0-隐藏',
   `type` TINYINT(2) NULL COMMENT '目录类型 2=二级目录/1=一级目录/0=总目录',
-  `show_in_nav` TINYINT(2) NULL DEFAULT 0 COMMENT '是否导航栏 1=显示/0=隐藏',
-  `show_in_top` TINYINT(2) NULL DEFAULT 0 COMMENT '是否置顶 1=置顶/0=默认',
-  `show_in_hot` TINYINT(2) NULL DEFAULT 0 COMMENT '是否热门 1=热门/0=默认',
-  `create_time` DATETIME(6) NULL COMMENT '创建时间',
-  `create_by` VARCHAR(64) NULL COMMENT '创建者',
-  `update_time` DATETIME(6) NULL COMMENT '更新时间',
-  `update_by` VARCHAR(64) NULL COMMENT '更新者',
-  `page_title` VARCHAR(64) NULL COMMENT '页面标题',
-  `page_description` VARCHAR(64) NULL COMMENT '页面描述',
-  `Page_keywords` VARCHAR(64) NULL COMMENT '页面关键词',
+  `showInNav` TINYINT(2) NULL DEFAULT 0 COMMENT '是否导航栏 1=显示/0=隐藏',
+  `showInTop` TINYINT(2) NULL DEFAULT 0 COMMENT '是否置顶 1=置顶/0=默认',
+  `showInHot` TINYINT(2) NULL DEFAULT 0 COMMENT '是否热门 1=热门/0=默认',
+  `createTime` DATETIME(6) NULL COMMENT '创建时间',
+  `createBy` VARCHAR(64) NULL COMMENT '创建者',
+  `updateTime` DATETIME(6) NULL COMMENT '更新时间',
+  `updateBy` VARCHAR(64) NULL COMMENT '更新者',
+  `pageTitle` VARCHAR(64) NULL COMMENT '页面标题',
+  `pageDescription` VARCHAR(64) NULL COMMENT '页面描述',
+  `PageKeywords` VARCHAR(64) NULL COMMENT '页面关键词',
   `remark` VARCHAR(255) NULL COMMENT '备注信息',
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`categoryId`))
 ENGINE = InnoDB;
 
-INSERT INTO `tb_product_category` VALUES ('1', '0', '全部商品', null, '0', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('2', '0', '手机数码', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('3', '0', '食品生鲜', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('4', '0', '母婴童装', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('5', '0', '家居厨具', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-
-INSERT INTO `tb_product_category` VALUES ('6', '2', '手机', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('7', '2', '运营商', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('8', '2', '摄影摄像', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('9', '2', '影音娱乐', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-
-INSERT INTO `tb_product_category` VALUES ('10', '4', '童装', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('11', '4', '童鞋', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('12', '4', '妈妈专区', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 
 -- -----------------------------------------------------
 -- Table `db_stone_mall`.`tb_product_attr`
@@ -255,14 +241,14 @@ INSERT INTO `tb_product_category` VALUES ('12', '4', '妈妈专区', null, '2', 
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_attr` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_attr` (
-  `id` INT NOT NULL COMMENT '属性id',
-  `name` VARCHAR(45) NULL COMMENT '属性名称',
-  `tb_product_category_id` BIGINT(20) NOT NULL,
-  PRIMARY KEY (`id`, `tb_product_category_id`),
-  INDEX `fk_tb_product_attr_tb_product_category1_idx` (`tb_product_category_id` ASC),
+  `attrId` INT NOT NULL,
+  `attrName` VARCHAR(45) NULL,
+  `tb_product_category_categoryId` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`attrId`),
+  INDEX `fk_tb_product_attr_tb_product_category1_idx` (`tb_product_category_categoryId` ASC),
   CONSTRAINT `fk_tb_product_attr_tb_product_category1`
-    FOREIGN KEY (`tb_product_category_id`)
-    REFERENCES `db_stone_mall`.`tb_product_category` (`id`)
+    FOREIGN KEY (`tb_product_category_categoryId`)
+    REFERENCES `db_stone_mall`.`tb_product_category` (`categoryId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -274,14 +260,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_attr_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_attr_value` (
-  `id` INT NOT NULL COMMENT '属性值id',
-  `value` VARCHAR(64) NULL COMMENT '属性值',
-  `tb_product_attr_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `tb_product_attr_id`),
-  INDEX `fk_tb_product_attr_value_tb_product_attr1_idx` (`tb_product_attr_id` ASC),
+  `attrValueId` INT NOT NULL,
+  `attrValue` VARCHAR(64) NULL,
+  `tb_product_attr_attrId` INT NOT NULL,
+  PRIMARY KEY (`attrValueId`),
+  INDEX `fk_tb_product_attr_value_tb_product_attr1_idx` (`tb_product_attr_attrId` ASC),
   CONSTRAINT `fk_tb_product_attr_value_tb_product_attr1`
-    FOREIGN KEY (`tb_product_attr_id`)
-    REFERENCES `db_stone_mall`.`tb_product_attr` (`id`)
+    FOREIGN KEY (`tb_product_attr_attrId`)
+    REFERENCES `db_stone_mall`.`tb_product_attr` (`attrId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -293,14 +279,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_spec` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spec` (
-  `id` INT NOT NULL COMMENT '规格id',
-  `name` VARCHAR(45) NULL COMMENT '规格名称',
-  `tb_product_category_id` BIGINT(20) NOT NULL,
-  PRIMARY KEY (`id`, `tb_product_category_id`),
-  INDEX `fk_tb_product_spec_tb_product_category1_idx` (`tb_product_category_id` ASC),
+  `specId` INT NOT NULL,
+  `specName` VARCHAR(45) NULL,
+  `tb_product_category_categoryId` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`specId`),
+  INDEX `fk_tb_product_spec_tb_product_category1_idx` (`tb_product_category_categoryId` ASC),
   CONSTRAINT `fk_tb_product_spec_tb_product_category1`
-    FOREIGN KEY (`tb_product_category_id`)
-    REFERENCES `db_stone_mall`.`tb_product_category` (`id`)
+    FOREIGN KEY (`tb_product_category_categoryId`)
+    REFERENCES `db_stone_mall`.`tb_product_category` (`categoryId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -312,14 +298,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_spec_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spec_value` (
-  `id` INT NOT NULL COMMENT '规格值id',
-  `value` VARCHAR(45) NULL COMMENT '规格值',
-  `tb_product_spec_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `tb_product_spec_id`),
-  INDEX `fk_tb_product_spec_value_tb_product_spec1_idx` (`tb_product_spec_id` ASC),
+  `specValueId` INT NOT NULL,
+  `specValue` VARCHAR(45) NULL,
+  `tb_product_spec_specId` INT NOT NULL,
+  PRIMARY KEY (`specValueId`),
+  INDEX `fk_tb_product_spec_value_tb_product_spec1_idx` (`tb_product_spec_specId` ASC),
   CONSTRAINT `fk_tb_product_spec_value_tb_product_spec1`
-    FOREIGN KEY (`tb_product_spec_id`)
-    REFERENCES `db_stone_mall`.`tb_product_spec` (`id`)
+    FOREIGN KEY (`tb_product_spec_specId`)
+    REFERENCES `db_stone_mall`.`tb_product_spec` (`specId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -331,10 +317,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_brand` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_brand` (
-  `id` INT NOT NULL COMMENT '品牌id',
-  `name` VARCHAR(45) NULL COMMENT '品牌名称',
-  `descrption` VARCHAR(255) NULL COMMENT '品牌描述',
-  PRIMARY KEY (`id`))
+  `brandId` INT NOT NULL,
+  `brandName` VARCHAR(45) NULL,
+  `brandDescrption` VARCHAR(255) NULL,
+  PRIMARY KEY (`brandId`))
 ENGINE = InnoDB;
 
 
@@ -344,35 +330,35 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_spu` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spu` (
-  `id` BIGINT(20) NOT NULL,
-  `number` BIGINT(20) NULL COMMENT 'spu编号',
+  `spuId` BIGINT(20) NOT NULL,
+  `spuNumber` BIGINT(20) NULL COMMENT 'spu编号',
   `spuName` VARCHAR(64) NULL COMMENT '货品名称',
   `introduce` VARCHAR(64) NULL COMMENT '货品简介',
-  `show_in_shelve` TINYINT(2) NULL DEFAULT 0 COMMENT '是否上架：1=上架/0=下架',
-  `shelve_time` DATETIME(6) NULL COMMENT '上架时间',
-  `shelve_by` VARCHAR(45) NULL COMMENT '上架人',
-  `update_time` DATETIME(6) NULL COMMENT '更新时间',
-  `update_by` VARCHAR(45) NULL COMMENT '更新者',
-  `show_in_top` TINYINT(2) NULL DEFAULT 0 COMMENT '是否置顶 1=置顶/0=默认',
-  `show_in_nav` TINYINT(2) NULL DEFAULT 0 COMMENT '是否导航栏 1=显示/0=隐藏',
-  `show_in_hot` TINYINT(2) NULL DEFAULT 0 COMMENT '是否热门 1=热门/0=默认',
-  `create_time` DATETIME(6) NULL COMMENT '创建时间',
-  `create_by` VARCHAR(45) NULL COMMENT '创建者',
-  `video_introduce` VARCHAR(255) NULL COMMENT '视频介绍',
-  `search_key` VARCHAR(255) NULL COMMENT '搜索关键词',
-  `tb_product_category_id` BIGINT(20) NOT NULL,
-  `tb_product_brand_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `tb_product_category_id`, `tb_product_brand_id`),
-  INDEX `fk_tb_product_spu_tb_product_category1_idx` (`tb_product_category_id` ASC),
-  INDEX `fk_tb_product_spu_tb_product_brand1_idx` (`tb_product_brand_id` ASC),
+  `showInShelve` TINYINT(2) NULL DEFAULT 0 COMMENT '是否上架：1=上架/0=下架',
+  `shelveTime` DATETIME(6) NULL COMMENT '上架时间',
+  `shelveBy` VARCHAR(45) NULL COMMENT '上架人',
+  `updateTime` DATETIME(6) NULL COMMENT '更新时间',
+  `updateBy` VARCHAR(45) NULL COMMENT '更新者',
+  `showInTop` TINYINT(2) NULL DEFAULT 0 COMMENT '是否置顶 1=置顶/0=默认',
+  `showIinNav` TINYINT(2) NULL COMMENT '是否导航栏 1=显示/0=隐藏',
+  `showInHot` TINYINT(2) NULL DEFAULT 0 COMMENT '是否热门 1=热门/0=默认',
+  `createTime` DATETIME(6) NULL COMMENT '创建时间',
+  `createBy` VARCHAR(45) NULL COMMENT '创建者',
+  `videoIntroduce` VARCHAR(255) NULL COMMENT '视频介绍',
+  `searchKey` VARCHAR(255) NULL COMMENT '搜索关键词',
+  `tb_product_category_categoryId` BIGINT(20) NOT NULL,
+  `tb_product_brand_brandId` INT NOT NULL,
+  PRIMARY KEY (`spuId`),
+  INDEX `fk_tb_product_spu_tb_product_category1_idx` (`tb_product_category_categoryId` ASC),
+  INDEX `fk_tb_product_spu_tb_product_brand1_idx` (`tb_product_brand_brandId` ASC),
   CONSTRAINT `fk_tb_product_spu_tb_product_category1`
-    FOREIGN KEY (`tb_product_category_id`)
-    REFERENCES `db_stone_mall`.`tb_product_category` (`id`)
+    FOREIGN KEY (`tb_product_category_categoryId`)
+    REFERENCES `db_stone_mall`.`tb_product_category` (`categoryId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tb_product_spu_tb_product_brand1`
-    FOREIGN KEY (`tb_product_brand_id`)
-    REFERENCES `db_stone_mall`.`tb_product_brand` (`id`)
+    FOREIGN KEY (`tb_product_brand_brandId`)
+    REFERENCES `db_stone_mall`.`tb_product_brand` (`brandId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -384,26 +370,32 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_sku` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_sku` (
-  `id` BIGINT(20) NOT NULL,
-  `number` BIGINT(20) NULL COMMENT 'sku编号',
-  `name` VARCHAR(64) NULL COMMENT '商品名称',
+  `skuId` BIGINT(20) NOT NULL,
+  `skuNumber` BIGINT(20) NULL COMMENT 'sku编号',
+  `skuName` VARCHAR(64) NULL COMMENT '商品名称',
   `introduce` VARCHAR(64) NULL COMMENT '商品简介',
-  `show_in_shelve` TINYINT(2) NULL DEFAULT 0 COMMENT '是否上架：1=上架/0=下架',
+  `showInShelve` TINYINT(2) NULL DEFAULT 0 COMMENT '是否上架：1=上架/0=下架',
   `shelveTime` DATETIME(6) NULL COMMENT '上架时间',
-  `shelve_by` VARCHAR(45) NULL COMMENT '上架人',
-  `update_time` DATETIME(6) NULL COMMENT '更新时间',
-  `update_by` VARCHAR(45) NULL COMMENT '更新者',
-  `show_in_top` TINYINT(2) NULL DEFAULT 0 COMMENT '是否置顶 1=置顶/0=默认',
-  `show_in_nav` TINYINT(2) NULL DEFAULT 0 COMMENT '是否导航栏 1=显示/0=隐藏',
-  `show_in_hot` TINYINT(2) NULL DEFAULT 0 COMMENT '是否热门 1=热门/0=默认',
-  `create_time` DATETIME(6) NULL COMMENT '创建时间',
-  `create_by` VARCHAR(45) NULL COMMENT '创建者',
-  `pic_image` VARCHAR(255) NULL COMMENT '展示图片',
-  `search_key` VARCHAR(255) NULL COMMENT '搜索关键词',
+  `shelveBy` VARCHAR(45) NULL COMMENT '上架人',
+  `updateTime` DATETIME(6) NULL COMMENT '更新时间',
+  `updateBy` VARCHAR(45) NULL COMMENT '更新者',
+  `showInTop` TINYINT(2) NULL DEFAULT 0 COMMENT '是否置顶 1=置顶/0=默认',
+  `showIinNav` TINYINT(2) NULL COMMENT '是否导航栏 1=显示/0=隐藏',
+  `showInHot` TINYINT(2) NULL DEFAULT 0 COMMENT '是否热门 1=热门/0=默认',
+  `createTime` DATETIME(6) NULL COMMENT '创建时间',
+  `createBy` VARCHAR(45) NULL COMMENT '创建者',
+  `picImage` VARCHAR(255) NULL COMMENT '展示图片',
+  `searchKey` VARCHAR(255) NULL COMMENT '搜索关键词',
   `price` DECIMAL(10,2) NULL COMMENT '价格',
-  `stock` INT NULL COMMENT '库存',
-  `tb_product_spu_id` BIGINT(20) NOT NULL,
-  PRIMARY KEY (`id`, `tb_product_spu_id`))
+  `sotck` INT NULL COMMENT '库存',
+  `tb_product_spu_spuId` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`skuId`),
+  INDEX `fk_tb_product_sku_tb_product_spu1_idx` (`tb_product_spu_spuId` ASC),
+  CONSTRAINT `fk_tb_product_sku_tb_product_spu1`
+    FOREIGN KEY (`tb_product_spu_spuId`)
+    REFERENCES `db_stone_mall`.`tb_product_spu` (`spuId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -414,19 +406,19 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_sku_attr_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_sku_attr_value` (
   `id` INT NOT NULL,
-  `tb_product_attr_value_id` INT NOT NULL,
-  `tb_product_sku_id` BIGINT(20) NOT NULL,
-  PRIMARY KEY (`id`, `tb_product_attr_value_id`, `tb_product_sku_id`),
-  INDEX `fk_tb_product_sku_attr_value_tb_product_attr_value1_idx` (`tb_product_attr_value_id` ASC),
-  INDEX `fk_tb_product_sku_attr_value_tb_product_sku1_idx` (`tb_product_sku_id` ASC),
-  CONSTRAINT `fk_tb_product_sku_attr_value_tb_product_attr_value1`
-    FOREIGN KEY (`tb_product_attr_value_id`)
-    REFERENCES `db_stone_mall`.`tb_product_attr_value` (`id`)
+  `tb_product_attr_value_attrValueId` INT NOT NULL,
+  `tb_product_sku_skuId` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_tb_product_sku_attr_value_tb_product_sku1_idx` (`tb_product_sku_skuId` ASC),
+  INDEX `fk_tb_product_sku_attr_value_tb_product_attr_value1_idx` (`tb_product_attr_value_attrValueId` ASC),
+  CONSTRAINT `fk_tb_product_sku_attr_value_tb_product_sku1`
+    FOREIGN KEY (`tb_product_sku_skuId`)
+    REFERENCES `db_stone_mall`.`tb_product_sku` (`skuId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tb_product_sku_attr_value_tb_product_sku1`
-    FOREIGN KEY (`tb_product_sku_id`)
-    REFERENCES `db_stone_mall`.`tb_product_sku` (`id`)
+  CONSTRAINT `fk_tb_product_sku_attr_value_tb_product_attr_value1`
+    FOREIGN KEY (`tb_product_attr_value_attrValueId`)
+    REFERENCES `db_stone_mall`.`tb_product_attr_value` (`attrValueId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -439,19 +431,19 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_sku_spec_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_sku_spec_value` (
   `id` INT NOT NULL,
-  `tb_product_spec_value_id` INT NOT NULL,
-  `tb_product_sku_id` BIGINT(20) NOT NULL,
-  PRIMARY KEY (`id`, `tb_product_spec_value_id`, `tb_product_sku_id`),
-  INDEX `fk_tb_product_sku_spec_value_tb_product_spec_value1_idx` (`tb_product_spec_value_id` ASC),
-  INDEX `fk_tb_product_sku_spec_value_tb_product_sku1_idx` (`tb_product_sku_id` ASC),
+  `tb_product_spec_value_specValueId` INT NOT NULL,
+  `tb_product_sku_skuId` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_tb_product_sku_spec_value_tb_product_spec_value1_idx` (`tb_product_spec_value_specValueId` ASC),
+  INDEX `fk_tb_product_sku_spec_value_tb_product_sku1_idx` (`tb_product_sku_skuId` ASC),
   CONSTRAINT `fk_tb_product_sku_spec_value_tb_product_spec_value1`
-    FOREIGN KEY (`tb_product_spec_value_id`)
-    REFERENCES `db_stone_mall`.`tb_product_spec_value` (`id`)
+    FOREIGN KEY (`tb_product_spec_value_specValueId`)
+    REFERENCES `db_stone_mall`.`tb_product_spec_value` (`specValueId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tb_product_sku_spec_value_tb_product_sku1`
-    FOREIGN KEY (`tb_product_sku_id`)
-    REFERENCES `db_stone_mall`.`tb_product_sku` (`id`)
+    FOREIGN KEY (`tb_product_sku_skuId`)
+    REFERENCES `db_stone_mall`.`tb_product_sku` (`skuId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -463,19 +455,92 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_spu_img` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spu_img` (
-  `id` INT NOT NULL COMMENT 'spu图片id',
-  `path` VARCHAR(255) NULL COMMENT 'spu图片路径',
-  `sort` INT NULL COMMENT 'spu图片排序',
-  `statue` TINYINT(2) NULL COMMENT 'spu图片状态',
-  `tb_product_spu_id` BIGINT(20) NOT NULL,
-  PRIMARY KEY (`id`, `tb_product_spu_id`),
-  INDEX `fk_tb_product_spu_img_tb_product_spu1_idx` (`tb_product_spu_id` ASC),
+  `id` INT NOT NULL,
+  `path` VARCHAR(255) NULL,
+  `sort` INT NULL,
+  `statue` TINYINT(2) NULL,
+  `tb_product_spu_spuId` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_tb_product_spu_img_tb_product_spu1_idx` (`tb_product_spu_spuId` ASC),
   CONSTRAINT `fk_tb_product_spu_img_tb_product_spu1`
-    FOREIGN KEY (`tb_product_spu_id`)
-    REFERENCES `db_stone_mall`.`tb_product_spu` (`id`)
+    FOREIGN KEY (`tb_product_spu_spuId`)
+    REFERENCES `db_stone_mall`.`tb_product_spu` (`spuId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `tb_product_category` VALUES ('1', '0', '全部商品', null, '0', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('2', '0', '手机数码', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('3', '0', '食品生鲜', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('4', '0', '母婴童装', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('5', '0', '家居厨具', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('6', '0', '女装', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+
+INSERT INTO `tb_product_category` VALUES ('7', '2', '手机', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('8', '2', '运营商', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('9', '2', '摄影摄像', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('10', '2', '影音娱乐', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+
+INSERT INTO `tb_product_category` VALUES ('11', '4', '童装', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('12', '4', '童鞋', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('13', '4', '妈妈专区', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+
+INSERT INTO `tb_product_category` VALUES ('14', '6', '裙装', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('15', '6', '女士小装', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('16', '6', '外套', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+
+INSERT INTO `tb_product_category` VALUES ('17', '16', '防晒衫', null, '3', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('18', '16', '薄外套', null, '3', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('19', '16', '披肩外套', null, '3', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+
+INSERT INTO `tb_product_attr` VALUES ('0', '版型', '16');
+INSERT INTO `tb_product_attr` VALUES ('1', '衣长', '16');
+
+INSERT INTO `tb_product_attr_value` VALUES ('0', '超长款', '0');
+INSERT INTO `tb_product_attr_value` VALUES ('1', '中长款', '0');
+INSERT INTO `tb_product_attr_value` VALUES ('2', '长款', '0');
+INSERT INTO `tb_product_attr_value` VALUES ('3', '短款', '0');
+INSERT INTO `tb_product_attr_value` VALUES ('4', '超短款', '0');
+INSERT INTO `tb_product_attr_value` VALUES ('5', '常规款', '0');
+
+INSERT INTO `tb_product_attr_value` VALUES ('6', '露肩型', '1');
+INSERT INTO `tb_product_attr_value` VALUES ('7', '直筒型', '1');
+INSERT INTO `tb_product_attr_value` VALUES ('8', '修身型', '1');
+
+INSERT INTO `tb_product_spec` VALUES ('0', '尺码', '16');
+INSERT INTO `tb_product_spec` VALUES ('1', '颜色', '16');
+
+INSERT INTO `tb_product_spec_value` VALUES ('0', 'S', '0');
+INSERT INTO `tb_product_spec_value` VALUES ('1', 'M', '0');
+INSERT INTO `tb_product_spec_value` VALUES ('2', 'L', '0');
+INSERT INTO `tb_product_spec_value` VALUES ('3', 'XL', '0');
+
+INSERT INTO `tb_product_spec_value` VALUES ('4', '灰色', '1');
+INSERT INTO `tb_product_spec_value` VALUES ('5', '白色', '1');
+INSERT INTO `tb_product_spec_value` VALUES ('6', '黑色', '1');
+
+INSERT INTO `tb_product_brand` VALUES ('0', 'Lily', '');
+INSERT INTO `tb_product_brand` VALUES ('1', 'Gucci', '');
+
+INSERT INTO `tb_product_spu` VALUES ('0', '1234567', '普通薄外套女',null,null,null,null,null,null,null,null,null,null,null,'https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/27f3dfef133596732532994049/v.f30.mp4?dockingId=3790b700-2f59-47d0-add4-2c9bc2846fca&storageSource=3',null,'16','0');
+
+INSERT INTO `tb_product_sku` VALUES ('0', '1234567', '普通薄外套女sku',null,null,null,null,null,null,null,null,null,null,null,null,null,'160.00','20','0');
+
+INSERT INTO `tb_product_sku_attr_value` VALUES ('0', '0','0');
+INSERT INTO `tb_product_sku_attr_value` VALUES ('1', '8','0');
+
+INSERT INTO `tb_product_sku_spec_value` VALUES ('0', '0','0');
+INSERT INTO `tb_product_sku_spec_value` VALUES ('1', '6','0');
+
+INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/162/4/3727/83121/5b997bffEa033f072/d0ef923444593847.jpg!q70.jpg.webp',null,null,'0');
+INSERT INTO `tb_product_spu_img` VALUES ('1', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/160/24/3733/77954/5b997bffE0045db72/b5fe450b7a45a3c8.jpg!q70.jpg.webp',null,null,'0');
+INSERT INTO `tb_product_spu_img` VALUES ('2', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/26335/31/3391/75469/5c26e046Eb124a92f/ee4b443eb43c5097.jpg!q70.jpg.webp',null,null,'0');
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

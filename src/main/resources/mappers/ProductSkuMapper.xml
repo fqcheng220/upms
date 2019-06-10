@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fqcheng220.dao.ProductSkuMapper">
+  <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSku">
+    <constructor>
+      <idArg column="skuId" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="skuNumber" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="skuName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="showInShelve" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="shelveTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="shelveBy" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="updateBy" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="showInTop" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="showIinNav" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="showInHot" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="createBy" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="picImage" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="searchKey" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="sotck" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tb_product_spu_spuId" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    skuId, skuNumber, skuName, introduce, showInShelve, shelveTime, shelveBy, updateTime, 
+    updateBy, showInTop, showIinNav, showInHot, createTime, createBy, picImage, searchKey, 
+    price, sotck, tb_product_spu_spuId
+  </sql>
+  <select id="selectByExample" parameterType="com.fqcheng220.model.ProductSkuExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_product_sku
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_product_sku
+    where skuId = #{skuid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_product_sku
+    where skuId = #{skuid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fqcheng220.model.ProductSkuExample">
+    delete from tb_product_sku
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fqcheng220.model.ProductSku">
+    insert into tb_product_sku (skuId, skuNumber, skuName, 
+      introduce, showInShelve, shelveTime, 
+      shelveBy, updateTime, updateBy, 
+      showInTop, showIinNav, showInHot, 
+      createTime, createBy, picImage, 
+      searchKey, price, sotck, 
+      tb_product_spu_spuId)
+    values (#{skuid,jdbcType=BIGINT}, #{skunumber,jdbcType=BIGINT}, #{skuname,jdbcType=VARCHAR}, 
+      #{introduce,jdbcType=VARCHAR}, #{showinshelve,jdbcType=TINYINT}, #{shelvetime,jdbcType=TIMESTAMP}, 
+      #{shelveby,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{updateby,jdbcType=VARCHAR}, 
+      #{showintop,jdbcType=TINYINT}, #{showiinnav,jdbcType=TINYINT}, #{showinhot,jdbcType=TINYINT}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{createby,jdbcType=VARCHAR}, #{picimage,jdbcType=VARCHAR}, 
+      #{searchkey,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{sotck,jdbcType=INTEGER}, 
+      #{tbProductSpuSpuid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductSku">
+    insert into tb_product_sku
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skuid != null">
+        skuId,
+      </if>
+      <if test="skunumber != null">
+        skuNumber,
+      </if>
+      <if test="skuname != null">
+        skuName,
+      </if>
+      <if test="introduce != null">
+        introduce,
+      </if>
+      <if test="showinshelve != null">
+        showInShelve,
+      </if>
+      <if test="shelvetime != null">
+        shelveTime,
+      </if>
+      <if test="shelveby != null">
+        shelveBy,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="updateby != null">
+        updateBy,
+      </if>
+      <if test="showintop != null">
+        showInTop,
+      </if>
+      <if test="showiinnav != null">
+        showIinNav,
+      </if>
+      <if test="showinhot != null">
+        showInHot,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="createby != null">
+        createBy,
+      </if>
+      <if test="picimage != null">
+        picImage,
+      </if>
+      <if test="searchkey != null">
+        searchKey,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="sotck != null">
+        sotck,
+      </if>
+      <if test="tbProductSpuSpuid != null">
+        tb_product_spu_spuId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skuid != null">
+        #{skuid,jdbcType=BIGINT},
+      </if>
+      <if test="skunumber != null">
+        #{skunumber,jdbcType=BIGINT},
+      </if>
+      <if test="skuname != null">
+        #{skuname,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="showinshelve != null">
+        #{showinshelve,jdbcType=TINYINT},
+      </if>
+      <if test="shelvetime != null">
+        #{shelvetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shelveby != null">
+        #{shelveby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="showintop != null">
+        #{showintop,jdbcType=TINYINT},
+      </if>
+      <if test="showiinnav != null">
+        #{showiinnav,jdbcType=TINYINT},
+      </if>
+      <if test="showinhot != null">
+        #{showinhot,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="picimage != null">
+        #{picimage,jdbcType=VARCHAR},
+      </if>
+      <if test="searchkey != null">
+        #{searchkey,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="sotck != null">
+        #{sotck,jdbcType=INTEGER},
+      </if>
+      <if test="tbProductSpuSpuid != null">
+        #{tbProductSpuSpuid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fqcheng220.model.ProductSkuExample" resultType="java.lang.Long">
+    select count(*) from tb_product_sku
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_product_sku
+    <set>
+      <if test="record.skuid != null">
+        skuId = #{record.skuid,jdbcType=BIGINT},
+      </if>
+      <if test="record.skunumber != null">
+        skuNumber = #{record.skunumber,jdbcType=BIGINT},
+      </if>
+      <if test="record.skuname != null">
+        skuName = #{record.skuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduce != null">
+        introduce = #{record.introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showinshelve != null">
+        showInShelve = #{record.showinshelve,jdbcType=TINYINT},
+      </if>
+      <if test="record.shelvetime != null">
+        shelveTime = #{record.shelvetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shelveby != null">
+        shelveBy = #{record.shelveby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null">
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateby != null">
+        updateBy = #{record.updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showintop != null">
+        showInTop = #{record.showintop,jdbcType=TINYINT},
+      </if>
+      <if test="record.showiinnav != null">
+        showIinNav = #{record.showiinnav,jdbcType=TINYINT},
+      </if>
+      <if test="record.showinhot != null">
+        showInHot = #{record.showinhot,jdbcType=TINYINT},
+      </if>
+      <if test="record.createtime != null">
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createby != null">
+        createBy = #{record.createby,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picimage != null">
+        picImage = #{record.picimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.searchkey != null">
+        searchKey = #{record.searchkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sotck != null">
+        sotck = #{record.sotck,jdbcType=INTEGER},
+      </if>
+      <if test="record.tbProductSpuSpuid != null">
+        tb_product_spu_spuId = #{record.tbProductSpuSpuid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_product_sku
+    set skuId = #{record.skuid,jdbcType=BIGINT},
+      skuNumber = #{record.skunumber,jdbcType=BIGINT},
+      skuName = #{record.skuname,jdbcType=VARCHAR},
+      introduce = #{record.introduce,jdbcType=VARCHAR},
+      showInShelve = #{record.showinshelve,jdbcType=TINYINT},
+      shelveTime = #{record.shelvetime,jdbcType=TIMESTAMP},
+      shelveBy = #{record.shelveby,jdbcType=VARCHAR},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      updateBy = #{record.updateby,jdbcType=VARCHAR},
+      showInTop = #{record.showintop,jdbcType=TINYINT},
+      showIinNav = #{record.showiinnav,jdbcType=TINYINT},
+      showInHot = #{record.showinhot,jdbcType=TINYINT},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      createBy = #{record.createby,jdbcType=VARCHAR},
+      picImage = #{record.picimage,jdbcType=VARCHAR},
+      searchKey = #{record.searchkey,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      sotck = #{record.sotck,jdbcType=INTEGER},
+      tb_product_spu_spuId = #{record.tbProductSpuSpuid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fqcheng220.model.ProductSku">
+    update tb_product_sku
+    <set>
+      <if test="skunumber != null">
+        skuNumber = #{skunumber,jdbcType=BIGINT},
+      </if>
+      <if test="skuname != null">
+        skuName = #{skuname,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="showinshelve != null">
+        showInShelve = #{showinshelve,jdbcType=TINYINT},
+      </if>
+      <if test="shelvetime != null">
+        shelveTime = #{shelvetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shelveby != null">
+        shelveBy = #{shelveby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateby != null">
+        updateBy = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="showintop != null">
+        showInTop = #{showintop,jdbcType=TINYINT},
+      </if>
+      <if test="showiinnav != null">
+        showIinNav = #{showiinnav,jdbcType=TINYINT},
+      </if>
+      <if test="showinhot != null">
+        showInHot = #{showinhot,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createby != null">
+        createBy = #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="picimage != null">
+        picImage = #{picimage,jdbcType=VARCHAR},
+      </if>
+      <if test="searchkey != null">
+        searchKey = #{searchkey,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="sotck != null">
+        sotck = #{sotck,jdbcType=INTEGER},
+      </if>
+      <if test="tbProductSpuSpuid != null">
+        tb_product_spu_spuId = #{tbProductSpuSpuid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where skuId = #{skuid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductSku">
+    update tb_product_sku
+    set skuNumber = #{skunumber,jdbcType=BIGINT},
+      skuName = #{skuname,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      showInShelve = #{showinshelve,jdbcType=TINYINT},
+      shelveTime = #{shelvetime,jdbcType=TIMESTAMP},
+      shelveBy = #{shelveby,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      updateBy = #{updateby,jdbcType=VARCHAR},
+      showInTop = #{showintop,jdbcType=TINYINT},
+      showIinNav = #{showiinnav,jdbcType=TINYINT},
+      showInHot = #{showinhot,jdbcType=TINYINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      createBy = #{createby,jdbcType=VARCHAR},
+      picImage = #{picimage,jdbcType=VARCHAR},
+      searchKey = #{searchkey,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      sotck = #{sotck,jdbcType=INTEGER},
+      tb_product_spu_spuId = #{tbProductSpuSpuid,jdbcType=BIGINT}
+    where skuId = #{skuid,jdbcType=BIGINT}
+  </update>
+</mapper>
