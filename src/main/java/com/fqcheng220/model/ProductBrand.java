@@ -1,43 +1,43 @@
 package com.fqcheng220.model;
 
 public class ProductBrand {
-    private Integer brandid;
+    private Integer id;
 
-    private String brandname;
+    private String name;
 
-    private String branddescrption;
+    private String descrption;
 
-    public ProductBrand(Integer brandid, String brandname, String branddescrption) {
-        this.brandid = brandid;
-        this.brandname = brandname;
-        this.branddescrption = branddescrption;
+    public ProductBrand(Integer id, String name, String descrption) {
+        this.id = id;
+        this.name = name;
+        this.descrption = descrption;
     }
 
     public ProductBrand() {
         super();
     }
 
-    public Integer getBrandid() {
-        return brandid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setBrandid(Integer brandid) {
-        this.brandid = brandid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getBrandname() {
-        return brandname;
+    public String getName() {
+        return name;
     }
 
-    public void setBrandname(String brandname) {
-        this.brandname = brandname == null ? null : brandname.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
-    public String getBranddescrption() {
-        return branddescrption;
+    public String getDescrption() {
+        return descrption;
     }
 
-    public void setBranddescrption(String branddescrption) {
-        this.branddescrption = branddescrption == null ? null : branddescrption.trim();
+    public void setDescrption(String descrption) {
+        this.descrption = descrption == null ? null : descrption.trim();
     }
 }

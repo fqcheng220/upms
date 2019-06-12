@@ -1,43 +1,43 @@
 package com.fqcheng220.model;
 
 public class ProductSpec {
-    private Integer specid;
+    private Integer id;
 
-    private String specname;
+    private String name;
 
-    private Long tbProductCategoryCategoryid;
+    private Long tbProductCategoryId;
 
-    public ProductSpec(Integer specid, String specname, Long tbProductCategoryCategoryid) {
-        this.specid = specid;
-        this.specname = specname;
-        this.tbProductCategoryCategoryid = tbProductCategoryCategoryid;
+    public ProductSpec(Integer id, String name, Long tbProductCategoryId) {
+        this.id = id;
+        this.name = name;
+        this.tbProductCategoryId = tbProductCategoryId;
     }
 
     public ProductSpec() {
         super();
     }
 
-    public Integer getSpecid() {
-        return specid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setSpecid(Integer specid) {
-        this.specid = specid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getSpecname() {
-        return specname;
+    public String getName() {
+        return name;
     }
 
-    public void setSpecname(String specname) {
-        this.specname = specname == null ? null : specname.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
-    public Long getTbProductCategoryCategoryid() {
-        return tbProductCategoryCategoryid;
+    public Long getTbProductCategoryId() {
+        return tbProductCategoryId;
     }
 
-    public void setTbProductCategoryCategoryid(Long tbProductCategoryCategoryid) {
-        this.tbProductCategoryCategoryid = tbProductCategoryCategoryid;
+    public void setTbProductCategoryId(Long tbProductCategoryId) {
+        this.tbProductCategoryId = tbProductCategoryId;
     }
 }

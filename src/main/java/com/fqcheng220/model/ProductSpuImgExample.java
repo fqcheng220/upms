@@ -354,63 +354,63 @@ public class ProductSpuImgExample {
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidIsNull() {
-            addCriterion("tb_product_spu_spuId is null");
+        public Criteria andTbProductSpuIdIsNull() {
+            addCriterion("tb_product_spu_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidIsNotNull() {
-            addCriterion("tb_product_spu_spuId is not null");
+        public Criteria andTbProductSpuIdIsNotNull() {
+            addCriterion("tb_product_spu_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidEqualTo(Long value) {
-            addCriterion("tb_product_spu_spuId =", value, "tbProductSpuSpuid");
+        public Criteria andTbProductSpuIdEqualTo(Long value) {
+            addCriterion("tb_product_spu_id =", value, "tbProductSpuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidNotEqualTo(Long value) {
-            addCriterion("tb_product_spu_spuId <>", value, "tbProductSpuSpuid");
+        public Criteria andTbProductSpuIdNotEqualTo(Long value) {
+            addCriterion("tb_product_spu_id <>", value, "tbProductSpuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidGreaterThan(Long value) {
-            addCriterion("tb_product_spu_spuId >", value, "tbProductSpuSpuid");
+        public Criteria andTbProductSpuIdGreaterThan(Long value) {
+            addCriterion("tb_product_spu_id >", value, "tbProductSpuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidGreaterThanOrEqualTo(Long value) {
-            addCriterion("tb_product_spu_spuId >=", value, "tbProductSpuSpuid");
+        public Criteria andTbProductSpuIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("tb_product_spu_id >=", value, "tbProductSpuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidLessThan(Long value) {
-            addCriterion("tb_product_spu_spuId <", value, "tbProductSpuSpuid");
+        public Criteria andTbProductSpuIdLessThan(Long value) {
+            addCriterion("tb_product_spu_id <", value, "tbProductSpuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidLessThanOrEqualTo(Long value) {
-            addCriterion("tb_product_spu_spuId <=", value, "tbProductSpuSpuid");
+        public Criteria andTbProductSpuIdLessThanOrEqualTo(Long value) {
+            addCriterion("tb_product_spu_id <=", value, "tbProductSpuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidIn(List<Long> values) {
-            addCriterion("tb_product_spu_spuId in", values, "tbProductSpuSpuid");
+        public Criteria andTbProductSpuIdIn(List<Long> values) {
+            addCriterion("tb_product_spu_id in", values, "tbProductSpuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidNotIn(List<Long> values) {
-            addCriterion("tb_product_spu_spuId not in", values, "tbProductSpuSpuid");
+        public Criteria andTbProductSpuIdNotIn(List<Long> values) {
+            addCriterion("tb_product_spu_id not in", values, "tbProductSpuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidBetween(Long value1, Long value2) {
-            addCriterion("tb_product_spu_spuId between", value1, value2, "tbProductSpuSpuid");
+        public Criteria andTbProductSpuIdBetween(Long value1, Long value2) {
+            addCriterion("tb_product_spu_id between", value1, value2, "tbProductSpuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpuSpuidNotBetween(Long value1, Long value2) {
-            addCriterion("tb_product_spu_spuId not between", value1, value2, "tbProductSpuSpuid");
+        public Criteria andTbProductSpuIdNotBetween(Long value1, Long value2) {
+            addCriterion("tb_product_spu_id not between", value1, value2, "tbProductSpuId");
             return (Criteria) this;
         }
     }

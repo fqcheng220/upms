@@ -4,92 +4,92 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class ProductSku {
-    private Long skuid;
+    private Long id;
 
-    private Long skunumber;
+    private Long number;
 
-    private String skuname;
+    private String name;
 
     private String introduce;
 
-    private Byte showinshelve;
+    private Byte showInShelve;
 
     private Date shelvetime;
 
-    private String shelveby;
+    private String shelveBy;
 
-    private Date updatetime;
+    private Date updateTime;
 
-    private String updateby;
+    private String updateBy;
 
-    private Byte showintop;
+    private Byte showInTop;
 
-    private Byte showiinnav;
+    private Byte showInNav;
 
-    private Byte showinhot;
+    private Byte showInHot;
 
-    private Date createtime;
+    private Date createTime;
 
-    private String createby;
+    private String createBy;
 
-    private String picimage;
+    private String picImage;
 
-    private String searchkey;
+    private String searchKey;
 
     private BigDecimal price;
 
-    private Integer sotck;
+    private Integer stock;
 
-    private Long tbProductSpuSpuid;
+    private Long tbProductSpuId;
 
-    public ProductSku(Long skuid, Long skunumber, String skuname, String introduce, Byte showinshelve, Date shelvetime, String shelveby, Date updatetime, String updateby, Byte showintop, Byte showiinnav, Byte showinhot, Date createtime, String createby, String picimage, String searchkey, BigDecimal price, Integer sotck, Long tbProductSpuSpuid) {
-        this.skuid = skuid;
-        this.skunumber = skunumber;
-        this.skuname = skuname;
+    public ProductSku(Long id, Long number, String name, String introduce, Byte showInShelve, Date shelvetime, String shelveBy, Date updateTime, String updateBy, Byte showInTop, Byte showInNav, Byte showInHot, Date createTime, String createBy, String picImage, String searchKey, BigDecimal price, Integer stock, Long tbProductSpuId) {
+        this.id = id;
+        this.number = number;
+        this.name = name;
         this.introduce = introduce;
-        this.showinshelve = showinshelve;
+        this.showInShelve = showInShelve;
         this.shelvetime = shelvetime;
-        this.shelveby = shelveby;
-        this.updatetime = updatetime;
-        this.updateby = updateby;
-        this.showintop = showintop;
-        this.showiinnav = showiinnav;
-        this.showinhot = showinhot;
-        this.createtime = createtime;
-        this.createby = createby;
-        this.picimage = picimage;
-        this.searchkey = searchkey;
+        this.shelveBy = shelveBy;
+        this.updateTime = updateTime;
+        this.updateBy = updateBy;
+        this.showInTop = showInTop;
+        this.showInNav = showInNav;
+        this.showInHot = showInHot;
+        this.createTime = createTime;
+        this.createBy = createBy;
+        this.picImage = picImage;
+        this.searchKey = searchKey;
         this.price = price;
-        this.sotck = sotck;
-        this.tbProductSpuSpuid = tbProductSpuSpuid;
+        this.stock = stock;
+        this.tbProductSpuId = tbProductSpuId;
     }
 
     public ProductSku() {
         super();
     }
 
-    public Long getSkuid() {
-        return skuid;
+    public Long getId() {
+        return id;
     }
 
-    public void setSkuid(Long skuid) {
-        this.skuid = skuid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getSkunumber() {
-        return skunumber;
+    public Long getNumber() {
+        return number;
     }
 
-    public void setSkunumber(Long skunumber) {
-        this.skunumber = skunumber;
+    public void setNumber(Long number) {
+        this.number = number;
     }
 
-    public String getSkuname() {
-        return skuname;
+    public String getName() {
+        return name;
     }
 
-    public void setSkuname(String skuname) {
-        this.skuname = skuname == null ? null : skuname.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getIntroduce() {
@@ -100,12 +100,12 @@ public class ProductSku {
         this.introduce = introduce == null ? null : introduce.trim();
     }
 
-    public Byte getShowinshelve() {
-        return showinshelve;
+    public Byte getShowInShelve() {
+        return showInShelve;
     }
 
-    public void setShowinshelve(Byte showinshelve) {
-        this.showinshelve = showinshelve;
+    public void setShowInShelve(Byte showInShelve) {
+        this.showInShelve = showInShelve;
     }
 
     public Date getShelvetime() {
@@ -116,84 +116,84 @@ public class ProductSku {
         this.shelvetime = shelvetime;
     }
 
-    public String getShelveby() {
-        return shelveby;
+    public String getShelveBy() {
+        return shelveBy;
     }
 
-    public void setShelveby(String shelveby) {
-        this.shelveby = shelveby == null ? null : shelveby.trim();
+    public void setShelveBy(String shelveBy) {
+        this.shelveBy = shelveBy == null ? null : shelveBy.trim();
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public String getUpdateby() {
-        return updateby;
+    public String getUpdateBy() {
+        return updateBy;
     }
 
-    public void setUpdateby(String updateby) {
-        this.updateby = updateby == null ? null : updateby.trim();
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy == null ? null : updateBy.trim();
     }
 
-    public Byte getShowintop() {
-        return showintop;
+    public Byte getShowInTop() {
+        return showInTop;
     }
 
-    public void setShowintop(Byte showintop) {
-        this.showintop = showintop;
+    public void setShowInTop(Byte showInTop) {
+        this.showInTop = showInTop;
     }
 
-    public Byte getShowiinnav() {
-        return showiinnav;
+    public Byte getShowInNav() {
+        return showInNav;
     }
 
-    public void setShowiinnav(Byte showiinnav) {
-        this.showiinnav = showiinnav;
+    public void setShowInNav(Byte showInNav) {
+        this.showInNav = showInNav;
     }
 
-    public Byte getShowinhot() {
-        return showinhot;
+    public Byte getShowInHot() {
+        return showInHot;
     }
 
-    public void setShowinhot(Byte showinhot) {
-        this.showinhot = showinhot;
+    public void setShowInHot(Byte showInHot) {
+        this.showInHot = showInHot;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public String getCreateby() {
-        return createby;
+    public String getCreateBy() {
+        return createBy;
     }
 
-    public void setCreateby(String createby) {
-        this.createby = createby == null ? null : createby.trim();
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy == null ? null : createBy.trim();
     }
 
-    public String getPicimage() {
-        return picimage;
+    public String getPicImage() {
+        return picImage;
     }
 
-    public void setPicimage(String picimage) {
-        this.picimage = picimage == null ? null : picimage.trim();
+    public void setPicImage(String picImage) {
+        this.picImage = picImage == null ? null : picImage.trim();
     }
 
-    public String getSearchkey() {
-        return searchkey;
+    public String getSearchKey() {
+        return searchKey;
     }
 
-    public void setSearchkey(String searchkey) {
-        this.searchkey = searchkey == null ? null : searchkey.trim();
+    public void setSearchKey(String searchKey) {
+        this.searchKey = searchKey == null ? null : searchKey.trim();
     }
 
     public BigDecimal getPrice() {
@@ -204,19 +204,19 @@ public class ProductSku {
         this.price = price;
     }
 
-    public Integer getSotck() {
-        return sotck;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setSotck(Integer sotck) {
-        this.sotck = sotck;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
-    public Long getTbProductSpuSpuid() {
-        return tbProductSpuSpuid;
+    public Long getTbProductSpuId() {
+        return tbProductSpuId;
     }
 
-    public void setTbProductSpuSpuid(Long tbProductSpuSpuid) {
-        this.tbProductSpuSpuid = tbProductSpuSpuid;
+    public void setTbProductSpuId(Long tbProductSpuId) {
+        this.tbProductSpuId = tbProductSpuId;
     }
 }

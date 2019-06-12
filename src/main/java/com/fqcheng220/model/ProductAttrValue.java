@@ -1,43 +1,43 @@
 package com.fqcheng220.model;
 
 public class ProductAttrValue {
-    private Integer attrvalueid;
+    private Integer id;
 
-    private String attrvalue;
+    private String value;
 
-    private Integer tbProductAttrAttrid;
+    private Integer tbProductAttrId;
 
-    public ProductAttrValue(Integer attrvalueid, String attrvalue, Integer tbProductAttrAttrid) {
-        this.attrvalueid = attrvalueid;
-        this.attrvalue = attrvalue;
-        this.tbProductAttrAttrid = tbProductAttrAttrid;
+    public ProductAttrValue(Integer id, String value, Integer tbProductAttrId) {
+        this.id = id;
+        this.value = value;
+        this.tbProductAttrId = tbProductAttrId;
     }
 
     public ProductAttrValue() {
         super();
     }
 
-    public Integer getAttrvalueid() {
-        return attrvalueid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setAttrvalueid(Integer attrvalueid) {
-        this.attrvalueid = attrvalueid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getAttrvalue() {
-        return attrvalue;
+    public String getValue() {
+        return value;
     }
 
-    public void setAttrvalue(String attrvalue) {
-        this.attrvalue = attrvalue == null ? null : attrvalue.trim();
+    public void setValue(String value) {
+        this.value = value == null ? null : value.trim();
     }
 
-    public Integer getTbProductAttrAttrid() {
-        return tbProductAttrAttrid;
+    public Integer getTbProductAttrId() {
+        return tbProductAttrId;
     }
 
-    public void setTbProductAttrAttrid(Integer tbProductAttrAttrid) {
-        this.tbProductAttrAttrid = tbProductAttrAttrid;
+    public void setTbProductAttrId(Integer tbProductAttrId) {
+        this.tbProductAttrId = tbProductAttrId;
     }
 }

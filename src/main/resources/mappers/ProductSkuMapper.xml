@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSku">
     <constructor>
       <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <idArg column="tb_product_spu_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="number" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -22,6 +21,7 @@
       <arg column="search_key" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
       <arg column="stock" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tb_product_spu_id" javaType="java.lang.Long" jdbcType="BIGINT" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -83,9 +83,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, tb_product_spu_id, number, name, introduce, show_in_shelve, shelveTime, shelve_by, 
-    update_time, update_by, show_in_top, show_in_nav, show_in_hot, create_time, create_by, 
-    pic_image, search_key, price, stock
+    id, number, name, introduce, show_in_shelve, shelveTime, shelve_by, update_time, 
+    update_by, show_in_top, show_in_nav, show_in_hot, create_time, create_by, pic_image, 
+    search_key, price, stock, tb_product_spu_id
   </sql>
   <select id="selectByExample" parameterType="com.fqcheng220.model.ProductSkuExample" resultMap="BaseResultMap">
     select
@@ -101,17 +101,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.fqcheng220.model.ProductSkuKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_product_sku
     where id = #{id,jdbcType=BIGINT}
-      and tb_product_spu_id = #{tbProductSpuId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.fqcheng220.model.ProductSkuKey">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_product_sku
     where id = #{id,jdbcType=BIGINT}
-      and tb_product_spu_id = #{tbProductSpuId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.fqcheng220.model.ProductSkuExample">
     delete from tb_product_sku
@@ -120,29 +118,26 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fqcheng220.model.ProductSku">
-    insert into tb_product_sku (id, tb_product_spu_id, number, 
-      name, introduce, show_in_shelve, 
-      shelveTime, shelve_by, update_time, 
-      update_by, show_in_top, show_in_nav, 
-      show_in_hot, create_time, create_by, 
-      pic_image, search_key, price, 
-      stock)
-    values (#{id,jdbcType=BIGINT}, #{tbProductSpuId,jdbcType=BIGINT}, #{number,jdbcType=BIGINT}, 
-      #{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{showInShelve,jdbcType=TINYINT}, 
-      #{shelvetime,jdbcType=TIMESTAMP}, #{shelveBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{updateBy,jdbcType=VARCHAR}, #{showInTop,jdbcType=TINYINT}, #{showInNav,jdbcType=TINYINT}, 
-      #{showInHot,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
-      #{picImage,jdbcType=VARCHAR}, #{searchKey,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
-      #{stock,jdbcType=INTEGER})
+    insert into tb_product_sku (id, number, name, 
+      introduce, show_in_shelve, shelveTime, 
+      shelve_by, update_time, update_by, 
+      show_in_top, show_in_nav, show_in_hot, 
+      create_time, create_by, pic_image, 
+      search_key, price, stock, 
+      tb_product_spu_id)
+    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{introduce,jdbcType=VARCHAR}, #{showInShelve,jdbcType=TINYINT}, #{shelvetime,jdbcType=TIMESTAMP}, 
+      #{shelveBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{showInTop,jdbcType=TINYINT}, #{showInNav,jdbcType=TINYINT}, #{showInHot,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{picImage,jdbcType=VARCHAR}, 
+      #{searchKey,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{stock,jdbcType=INTEGER}, 
+      #{tbProductSpuId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductSku">
     insert into tb_product_sku
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
-      </if>
-      <if test="tbProductSpuId != null">
-        tb_product_spu_id,
       </if>
       <if test="number != null">
         number,
@@ -195,13 +190,13 @@
       <if test="stock != null">
         stock,
       </if>
+      <if test="tbProductSpuId != null">
+        tb_product_spu_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
-      </if>
-      <if test="tbProductSpuId != null">
-        #{tbProductSpuId,jdbcType=BIGINT},
       </if>
       <if test="number != null">
         #{number,jdbcType=BIGINT},
@@ -254,6 +249,9 @@
       <if test="stock != null">
         #{stock,jdbcType=INTEGER},
       </if>
+      <if test="tbProductSpuId != null">
+        #{tbProductSpuId,jdbcType=BIGINT},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.fqcheng220.model.ProductSkuExample" resultType="java.lang.Long">
@@ -267,9 +265,6 @@
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.tbProductSpuId != null">
-        tb_product_spu_id = #{record.tbProductSpuId,jdbcType=BIGINT},
       </if>
       <if test="record.number != null">
         number = #{record.number,jdbcType=BIGINT},
@@ -322,6 +317,9 @@
       <if test="record.stock != null">
         stock = #{record.stock,jdbcType=INTEGER},
       </if>
+      <if test="record.tbProductSpuId != null">
+        tb_product_spu_id = #{record.tbProductSpuId,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -330,7 +328,6 @@
   <update id="updateByExample" parameterType="map">
     update tb_product_sku
     set id = #{record.id,jdbcType=BIGINT},
-      tb_product_spu_id = #{record.tbProductSpuId,jdbcType=BIGINT},
       number = #{record.number,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
       introduce = #{record.introduce,jdbcType=VARCHAR},
@@ -347,7 +344,8 @@
       pic_image = #{record.picImage,jdbcType=VARCHAR},
       search_key = #{record.searchKey,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
-      stock = #{record.stock,jdbcType=INTEGER}
+      stock = #{record.stock,jdbcType=INTEGER},
+      tb_product_spu_id = #{record.tbProductSpuId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -406,9 +404,11 @@
       <if test="stock != null">
         stock = #{stock,jdbcType=INTEGER},
       </if>
+      <if test="tbProductSpuId != null">
+        tb_product_spu_id = #{tbProductSpuId,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
-      and tb_product_spu_id = #{tbProductSpuId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductSku">
     update tb_product_sku
@@ -428,8 +428,8 @@
       pic_image = #{picImage,jdbcType=VARCHAR},
       search_key = #{searchKey,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
-      stock = #{stock,jdbcType=INTEGER}
+      stock = #{stock,jdbcType=INTEGER},
+      tb_product_spu_id = #{tbProductSpuId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
-      and tb_product_spu_id = #{tbProductSpuId,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -3,81 +3,81 @@ package com.fqcheng220.model;
 import java.util.Date;
 
 public class ProductSpu {
-    private Long spuid;
+    private Long id;
 
-    private Long spunumber;
+    private Long number;
 
     private String spuname;
 
     private String introduce;
 
-    private Byte showinshelve;
+    private Byte showInShelve;
 
-    private Date shelvetime;
+    private Date shelveTime;
 
-    private String shelveby;
+    private String shelveBy;
 
-    private Date updatetime;
+    private Date updateTime;
 
-    private String updateby;
+    private String updateBy;
 
-    private Byte showintop;
+    private Byte showInTop;
 
-    private Byte showiinnav;
+    private Byte showInNav;
 
-    private Byte showinhot;
+    private Byte showInHot;
 
-    private Date createtime;
+    private Date createTime;
 
-    private String createby;
+    private String createBy;
 
-    private String videointroduce;
+    private String videoIntroduce;
 
-    private String searchkey;
+    private String searchKey;
 
-    private Long tbProductCategoryCategoryid;
+    private Long tbProductCategoryId;
 
-    private Integer tbProductBrandBrandid;
+    private Integer tbProductBrandId;
 
-    public ProductSpu(Long spuid, Long spunumber, String spuname, String introduce, Byte showinshelve, Date shelvetime, String shelveby, Date updatetime, String updateby, Byte showintop, Byte showiinnav, Byte showinhot, Date createtime, String createby, String videointroduce, String searchkey, Long tbProductCategoryCategoryid, Integer tbProductBrandBrandid) {
-        this.spuid = spuid;
-        this.spunumber = spunumber;
+    public ProductSpu(Long id, Long number, String spuname, String introduce, Byte showInShelve, Date shelveTime, String shelveBy, Date updateTime, String updateBy, Byte showInTop, Byte showInNav, Byte showInHot, Date createTime, String createBy, String videoIntroduce, String searchKey, Long tbProductCategoryId, Integer tbProductBrandId) {
+        this.id = id;
+        this.number = number;
         this.spuname = spuname;
         this.introduce = introduce;
-        this.showinshelve = showinshelve;
-        this.shelvetime = shelvetime;
-        this.shelveby = shelveby;
-        this.updatetime = updatetime;
-        this.updateby = updateby;
-        this.showintop = showintop;
-        this.showiinnav = showiinnav;
-        this.showinhot = showinhot;
-        this.createtime = createtime;
-        this.createby = createby;
-        this.videointroduce = videointroduce;
-        this.searchkey = searchkey;
-        this.tbProductCategoryCategoryid = tbProductCategoryCategoryid;
-        this.tbProductBrandBrandid = tbProductBrandBrandid;
+        this.showInShelve = showInShelve;
+        this.shelveTime = shelveTime;
+        this.shelveBy = shelveBy;
+        this.updateTime = updateTime;
+        this.updateBy = updateBy;
+        this.showInTop = showInTop;
+        this.showInNav = showInNav;
+        this.showInHot = showInHot;
+        this.createTime = createTime;
+        this.createBy = createBy;
+        this.videoIntroduce = videoIntroduce;
+        this.searchKey = searchKey;
+        this.tbProductCategoryId = tbProductCategoryId;
+        this.tbProductBrandId = tbProductBrandId;
     }
 
     public ProductSpu() {
         super();
     }
 
-    public Long getSpuid() {
-        return spuid;
+    public Long getId() {
+        return id;
     }
 
-    public void setSpuid(Long spuid) {
-        this.spuid = spuid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getSpunumber() {
-        return spunumber;
+    public Long getNumber() {
+        return number;
     }
 
-    public void setSpunumber(Long spunumber) {
-        this.spunumber = spunumber;
+    public void setNumber(Long number) {
+        this.number = number;
     }
 
     public String getSpuname() {
@@ -96,115 +96,115 @@ public class ProductSpu {
         this.introduce = introduce == null ? null : introduce.trim();
     }
 
-    public Byte getShowinshelve() {
-        return showinshelve;
+    public Byte getShowInShelve() {
+        return showInShelve;
     }
 
-    public void setShowinshelve(Byte showinshelve) {
-        this.showinshelve = showinshelve;
+    public void setShowInShelve(Byte showInShelve) {
+        this.showInShelve = showInShelve;
     }
 
-    public Date getShelvetime() {
-        return shelvetime;
+    public Date getShelveTime() {
+        return shelveTime;
     }
 
-    public void setShelvetime(Date shelvetime) {
-        this.shelvetime = shelvetime;
+    public void setShelveTime(Date shelveTime) {
+        this.shelveTime = shelveTime;
     }
 
-    public String getShelveby() {
-        return shelveby;
+    public String getShelveBy() {
+        return shelveBy;
     }
 
-    public void setShelveby(String shelveby) {
-        this.shelveby = shelveby == null ? null : shelveby.trim();
+    public void setShelveBy(String shelveBy) {
+        this.shelveBy = shelveBy == null ? null : shelveBy.trim();
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public String getUpdateby() {
-        return updateby;
+    public String getUpdateBy() {
+        return updateBy;
     }
 
-    public void setUpdateby(String updateby) {
-        this.updateby = updateby == null ? null : updateby.trim();
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy == null ? null : updateBy.trim();
     }
 
-    public Byte getShowintop() {
-        return showintop;
+    public Byte getShowInTop() {
+        return showInTop;
     }
 
-    public void setShowintop(Byte showintop) {
-        this.showintop = showintop;
+    public void setShowInTop(Byte showInTop) {
+        this.showInTop = showInTop;
     }
 
-    public Byte getShowiinnav() {
-        return showiinnav;
+    public Byte getShowInNav() {
+        return showInNav;
     }
 
-    public void setShowiinnav(Byte showiinnav) {
-        this.showiinnav = showiinnav;
+    public void setShowInNav(Byte showInNav) {
+        this.showInNav = showInNav;
     }
 
-    public Byte getShowinhot() {
-        return showinhot;
+    public Byte getShowInHot() {
+        return showInHot;
     }
 
-    public void setShowinhot(Byte showinhot) {
-        this.showinhot = showinhot;
+    public void setShowInHot(Byte showInHot) {
+        this.showInHot = showInHot;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public String getCreateby() {
-        return createby;
+    public String getCreateBy() {
+        return createBy;
     }
 
-    public void setCreateby(String createby) {
-        this.createby = createby == null ? null : createby.trim();
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy == null ? null : createBy.trim();
     }
 
-    public String getVideointroduce() {
-        return videointroduce;
+    public String getVideoIntroduce() {
+        return videoIntroduce;
     }
 
-    public void setVideointroduce(String videointroduce) {
-        this.videointroduce = videointroduce == null ? null : videointroduce.trim();
+    public void setVideoIntroduce(String videoIntroduce) {
+        this.videoIntroduce = videoIntroduce == null ? null : videoIntroduce.trim();
     }
 
-    public String getSearchkey() {
-        return searchkey;
+    public String getSearchKey() {
+        return searchKey;
     }
 
-    public void setSearchkey(String searchkey) {
-        this.searchkey = searchkey == null ? null : searchkey.trim();
+    public void setSearchKey(String searchKey) {
+        this.searchKey = searchKey == null ? null : searchKey.trim();
     }
 
-    public Long getTbProductCategoryCategoryid() {
-        return tbProductCategoryCategoryid;
+    public Long getTbProductCategoryId() {
+        return tbProductCategoryId;
     }
 
-    public void setTbProductCategoryCategoryid(Long tbProductCategoryCategoryid) {
-        this.tbProductCategoryCategoryid = tbProductCategoryCategoryid;
+    public void setTbProductCategoryId(Long tbProductCategoryId) {
+        this.tbProductCategoryId = tbProductCategoryId;
     }
 
-    public Integer getTbProductBrandBrandid() {
-        return tbProductBrandBrandid;
+    public Integer getTbProductBrandId() {
+        return tbProductBrandId;
     }
 
-    public void setTbProductBrandBrandid(Integer tbProductBrandBrandid) {
-        this.tbProductBrandBrandid = tbProductBrandBrandid;
+    public void setTbProductBrandId(Integer tbProductBrandId) {
+        this.tbProductBrandId = tbProductBrandId;
     }
 }

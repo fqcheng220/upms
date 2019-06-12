@@ -3,14 +3,14 @@ package com.fqcheng220.model;
 public class ProductSkuSpecValue {
     private Integer id;
 
-    private Integer tbProductSpecValueSpecvalueid;
+    private Integer tbProductSpecValueId;
 
-    private Long tbProductSkuSkuid;
+    private Long tbProductSkuId;
 
-    public ProductSkuSpecValue(Integer id, Integer tbProductSpecValueSpecvalueid, Long tbProductSkuSkuid) {
+    public ProductSkuSpecValue(Integer id, Integer tbProductSpecValueId, Long tbProductSkuId) {
         this.id = id;
-        this.tbProductSpecValueSpecvalueid = tbProductSpecValueSpecvalueid;
-        this.tbProductSkuSkuid = tbProductSkuSkuid;
+        this.tbProductSpecValueId = tbProductSpecValueId;
+        this.tbProductSkuId = tbProductSkuId;
     }
 
     public ProductSkuSpecValue() {
@@ -25,19 +25,19 @@ public class ProductSkuSpecValue {
         this.id = id;
     }
 
-    public Integer getTbProductSpecValueSpecvalueid() {
-        return tbProductSpecValueSpecvalueid;
+    public Integer getTbProductSpecValueId() {
+        return tbProductSpecValueId;
     }
 
-    public void setTbProductSpecValueSpecvalueid(Integer tbProductSpecValueSpecvalueid) {
-        this.tbProductSpecValueSpecvalueid = tbProductSpecValueSpecvalueid;
+    public void setTbProductSpecValueId(Integer tbProductSpecValueId) {
+        this.tbProductSpecValueId = tbProductSpecValueId;
     }
 
-    public Long getTbProductSkuSkuid() {
-        return tbProductSkuSkuid;
+    public Long getTbProductSkuId() {
+        return tbProductSkuId;
     }
 
-    public void setTbProductSkuSkuid(Long tbProductSkuSkuid) {
-        this.tbProductSkuSkuid = tbProductSkuSkuid;
+    public void setTbProductSkuId(Long tbProductSkuId) {
+        this.tbProductSkuId = tbProductSkuId;
     }
 }

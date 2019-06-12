@@ -1,43 +1,43 @@
 package com.fqcheng220.model;
 
 public class ProductSpecValue {
-    private Integer specvalueid;
+    private Integer id;
 
-    private String specvalue;
+    private String value;
 
-    private Integer tbProductSpecSpecid;
+    private Integer tbProductSpecId;
 
-    public ProductSpecValue(Integer specvalueid, String specvalue, Integer tbProductSpecSpecid) {
-        this.specvalueid = specvalueid;
-        this.specvalue = specvalue;
-        this.tbProductSpecSpecid = tbProductSpecSpecid;
+    public ProductSpecValue(Integer id, String value, Integer tbProductSpecId) {
+        this.id = id;
+        this.value = value;
+        this.tbProductSpecId = tbProductSpecId;
     }
 
     public ProductSpecValue() {
         super();
     }
 
-    public Integer getSpecvalueid() {
-        return specvalueid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setSpecvalueid(Integer specvalueid) {
-        this.specvalueid = specvalueid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getSpecvalue() {
-        return specvalue;
+    public String getValue() {
+        return value;
     }
 
-    public void setSpecvalue(String specvalue) {
-        this.specvalue = specvalue == null ? null : specvalue.trim();
+    public void setValue(String value) {
+        this.value = value == null ? null : value.trim();
     }
 
-    public Integer getTbProductSpecSpecid() {
-        return tbProductSpecSpecid;
+    public Integer getTbProductSpecId() {
+        return tbProductSpecId;
     }
 
-    public void setTbProductSpecSpecid(Integer tbProductSpecSpecid) {
-        this.tbProductSpecSpecid = tbProductSpecSpecid;
+    public void setTbProductSpecId(Integer tbProductSpecId) {
+        this.tbProductSpecId = tbProductSpecId;
     }
 }

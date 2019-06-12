@@ -9,14 +9,14 @@ public class ProductSpuImg {
 
     private Byte statue;
 
-    private Long tbProductSpuSpuid;
+    private Long tbProductSpuId;
 
-    public ProductSpuImg(Integer id, String path, Integer sort, Byte statue, Long tbProductSpuSpuid) {
+    public ProductSpuImg(Integer id, String path, Integer sort, Byte statue, Long tbProductSpuId) {
         this.id = id;
         this.path = path;
         this.sort = sort;
         this.statue = statue;
-        this.tbProductSpuSpuid = tbProductSpuSpuid;
+        this.tbProductSpuId = tbProductSpuId;
     }
 
     public ProductSpuImg() {
@@ -55,11 +55,11 @@ public class ProductSpuImg {
         this.statue = statue;
     }
 
-    public Long getTbProductSpuSpuid() {
-        return tbProductSpuSpuid;
+    public Long getTbProductSpuId() {
+        return tbProductSpuId;
     }
 
-    public void setTbProductSpuSpuid(Long tbProductSpuSpuid) {
-        this.tbProductSpuSpuid = tbProductSpuSpuid;
+    public void setTbProductSpuId(Long tbProductSpuId) {
+        this.tbProductSpuId = tbProductSpuId;
     }
 }

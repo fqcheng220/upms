@@ -4,8 +4,6 @@
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSpu">
     <constructor>
       <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <idArg column="tb_product_category_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <idArg column="tb_product_brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="number" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="spuName" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -21,6 +19,8 @@
       <arg column="create_by" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="video_introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="search_key" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tb_product_category_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="tb_product_brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -82,9 +82,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, tb_product_category_id, tb_product_brand_id, number, spuName, introduce, show_in_shelve, 
-    shelve_time, shelve_by, update_time, update_by, show_in_top, show_in_nav, show_in_hot, 
-    create_time, create_by, video_introduce, search_key
+    id, number, spuName, introduce, show_in_shelve, shelve_time, shelve_by, update_time, 
+    update_by, show_in_top, show_in_nav, show_in_hot, create_time, create_by, video_introduce, 
+    search_key, tb_product_category_id, tb_product_brand_id
   </sql>
   <select id="selectByExample" parameterType="com.fqcheng220.model.ProductSpuExample" resultMap="BaseResultMap">
     select
@@ -100,19 +100,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpuKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_product_spu
     where id = #{id,jdbcType=BIGINT}
-      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
-      and tb_product_brand_id = #{tbProductBrandId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpuKey">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_product_spu
     where id = #{id,jdbcType=BIGINT}
-      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
-      and tb_product_brand_id = #{tbProductBrandId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.fqcheng220.model.ProductSpuExample">
     delete from tb_product_spu
@@ -121,19 +117,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fqcheng220.model.ProductSpu">
-    insert into tb_product_spu (id, tb_product_category_id, tb_product_brand_id, 
-      number, spuName, introduce, 
-      show_in_shelve, shelve_time, shelve_by, 
-      update_time, update_by, show_in_top, 
-      show_in_nav, show_in_hot, create_time, 
-      create_by, video_introduce, search_key
+    insert into tb_product_spu (id, number, spuName, 
+      introduce, show_in_shelve, shelve_time, 
+      shelve_by, update_time, update_by, 
+      show_in_top, show_in_nav, show_in_hot, 
+      create_time, create_by, video_introduce, 
+      search_key, tb_product_category_id, tb_product_brand_id
       )
-    values (#{id,jdbcType=BIGINT}, #{tbProductCategoryId,jdbcType=BIGINT}, #{tbProductBrandId,jdbcType=INTEGER}, 
-      #{number,jdbcType=BIGINT}, #{spuname,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
-      #{showInShelve,jdbcType=TINYINT}, #{shelveTime,jdbcType=TIMESTAMP}, #{shelveBy,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{showInTop,jdbcType=TINYINT}, 
-      #{showInNav,jdbcType=TINYINT}, #{showInHot,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{createBy,jdbcType=VARCHAR}, #{videoIntroduce,jdbcType=VARCHAR}, #{searchKey,jdbcType=VARCHAR}
+    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=BIGINT}, #{spuname,jdbcType=VARCHAR}, 
+      #{introduce,jdbcType=VARCHAR}, #{showInShelve,jdbcType=TINYINT}, #{shelveTime,jdbcType=TIMESTAMP}, 
+      #{shelveBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{showInTop,jdbcType=TINYINT}, #{showInNav,jdbcType=TINYINT}, #{showInHot,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{videoIntroduce,jdbcType=VARCHAR}, 
+      #{searchKey,jdbcType=VARCHAR}, #{tbProductCategoryId,jdbcType=BIGINT}, #{tbProductBrandId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductSpu">
@@ -141,12 +137,6 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
-      </if>
-      <if test="tbProductCategoryId != null">
-        tb_product_category_id,
-      </if>
-      <if test="tbProductBrandId != null">
-        tb_product_brand_id,
       </if>
       <if test="number != null">
         number,
@@ -193,16 +183,16 @@
       <if test="searchKey != null">
         search_key,
       </if>
+      <if test="tbProductCategoryId != null">
+        tb_product_category_id,
+      </if>
+      <if test="tbProductBrandId != null">
+        tb_product_brand_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
-      </if>
-      <if test="tbProductCategoryId != null">
-        #{tbProductCategoryId,jdbcType=BIGINT},
-      </if>
-      <if test="tbProductBrandId != null">
-        #{tbProductBrandId,jdbcType=INTEGER},
       </if>
       <if test="number != null">
         #{number,jdbcType=BIGINT},
@@ -249,6 +239,12 @@
       <if test="searchKey != null">
         #{searchKey,jdbcType=VARCHAR},
       </if>
+      <if test="tbProductCategoryId != null">
+        #{tbProductCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="tbProductBrandId != null">
+        #{tbProductBrandId,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.fqcheng220.model.ProductSpuExample" resultType="java.lang.Long">
@@ -262,12 +258,6 @@
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.tbProductCategoryId != null">
-        tb_product_category_id = #{record.tbProductCategoryId,jdbcType=BIGINT},
-      </if>
-      <if test="record.tbProductBrandId != null">
-        tb_product_brand_id = #{record.tbProductBrandId,jdbcType=INTEGER},
       </if>
       <if test="record.number != null">
         number = #{record.number,jdbcType=BIGINT},
@@ -314,6 +304,12 @@
       <if test="record.searchKey != null">
         search_key = #{record.searchKey,jdbcType=VARCHAR},
       </if>
+      <if test="record.tbProductCategoryId != null">
+        tb_product_category_id = #{record.tbProductCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tbProductBrandId != null">
+        tb_product_brand_id = #{record.tbProductBrandId,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -322,8 +318,6 @@
   <update id="updateByExample" parameterType="map">
     update tb_product_spu
     set id = #{record.id,jdbcType=BIGINT},
-      tb_product_category_id = #{record.tbProductCategoryId,jdbcType=BIGINT},
-      tb_product_brand_id = #{record.tbProductBrandId,jdbcType=INTEGER},
       number = #{record.number,jdbcType=BIGINT},
       spuName = #{record.spuname,jdbcType=VARCHAR},
       introduce = #{record.introduce,jdbcType=VARCHAR},
@@ -338,7 +332,9 @@
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       create_by = #{record.createBy,jdbcType=VARCHAR},
       video_introduce = #{record.videoIntroduce,jdbcType=VARCHAR},
-      search_key = #{record.searchKey,jdbcType=VARCHAR}
+      search_key = #{record.searchKey,jdbcType=VARCHAR},
+      tb_product_category_id = #{record.tbProductCategoryId,jdbcType=BIGINT},
+      tb_product_brand_id = #{record.tbProductBrandId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -391,10 +387,14 @@
       <if test="searchKey != null">
         search_key = #{searchKey,jdbcType=VARCHAR},
       </if>
+      <if test="tbProductCategoryId != null">
+        tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="tbProductBrandId != null">
+        tb_product_brand_id = #{tbProductBrandId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
-      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
-      and tb_product_brand_id = #{tbProductBrandId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpu">
     update tb_product_spu
@@ -412,9 +412,9 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_by = #{createBy,jdbcType=VARCHAR},
       video_introduce = #{videoIntroduce,jdbcType=VARCHAR},
-      search_key = #{searchKey,jdbcType=VARCHAR}
+      search_key = #{searchKey,jdbcType=VARCHAR},
+      tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT},
+      tb_product_brand_id = #{tbProductBrandId,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
-      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
-      and tb_product_brand_id = #{tbProductBrandId,jdbcType=INTEGER}
   </update>
 </mapper>

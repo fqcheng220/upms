@@ -164,123 +164,123 @@ public class ProductSkuSpecValueExample {
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidIsNull() {
-            addCriterion("tb_product_spec_value_specValueId is null");
+        public Criteria andTbProductSpecValueIdIsNull() {
+            addCriterion("tb_product_spec_value_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidIsNotNull() {
-            addCriterion("tb_product_spec_value_specValueId is not null");
+        public Criteria andTbProductSpecValueIdIsNotNull() {
+            addCriterion("tb_product_spec_value_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidEqualTo(Integer value) {
-            addCriterion("tb_product_spec_value_specValueId =", value, "tbProductSpecValueSpecvalueid");
+        public Criteria andTbProductSpecValueIdEqualTo(Integer value) {
+            addCriterion("tb_product_spec_value_id =", value, "tbProductSpecValueId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidNotEqualTo(Integer value) {
-            addCriterion("tb_product_spec_value_specValueId <>", value, "tbProductSpecValueSpecvalueid");
+        public Criteria andTbProductSpecValueIdNotEqualTo(Integer value) {
+            addCriterion("tb_product_spec_value_id <>", value, "tbProductSpecValueId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidGreaterThan(Integer value) {
-            addCriterion("tb_product_spec_value_specValueId >", value, "tbProductSpecValueSpecvalueid");
+        public Criteria andTbProductSpecValueIdGreaterThan(Integer value) {
+            addCriterion("tb_product_spec_value_id >", value, "tbProductSpecValueId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("tb_product_spec_value_specValueId >=", value, "tbProductSpecValueSpecvalueid");
+        public Criteria andTbProductSpecValueIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("tb_product_spec_value_id >=", value, "tbProductSpecValueId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidLessThan(Integer value) {
-            addCriterion("tb_product_spec_value_specValueId <", value, "tbProductSpecValueSpecvalueid");
+        public Criteria andTbProductSpecValueIdLessThan(Integer value) {
+            addCriterion("tb_product_spec_value_id <", value, "tbProductSpecValueId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidLessThanOrEqualTo(Integer value) {
-            addCriterion("tb_product_spec_value_specValueId <=", value, "tbProductSpecValueSpecvalueid");
+        public Criteria andTbProductSpecValueIdLessThanOrEqualTo(Integer value) {
+            addCriterion("tb_product_spec_value_id <=", value, "tbProductSpecValueId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidIn(List<Integer> values) {
-            addCriterion("tb_product_spec_value_specValueId in", values, "tbProductSpecValueSpecvalueid");
+        public Criteria andTbProductSpecValueIdIn(List<Integer> values) {
+            addCriterion("tb_product_spec_value_id in", values, "tbProductSpecValueId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidNotIn(List<Integer> values) {
-            addCriterion("tb_product_spec_value_specValueId not in", values, "tbProductSpecValueSpecvalueid");
+        public Criteria andTbProductSpecValueIdNotIn(List<Integer> values) {
+            addCriterion("tb_product_spec_value_id not in", values, "tbProductSpecValueId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidBetween(Integer value1, Integer value2) {
-            addCriterion("tb_product_spec_value_specValueId between", value1, value2, "tbProductSpecValueSpecvalueid");
+        public Criteria andTbProductSpecValueIdBetween(Integer value1, Integer value2) {
+            addCriterion("tb_product_spec_value_id between", value1, value2, "tbProductSpecValueId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSpecValueSpecvalueidNotBetween(Integer value1, Integer value2) {
-            addCriterion("tb_product_spec_value_specValueId not between", value1, value2, "tbProductSpecValueSpecvalueid");
+        public Criteria andTbProductSpecValueIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("tb_product_spec_value_id not between", value1, value2, "tbProductSpecValueId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidIsNull() {
-            addCriterion("tb_product_sku_skuId is null");
+        public Criteria andTbProductSkuIdIsNull() {
+            addCriterion("tb_product_sku_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidIsNotNull() {
-            addCriterion("tb_product_sku_skuId is not null");
+        public Criteria andTbProductSkuIdIsNotNull() {
+            addCriterion("tb_product_sku_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidEqualTo(Long value) {
-            addCriterion("tb_product_sku_skuId =", value, "tbProductSkuSkuid");
+        public Criteria andTbProductSkuIdEqualTo(Long value) {
+            addCriterion("tb_product_sku_id =", value, "tbProductSkuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidNotEqualTo(Long value) {
-            addCriterion("tb_product_sku_skuId <>", value, "tbProductSkuSkuid");
+        public Criteria andTbProductSkuIdNotEqualTo(Long value) {
+            addCriterion("tb_product_sku_id <>", value, "tbProductSkuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidGreaterThan(Long value) {
-            addCriterion("tb_product_sku_skuId >", value, "tbProductSkuSkuid");
+        public Criteria andTbProductSkuIdGreaterThan(Long value) {
+            addCriterion("tb_product_sku_id >", value, "tbProductSkuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidGreaterThanOrEqualTo(Long value) {
-            addCriterion("tb_product_sku_skuId >=", value, "tbProductSkuSkuid");
+        public Criteria andTbProductSkuIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("tb_product_sku_id >=", value, "tbProductSkuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidLessThan(Long value) {
-            addCriterion("tb_product_sku_skuId <", value, "tbProductSkuSkuid");
+        public Criteria andTbProductSkuIdLessThan(Long value) {
+            addCriterion("tb_product_sku_id <", value, "tbProductSkuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidLessThanOrEqualTo(Long value) {
-            addCriterion("tb_product_sku_skuId <=", value, "tbProductSkuSkuid");
+        public Criteria andTbProductSkuIdLessThanOrEqualTo(Long value) {
+            addCriterion("tb_product_sku_id <=", value, "tbProductSkuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidIn(List<Long> values) {
-            addCriterion("tb_product_sku_skuId in", values, "tbProductSkuSkuid");
+        public Criteria andTbProductSkuIdIn(List<Long> values) {
+            addCriterion("tb_product_sku_id in", values, "tbProductSkuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidNotIn(List<Long> values) {
-            addCriterion("tb_product_sku_skuId not in", values, "tbProductSkuSkuid");
+        public Criteria andTbProductSkuIdNotIn(List<Long> values) {
+            addCriterion("tb_product_sku_id not in", values, "tbProductSkuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidBetween(Long value1, Long value2) {
-            addCriterion("tb_product_sku_skuId between", value1, value2, "tbProductSkuSkuid");
+        public Criteria andTbProductSkuIdBetween(Long value1, Long value2) {
+            addCriterion("tb_product_sku_id between", value1, value2, "tbProductSkuId");
             return (Criteria) this;
         }
 
-        public Criteria andTbProductSkuSkuidNotBetween(Long value1, Long value2) {
-            addCriterion("tb_product_sku_skuId not between", value1, value2, "tbProductSkuSkuid");
+        public Criteria andTbProductSkuIdNotBetween(Long value1, Long value2) {
+            addCriterion("tb_product_sku_id not between", value1, value2, "tbProductSkuId");
             return (Criteria) this;
         }
     }

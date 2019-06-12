@@ -1,43 +1,43 @@
 package com.fqcheng220.model;
 
 public class ProductAttr {
-    private Integer attrid;
+    private Integer id;
 
-    private String attrname;
+    private String name;
 
-    private Long tbProductCategoryCategoryid;
+    private Long tbProductCategoryId;
 
-    public ProductAttr(Integer attrid, String attrname, Long tbProductCategoryCategoryid) {
-        this.attrid = attrid;
-        this.attrname = attrname;
-        this.tbProductCategoryCategoryid = tbProductCategoryCategoryid;
+    public ProductAttr(Integer id, String name, Long tbProductCategoryId) {
+        this.id = id;
+        this.name = name;
+        this.tbProductCategoryId = tbProductCategoryId;
     }
 
     public ProductAttr() {
         super();
     }
 
-    public Integer getAttrid() {
-        return attrid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setAttrid(Integer attrid) {
-        this.attrid = attrid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getAttrname() {
-        return attrname;
+    public String getName() {
+        return name;
     }
 
-    public void setAttrname(String attrname) {
-        this.attrname = attrname == null ? null : attrname.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
-    public Long getTbProductCategoryCategoryid() {
-        return tbProductCategoryCategoryid;
+    public Long getTbProductCategoryId() {
+        return tbProductCategoryId;
     }
 
-    public void setTbProductCategoryCategoryid(Long tbProductCategoryCategoryid) {
-        this.tbProductCategoryCategoryid = tbProductCategoryCategoryid;
+    public void setTbProductCategoryId(Long tbProductCategoryId) {
+        this.tbProductCategoryId = tbProductCategoryId;
     }
 }
