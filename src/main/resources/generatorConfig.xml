@@ -72,7 +72,7 @@
         <table tableName="tb_upms_permission" domainObjectName="UpmsPermission" />
         <table tableName="tb_upms_role_permission" domainObjectName="UpmsRolePermission"/>
         <!--商品子系统表-->
-        <table tableName="tb_upms_product_category" domainObjectName="ProductCategory" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="tb_product_category" domainObjectName="ProductCategory" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
         <table tableName="tb_product_attr" domainObjectName="ProductAttr" />
         <table tableName="tb_product_attr_value" domainObjectName="ProductAttrValue"/>
         <table tableName="tb_product_spec" domainObjectName="ProductSpec"/>

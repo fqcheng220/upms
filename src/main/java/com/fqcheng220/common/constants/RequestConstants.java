@@ -33,4 +33,13 @@ public interface RequestConstants {
     public static final int TYPE_UPMS_ROLEPERMISSION_DEL = 19;
     public static final int TYPE_UPMS_ROLEPERMISSION_UPDATE = 20;
     public static final int TYPE_UPMS_ROLEPERMISSION_LIST = 21;
+
+    /**
+     * ***********************商品子系统***********************
+     */
+    //分类
+    public static final int TYPE_CATEGORY_ADD = 22;
+    public static final int TYPE_CATEGORY_DEL = 23;
+    public static final int TYPE_CATEGORY_UPDATE = 24;
+    public static final int TYPE_CATEGORY_LIST = 25;
 }

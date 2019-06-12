@@ -56,7 +56,7 @@ public class BaseController {
      * @param requestBody
      * @return
      */
-    public static <Model, Example> BaseResponseBody del(final BaseRequestDelBody requestBody,
+    public static <Model, Example> BaseResponseBody del(final AbstractBaseRequestDelBody requestBody,
                                                         final String urlPath,
                                                         final IBaseService<Model, Example> service,
                                                         final Example example,
@@ -109,7 +109,7 @@ public class BaseController {
         }
         if (result > 0) {
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(sucMsg)
+                    .setmMsg(String.format(ResponseConstants.MSG_SUC_UPDATE_FORMAT,sucMsg))
                     .setmResult(Arrays.asList(requestBody.mEntity));
         } else {
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
@@ -136,7 +136,7 @@ public class BaseController {
         try {
             List<Model> list = service.selectByExample(example);
             return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(sucMsg)
+                    .setmMsg(String.format(ResponseConstants.MSG_SUC_LIST_FORMAT,sucMsg))
                     .setmResult(list);
         } catch (Exception e) {
             e.printStackTrace();

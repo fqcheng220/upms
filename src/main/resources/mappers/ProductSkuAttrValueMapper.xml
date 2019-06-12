@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fqcheng220.dao.ProductSkuAttrValueMapper">
-  <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSkuAttrValue">
+  <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSkuAttrValueKey">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="tb_product_attr_value_attrValueId" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="tb_product_sku_skuId" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <idArg column="tb_product_attr_value_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="tb_product_sku_id" javaType="java.lang.Long" jdbcType="BIGINT" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, tb_product_attr_value_attrValueId, tb_product_sku_skuId
+    id, tb_product_attr_value_id, tb_product_sku_id
   </sql>
   <select id="selectByExample" parameterType="com.fqcheng220.model.ProductSkuAttrValueExample" resultMap="BaseResultMap">
     select
@@ -83,15 +83,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tb_product_sku_attr_value
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="com.fqcheng220.model.ProductSkuAttrValueKey">
     delete from tb_product_sku_attr_value
     where id = #{id,jdbcType=INTEGER}
+      and tb_product_attr_value_id = #{tbProductAttrValueId,jdbcType=INTEGER}
+      and tb_product_sku_id = #{tbProductSkuId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.fqcheng220.model.ProductSkuAttrValueExample">
     delete from tb_product_sku_attr_value
@@ -99,34 +95,34 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fqcheng220.model.ProductSkuAttrValue">
-    insert into tb_product_sku_attr_value (id, tb_product_attr_value_attrValueId, 
-      tb_product_sku_skuId)
-    values (#{id,jdbcType=INTEGER}, #{tbProductAttrValueAttrvalueid,jdbcType=INTEGER}, 
-      #{tbProductSkuSkuid,jdbcType=BIGINT})
+  <insert id="insert" parameterType="com.fqcheng220.model.ProductSkuAttrValueKey">
+    insert into tb_product_sku_attr_value (id, tb_product_attr_value_id, tb_product_sku_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{tbProductAttrValueId,jdbcType=INTEGER}, #{tbProductSkuId,jdbcType=BIGINT}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductSkuAttrValue">
+  <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductSkuAttrValueKey">
     insert into tb_product_sku_attr_value
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="tbProductAttrValueAttrvalueid != null">
-        tb_product_attr_value_attrValueId,
+      <if test="tbProductAttrValueId != null">
+        tb_product_attr_value_id,
       </if>
-      <if test="tbProductSkuSkuid != null">
-        tb_product_sku_skuId,
+      <if test="tbProductSkuId != null">
+        tb_product_sku_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="tbProductAttrValueAttrvalueid != null">
-        #{tbProductAttrValueAttrvalueid,jdbcType=INTEGER},
+      <if test="tbProductAttrValueId != null">
+        #{tbProductAttrValueId,jdbcType=INTEGER},
       </if>
-      <if test="tbProductSkuSkuid != null">
-        #{tbProductSkuSkuid,jdbcType=BIGINT},
+      <if test="tbProductSkuId != null">
+        #{tbProductSkuId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -142,11 +138,11 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.tbProductAttrValueAttrvalueid != null">
-        tb_product_attr_value_attrValueId = #{record.tbProductAttrValueAttrvalueid,jdbcType=INTEGER},
+      <if test="record.tbProductAttrValueId != null">
+        tb_product_attr_value_id = #{record.tbProductAttrValueId,jdbcType=INTEGER},
       </if>
-      <if test="record.tbProductSkuSkuid != null">
-        tb_product_sku_skuId = #{record.tbProductSkuSkuid,jdbcType=BIGINT},
+      <if test="record.tbProductSkuId != null">
+        tb_product_sku_id = #{record.tbProductSkuId,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -156,28 +152,10 @@
   <update id="updateByExample" parameterType="map">
     update tb_product_sku_attr_value
     set id = #{record.id,jdbcType=INTEGER},
-      tb_product_attr_value_attrValueId = #{record.tbProductAttrValueAttrvalueid,jdbcType=INTEGER},
-      tb_product_sku_skuId = #{record.tbProductSkuSkuid,jdbcType=BIGINT}
+      tb_product_attr_value_id = #{record.tbProductAttrValueId,jdbcType=INTEGER},
+      tb_product_sku_id = #{record.tbProductSkuId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fqcheng220.model.ProductSkuAttrValue">
-    update tb_product_sku_attr_value
-    <set>
-      <if test="tbProductAttrValueAttrvalueid != null">
-        tb_product_attr_value_attrValueId = #{tbProductAttrValueAttrvalueid,jdbcType=INTEGER},
-      </if>
-      <if test="tbProductSkuSkuid != null">
-        tb_product_sku_skuId = #{tbProductSkuSkuid,jdbcType=BIGINT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductSkuAttrValue">
-    update tb_product_sku_attr_value
-    set tb_product_attr_value_attrValueId = #{tbProductAttrValueAttrvalueid,jdbcType=INTEGER},
-      tb_product_sku_skuId = #{tbProductSkuSkuid,jdbcType=BIGINT}
-    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

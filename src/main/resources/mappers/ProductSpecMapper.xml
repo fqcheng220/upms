@@ -3,9 +3,9 @@
 <mapper namespace="com.fqcheng220.dao.ProductSpecMapper">
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSpec">
     <constructor>
-      <idArg column="specId" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="specName" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="tb_product_category_categoryId" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="tb_product_category_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    specId, specName, tb_product_category_categoryId
+    id, tb_product_category_id, name
   </sql>
   <select id="selectByExample" parameterType="com.fqcheng220.model.ProductSpecExample" resultMap="BaseResultMap">
     select
@@ -83,15 +83,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpecKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_product_spec
-    where specId = #{specid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpecKey">
     delete from tb_product_spec
-    where specId = #{specid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.fqcheng220.model.ProductSpecExample">
     delete from tb_product_spec
@@ -100,33 +102,33 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fqcheng220.model.ProductSpec">
-    insert into tb_product_spec (specId, specName, tb_product_category_categoryId
+    insert into tb_product_spec (id, tb_product_category_id, name
       )
-    values (#{specid,jdbcType=INTEGER}, #{specname,jdbcType=VARCHAR}, #{tbProductCategoryCategoryid,jdbcType=BIGINT}
+    values (#{id,jdbcType=INTEGER}, #{tbProductCategoryId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductSpec">
     insert into tb_product_spec
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="specid != null">
-        specId,
+      <if test="id != null">
+        id,
       </if>
-      <if test="specname != null">
-        specName,
+      <if test="tbProductCategoryId != null">
+        tb_product_category_id,
       </if>
-      <if test="tbProductCategoryCategoryid != null">
-        tb_product_category_categoryId,
+      <if test="name != null">
+        name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="specid != null">
-        #{specid,jdbcType=INTEGER},
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="specname != null">
-        #{specname,jdbcType=VARCHAR},
+      <if test="tbProductCategoryId != null">
+        #{tbProductCategoryId,jdbcType=BIGINT},
       </if>
-      <if test="tbProductCategoryCategoryid != null">
-        #{tbProductCategoryCategoryid,jdbcType=BIGINT},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -139,14 +141,14 @@
   <update id="updateByExampleSelective" parameterType="map">
     update tb_product_spec
     <set>
-      <if test="record.specid != null">
-        specId = #{record.specid,jdbcType=INTEGER},
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.specname != null">
-        specName = #{record.specname,jdbcType=VARCHAR},
+      <if test="record.tbProductCategoryId != null">
+        tb_product_category_id = #{record.tbProductCategoryId,jdbcType=BIGINT},
       </if>
-      <if test="record.tbProductCategoryCategoryid != null">
-        tb_product_category_categoryId = #{record.tbProductCategoryCategoryid,jdbcType=BIGINT},
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -155,9 +157,9 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update tb_product_spec
-    set specId = #{record.specid,jdbcType=INTEGER},
-      specName = #{record.specname,jdbcType=VARCHAR},
-      tb_product_category_categoryId = #{record.tbProductCategoryCategoryid,jdbcType=BIGINT}
+    set id = #{record.id,jdbcType=INTEGER},
+      tb_product_category_id = #{record.tbProductCategoryId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -165,19 +167,17 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.fqcheng220.model.ProductSpec">
     update tb_product_spec
     <set>
-      <if test="specname != null">
-        specName = #{specname,jdbcType=VARCHAR},
-      </if>
-      <if test="tbProductCategoryCategoryid != null">
-        tb_product_category_categoryId = #{tbProductCategoryCategoryid,jdbcType=BIGINT},
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
       </if>
     </set>
-    where specId = #{specid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpec">
     update tb_product_spec
-    set specName = #{specname,jdbcType=VARCHAR},
-      tb_product_category_categoryId = #{tbProductCategoryCategoryid,jdbcType=BIGINT}
-    where specId = #{specid,jdbcType=INTEGER}
+    set name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -3,9 +3,9 @@
 <mapper namespace="com.fqcheng220.dao.ProductBrandMapper">
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductBrand">
     <constructor>
-      <idArg column="brandId" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="brandName" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="brandDescrption" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="descrption" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    brandId, brandName, brandDescrption
+    id, name, descrption
   </sql>
   <select id="selectByExample" parameterType="com.fqcheng220.model.ProductBrandExample" resultMap="BaseResultMap">
     select
@@ -87,11 +87,11 @@
     select 
     <include refid="Base_Column_List" />
     from tb_product_brand
-    where brandId = #{brandid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_product_brand
-    where brandId = #{brandid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.fqcheng220.model.ProductBrandExample">
     delete from tb_product_brand
@@ -100,33 +100,33 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fqcheng220.model.ProductBrand">
-    insert into tb_product_brand (brandId, brandName, brandDescrption
+    insert into tb_product_brand (id, name, descrption
       )
-    values (#{brandid,jdbcType=INTEGER}, #{brandname,jdbcType=VARCHAR}, #{branddescrption,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{descrption,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductBrand">
     insert into tb_product_brand
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="brandid != null">
-        brandId,
+      <if test="id != null">
+        id,
       </if>
-      <if test="brandname != null">
-        brandName,
+      <if test="name != null">
+        name,
       </if>
-      <if test="branddescrption != null">
-        brandDescrption,
+      <if test="descrption != null">
+        descrption,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="brandid != null">
-        #{brandid,jdbcType=INTEGER},
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="brandname != null">
-        #{brandname,jdbcType=VARCHAR},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="branddescrption != null">
-        #{branddescrption,jdbcType=VARCHAR},
+      <if test="descrption != null">
+        #{descrption,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -139,14 +139,14 @@
   <update id="updateByExampleSelective" parameterType="map">
     update tb_product_brand
     <set>
-      <if test="record.brandid != null">
-        brandId = #{record.brandid,jdbcType=INTEGER},
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.brandname != null">
-        brandName = #{record.brandname,jdbcType=VARCHAR},
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.branddescrption != null">
-        brandDescrption = #{record.branddescrption,jdbcType=VARCHAR},
+      <if test="record.descrption != null">
+        descrption = #{record.descrption,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -155,9 +155,9 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update tb_product_brand
-    set brandId = #{record.brandid,jdbcType=INTEGER},
-      brandName = #{record.brandname,jdbcType=VARCHAR},
-      brandDescrption = #{record.branddescrption,jdbcType=VARCHAR}
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      descrption = #{record.descrption,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -165,19 +165,19 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.fqcheng220.model.ProductBrand">
     update tb_product_brand
     <set>
-      <if test="brandname != null">
-        brandName = #{brandname,jdbcType=VARCHAR},
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="branddescrption != null">
-        brandDescrption = #{branddescrption,jdbcType=VARCHAR},
+      <if test="descrption != null">
+        descrption = #{descrption,jdbcType=VARCHAR},
       </if>
     </set>
-    where brandId = #{brandid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductBrand">
     update tb_product_brand
-    set brandName = #{brandname,jdbcType=VARCHAR},
-      brandDescrption = #{branddescrption,jdbcType=VARCHAR}
-    where brandId = #{brandid,jdbcType=INTEGER}
+    set name = #{name,jdbcType=VARCHAR},
+      descrption = #{descrption,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

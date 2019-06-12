@@ -40,4 +40,14 @@ public interface UrlPathConstants {
     public static final String ROLEPERMISSION_DEL = "/rolepermission/del";
     public static final String ROLEPERMISSION_UPDATE = "/rolepermission/update";
     public static final String ROLEPERMISSION_LIST = "/rolepermission/list/all";
+
+
+    /**
+     * ***********************商品子系统***********************
+     */
+    //分类
+    public static final String CATEGORY_ADD = "/category/add";
+    public static final String CATEGORY_DEL = "/category/del";
+    public static final String CATEGORY_UPDATE = "/category/update";
+    public static final String CATEGORY_LIST = "/category/list/all";
 }

@@ -37,6 +37,15 @@ public class RequestHandler {
         sTypeMap.put(RequestConstants.TYPE_UPMS_ROLEPERMISSION_DEL,UrlPathConstants.ROLEPERMISSION_DEL);
         sTypeMap.put(RequestConstants.TYPE_UPMS_ROLEPERMISSION_UPDATE,UrlPathConstants.ROLEPERMISSION_UPDATE);
         sTypeMap.put(RequestConstants.TYPE_UPMS_ROLEPERMISSION_LIST,UrlPathConstants.ROLEPERMISSION_LIST);
+
+        /**
+         * ***********************商品子系统***********************
+         */
+        //分类
+        sTypeMap.put(RequestConstants.TYPE_CATEGORY_ADD,UrlPathConstants.CATEGORY_ADD);
+        sTypeMap.put(RequestConstants.TYPE_CATEGORY_DEL,UrlPathConstants.CATEGORY_DEL);
+        sTypeMap.put(RequestConstants.TYPE_CATEGORY_UPDATE,UrlPathConstants.CATEGORY_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_CATEGORY_LIST,UrlPathConstants.CATEGORY_LIST);
     }
     public static void handle(String pathUrl, BaseRequestBody baseRequestBody) throws Exception{
         //功能号判断

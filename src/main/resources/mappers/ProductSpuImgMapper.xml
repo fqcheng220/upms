@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSpuImg">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="tb_product_spu_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="path" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="sort" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="statue" javaType="java.lang.Byte" jdbcType="TINYINT" />
-      <arg column="tb_product_spu_spuId" javaType="java.lang.Long" jdbcType="BIGINT" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, path, sort, statue, tb_product_spu_spuId
+    id, tb_product_spu_id, path, sort, statue
   </sql>
   <select id="selectByExample" parameterType="com.fqcheng220.model.ProductSpuImgExample" resultMap="BaseResultMap">
     select
@@ -85,15 +85,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpuImgKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_product_spu_img
     where id = #{id,jdbcType=INTEGER}
+      and tb_product_spu_id = #{tbProductSpuId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpuImgKey">
     delete from tb_product_spu_img
     where id = #{id,jdbcType=INTEGER}
+      and tb_product_spu_id = #{tbProductSpuId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.fqcheng220.model.ProductSpuImgExample">
     delete from tb_product_spu_img
@@ -102,16 +104,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fqcheng220.model.ProductSpuImg">
-    insert into tb_product_spu_img (id, path, sort, 
-      statue, tb_product_spu_spuId)
-    values (#{id,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
-      #{statue,jdbcType=TINYINT}, #{tbProductSpuSpuid,jdbcType=BIGINT})
+    insert into tb_product_spu_img (id, tb_product_spu_id, path, 
+      sort, statue)
+    values (#{id,jdbcType=INTEGER}, #{tbProductSpuId,jdbcType=BIGINT}, #{path,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{statue,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductSpuImg">
     insert into tb_product_spu_img
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="tbProductSpuId != null">
+        tb_product_spu_id,
       </if>
       <if test="path != null">
         path,
@@ -122,13 +127,13 @@
       <if test="statue != null">
         statue,
       </if>
-      <if test="tbProductSpuSpuid != null">
-        tb_product_spu_spuId,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tbProductSpuId != null">
+        #{tbProductSpuId,jdbcType=BIGINT},
       </if>
       <if test="path != null">
         #{path,jdbcType=VARCHAR},
@@ -138,9 +143,6 @@
       </if>
       <if test="statue != null">
         #{statue,jdbcType=TINYINT},
-      </if>
-      <if test="tbProductSpuSpuid != null">
-        #{tbProductSpuSpuid,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -156,6 +158,9 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
+      <if test="record.tbProductSpuId != null">
+        tb_product_spu_id = #{record.tbProductSpuId,jdbcType=BIGINT},
+      </if>
       <if test="record.path != null">
         path = #{record.path,jdbcType=VARCHAR},
       </if>
@@ -165,9 +170,6 @@
       <if test="record.statue != null">
         statue = #{record.statue,jdbcType=TINYINT},
       </if>
-      <if test="record.tbProductSpuSpuid != null">
-        tb_product_spu_spuId = #{record.tbProductSpuSpuid,jdbcType=BIGINT},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -176,10 +178,10 @@
   <update id="updateByExample" parameterType="map">
     update tb_product_spu_img
     set id = #{record.id,jdbcType=INTEGER},
+      tb_product_spu_id = #{record.tbProductSpuId,jdbcType=BIGINT},
       path = #{record.path,jdbcType=VARCHAR},
       sort = #{record.sort,jdbcType=INTEGER},
-      statue = #{record.statue,jdbcType=TINYINT},
-      tb_product_spu_spuId = #{record.tbProductSpuSpuid,jdbcType=BIGINT}
+      statue = #{record.statue,jdbcType=TINYINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -196,18 +198,16 @@
       <if test="statue != null">
         statue = #{statue,jdbcType=TINYINT},
       </if>
-      <if test="tbProductSpuSpuid != null">
-        tb_product_spu_spuId = #{tbProductSpuSpuid,jdbcType=BIGINT},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
+      and tb_product_spu_id = #{tbProductSpuId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpuImg">
     update tb_product_spu_img
     set path = #{path,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER},
-      statue = #{statue,jdbcType=TINYINT},
-      tb_product_spu_spuId = #{tbProductSpuSpuid,jdbcType=BIGINT}
+      statue = #{statue,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
+      and tb_product_spu_id = #{tbProductSpuId,jdbcType=BIGINT}
   </update>
 </mapper>

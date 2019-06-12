@@ -3,24 +3,24 @@
 <mapper namespace="com.fqcheng220.dao.ProductSpuMapper">
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSpu">
     <constructor>
-      <idArg column="spuId" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="spuNumber" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <idArg column="tb_product_category_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <idArg column="tb_product_brand_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="number" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="spuName" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="showInShelve" javaType="java.lang.Byte" jdbcType="TINYINT" />
-      <arg column="shelveTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="shelveBy" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="updateBy" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="showInTop" javaType="java.lang.Byte" jdbcType="TINYINT" />
-      <arg column="showIinNav" javaType="java.lang.Byte" jdbcType="TINYINT" />
-      <arg column="showInHot" javaType="java.lang.Byte" jdbcType="TINYINT" />
-      <arg column="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="createBy" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="videoIntroduce" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="searchKey" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="tb_product_category_categoryId" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="tb_product_brand_brandId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="show_in_shelve" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="shelve_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="shelve_by" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_by" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="show_in_top" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="show_in_nav" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="show_in_hot" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="create_by" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="video_introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="search_key" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -82,9 +82,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    spuId, spuNumber, spuName, introduce, showInShelve, shelveTime, shelveBy, updateTime, 
-    updateBy, showInTop, showIinNav, showInHot, createTime, createBy, videoIntroduce, 
-    searchKey, tb_product_category_categoryId, tb_product_brand_brandId
+    id, tb_product_category_id, tb_product_brand_id, number, spuName, introduce, show_in_shelve, 
+    shelve_time, shelve_by, update_time, update_by, show_in_top, show_in_nav, show_in_hot, 
+    create_time, create_by, video_introduce, search_key
   </sql>
   <select id="selectByExample" parameterType="com.fqcheng220.model.ProductSpuExample" resultMap="BaseResultMap">
     select
@@ -100,15 +100,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpuKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_product_spu
-    where spuId = #{spuid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
+      and tb_product_brand_id = #{tbProductBrandId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpuKey">
     delete from tb_product_spu
-    where spuId = #{spuid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
+      and tb_product_brand_id = #{tbProductBrandId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.fqcheng220.model.ProductSpuExample">
     delete from tb_product_spu
@@ -117,29 +121,35 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fqcheng220.model.ProductSpu">
-    insert into tb_product_spu (spuId, spuNumber, spuName, 
-      introduce, showInShelve, shelveTime, 
-      shelveBy, updateTime, updateBy, 
-      showInTop, showIinNav, showInHot, 
-      createTime, createBy, videoIntroduce, 
-      searchKey, tb_product_category_categoryId, 
-      tb_product_brand_brandId)
-    values (#{spuid,jdbcType=BIGINT}, #{spunumber,jdbcType=BIGINT}, #{spuname,jdbcType=VARCHAR}, 
-      #{introduce,jdbcType=VARCHAR}, #{showinshelve,jdbcType=TINYINT}, #{shelvetime,jdbcType=TIMESTAMP}, 
-      #{shelveby,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{updateby,jdbcType=VARCHAR}, 
-      #{showintop,jdbcType=TINYINT}, #{showiinnav,jdbcType=TINYINT}, #{showinhot,jdbcType=TINYINT}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{createby,jdbcType=VARCHAR}, #{videointroduce,jdbcType=VARCHAR}, 
-      #{searchkey,jdbcType=VARCHAR}, #{tbProductCategoryCategoryid,jdbcType=BIGINT}, 
-      #{tbProductBrandBrandid,jdbcType=INTEGER})
+    insert into tb_product_spu (id, tb_product_category_id, tb_product_brand_id, 
+      number, spuName, introduce, 
+      show_in_shelve, shelve_time, shelve_by, 
+      update_time, update_by, show_in_top, 
+      show_in_nav, show_in_hot, create_time, 
+      create_by, video_introduce, search_key
+      )
+    values (#{id,jdbcType=BIGINT}, #{tbProductCategoryId,jdbcType=BIGINT}, #{tbProductBrandId,jdbcType=INTEGER}, 
+      #{number,jdbcType=BIGINT}, #{spuname,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
+      #{showInShelve,jdbcType=TINYINT}, #{shelveTime,jdbcType=TIMESTAMP}, #{shelveBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{showInTop,jdbcType=TINYINT}, 
+      #{showInNav,jdbcType=TINYINT}, #{showInHot,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=VARCHAR}, #{videoIntroduce,jdbcType=VARCHAR}, #{searchKey,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductSpu">
     insert into tb_product_spu
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="spuid != null">
-        spuId,
+      <if test="id != null">
+        id,
       </if>
-      <if test="spunumber != null">
-        spuNumber,
+      <if test="tbProductCategoryId != null">
+        tb_product_category_id,
+      </if>
+      <if test="tbProductBrandId != null">
+        tb_product_brand_id,
+      </if>
+      <if test="number != null">
+        number,
       </if>
       <if test="spuname != null">
         spuName,
@@ -147,55 +157,55 @@
       <if test="introduce != null">
         introduce,
       </if>
-      <if test="showinshelve != null">
-        showInShelve,
+      <if test="showInShelve != null">
+        show_in_shelve,
       </if>
-      <if test="shelvetime != null">
-        shelveTime,
+      <if test="shelveTime != null">
+        shelve_time,
       </if>
-      <if test="shelveby != null">
-        shelveBy,
+      <if test="shelveBy != null">
+        shelve_by,
       </if>
-      <if test="updatetime != null">
-        updateTime,
+      <if test="updateTime != null">
+        update_time,
       </if>
-      <if test="updateby != null">
-        updateBy,
+      <if test="updateBy != null">
+        update_by,
       </if>
-      <if test="showintop != null">
-        showInTop,
+      <if test="showInTop != null">
+        show_in_top,
       </if>
-      <if test="showiinnav != null">
-        showIinNav,
+      <if test="showInNav != null">
+        show_in_nav,
       </if>
-      <if test="showinhot != null">
-        showInHot,
+      <if test="showInHot != null">
+        show_in_hot,
       </if>
-      <if test="createtime != null">
-        createTime,
+      <if test="createTime != null">
+        create_time,
       </if>
-      <if test="createby != null">
-        createBy,
+      <if test="createBy != null">
+        create_by,
       </if>
-      <if test="videointroduce != null">
-        videoIntroduce,
+      <if test="videoIntroduce != null">
+        video_introduce,
       </if>
-      <if test="searchkey != null">
-        searchKey,
-      </if>
-      <if test="tbProductCategoryCategoryid != null">
-        tb_product_category_categoryId,
-      </if>
-      <if test="tbProductBrandBrandid != null">
-        tb_product_brand_brandId,
+      <if test="searchKey != null">
+        search_key,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="spuid != null">
-        #{spuid,jdbcType=BIGINT},
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
       </if>
-      <if test="spunumber != null">
-        #{spunumber,jdbcType=BIGINT},
+      <if test="tbProductCategoryId != null">
+        #{tbProductCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="tbProductBrandId != null">
+        #{tbProductBrandId,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=BIGINT},
       </if>
       <if test="spuname != null">
         #{spuname,jdbcType=VARCHAR},
@@ -203,47 +213,41 @@
       <if test="introduce != null">
         #{introduce,jdbcType=VARCHAR},
       </if>
-      <if test="showinshelve != null">
-        #{showinshelve,jdbcType=TINYINT},
+      <if test="showInShelve != null">
+        #{showInShelve,jdbcType=TINYINT},
       </if>
-      <if test="shelvetime != null">
-        #{shelvetime,jdbcType=TIMESTAMP},
+      <if test="shelveTime != null">
+        #{shelveTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="shelveby != null">
-        #{shelveby,jdbcType=VARCHAR},
+      <if test="shelveBy != null">
+        #{shelveBy,jdbcType=VARCHAR},
       </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateby != null">
-        #{updateby,jdbcType=VARCHAR},
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
       </if>
-      <if test="showintop != null">
-        #{showintop,jdbcType=TINYINT},
+      <if test="showInTop != null">
+        #{showInTop,jdbcType=TINYINT},
       </if>
-      <if test="showiinnav != null">
-        #{showiinnav,jdbcType=TINYINT},
+      <if test="showInNav != null">
+        #{showInNav,jdbcType=TINYINT},
       </if>
-      <if test="showinhot != null">
-        #{showinhot,jdbcType=TINYINT},
+      <if test="showInHot != null">
+        #{showInHot,jdbcType=TINYINT},
       </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createby != null">
-        #{createby,jdbcType=VARCHAR},
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
       </if>
-      <if test="videointroduce != null">
-        #{videointroduce,jdbcType=VARCHAR},
+      <if test="videoIntroduce != null">
+        #{videoIntroduce,jdbcType=VARCHAR},
       </if>
-      <if test="searchkey != null">
-        #{searchkey,jdbcType=VARCHAR},
-      </if>
-      <if test="tbProductCategoryCategoryid != null">
-        #{tbProductCategoryCategoryid,jdbcType=BIGINT},
-      </if>
-      <if test="tbProductBrandBrandid != null">
-        #{tbProductBrandBrandid,jdbcType=INTEGER},
+      <if test="searchKey != null">
+        #{searchKey,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -256,11 +260,17 @@
   <update id="updateByExampleSelective" parameterType="map">
     update tb_product_spu
     <set>
-      <if test="record.spuid != null">
-        spuId = #{record.spuid,jdbcType=BIGINT},
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.spunumber != null">
-        spuNumber = #{record.spunumber,jdbcType=BIGINT},
+      <if test="record.tbProductCategoryId != null">
+        tb_product_category_id = #{record.tbProductCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tbProductBrandId != null">
+        tb_product_brand_id = #{record.tbProductBrandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null">
+        number = #{record.number,jdbcType=BIGINT},
       </if>
       <if test="record.spuname != null">
         spuName = #{record.spuname,jdbcType=VARCHAR},
@@ -268,47 +278,41 @@
       <if test="record.introduce != null">
         introduce = #{record.introduce,jdbcType=VARCHAR},
       </if>
-      <if test="record.showinshelve != null">
-        showInShelve = #{record.showinshelve,jdbcType=TINYINT},
+      <if test="record.showInShelve != null">
+        show_in_shelve = #{record.showInShelve,jdbcType=TINYINT},
       </if>
-      <if test="record.shelvetime != null">
-        shelveTime = #{record.shelvetime,jdbcType=TIMESTAMP},
+      <if test="record.shelveTime != null">
+        shelve_time = #{record.shelveTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.shelveby != null">
-        shelveBy = #{record.shelveby,jdbcType=VARCHAR},
+      <if test="record.shelveBy != null">
+        shelve_by = #{record.shelveBy,jdbcType=VARCHAR},
       </if>
-      <if test="record.updatetime != null">
-        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updateby != null">
-        updateBy = #{record.updateby,jdbcType=VARCHAR},
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
       </if>
-      <if test="record.showintop != null">
-        showInTop = #{record.showintop,jdbcType=TINYINT},
+      <if test="record.showInTop != null">
+        show_in_top = #{record.showInTop,jdbcType=TINYINT},
       </if>
-      <if test="record.showiinnav != null">
-        showIinNav = #{record.showiinnav,jdbcType=TINYINT},
+      <if test="record.showInNav != null">
+        show_in_nav = #{record.showInNav,jdbcType=TINYINT},
       </if>
-      <if test="record.showinhot != null">
-        showInHot = #{record.showinhot,jdbcType=TINYINT},
+      <if test="record.showInHot != null">
+        show_in_hot = #{record.showInHot,jdbcType=TINYINT},
       </if>
-      <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createby != null">
-        createBy = #{record.createby,jdbcType=VARCHAR},
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
       </if>
-      <if test="record.videointroduce != null">
-        videoIntroduce = #{record.videointroduce,jdbcType=VARCHAR},
+      <if test="record.videoIntroduce != null">
+        video_introduce = #{record.videoIntroduce,jdbcType=VARCHAR},
       </if>
-      <if test="record.searchkey != null">
-        searchKey = #{record.searchkey,jdbcType=VARCHAR},
-      </if>
-      <if test="record.tbProductCategoryCategoryid != null">
-        tb_product_category_categoryId = #{record.tbProductCategoryCategoryid,jdbcType=BIGINT},
-      </if>
-      <if test="record.tbProductBrandBrandid != null">
-        tb_product_brand_brandId = #{record.tbProductBrandBrandid,jdbcType=INTEGER},
+      <if test="record.searchKey != null">
+        search_key = #{record.searchKey,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -317,24 +321,24 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update tb_product_spu
-    set spuId = #{record.spuid,jdbcType=BIGINT},
-      spuNumber = #{record.spunumber,jdbcType=BIGINT},
+    set id = #{record.id,jdbcType=BIGINT},
+      tb_product_category_id = #{record.tbProductCategoryId,jdbcType=BIGINT},
+      tb_product_brand_id = #{record.tbProductBrandId,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=BIGINT},
       spuName = #{record.spuname,jdbcType=VARCHAR},
       introduce = #{record.introduce,jdbcType=VARCHAR},
-      showInShelve = #{record.showinshelve,jdbcType=TINYINT},
-      shelveTime = #{record.shelvetime,jdbcType=TIMESTAMP},
-      shelveBy = #{record.shelveby,jdbcType=VARCHAR},
-      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
-      updateBy = #{record.updateby,jdbcType=VARCHAR},
-      showInTop = #{record.showintop,jdbcType=TINYINT},
-      showIinNav = #{record.showiinnav,jdbcType=TINYINT},
-      showInHot = #{record.showinhot,jdbcType=TINYINT},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      createBy = #{record.createby,jdbcType=VARCHAR},
-      videoIntroduce = #{record.videointroduce,jdbcType=VARCHAR},
-      searchKey = #{record.searchkey,jdbcType=VARCHAR},
-      tb_product_category_categoryId = #{record.tbProductCategoryCategoryid,jdbcType=BIGINT},
-      tb_product_brand_brandId = #{record.tbProductBrandBrandid,jdbcType=INTEGER}
+      show_in_shelve = #{record.showInShelve,jdbcType=TINYINT},
+      shelve_time = #{record.shelveTime,jdbcType=TIMESTAMP},
+      shelve_by = #{record.shelveBy,jdbcType=VARCHAR},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      show_in_top = #{record.showInTop,jdbcType=TINYINT},
+      show_in_nav = #{record.showInNav,jdbcType=TINYINT},
+      show_in_hot = #{record.showInHot,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      video_introduce = #{record.videoIntroduce,jdbcType=VARCHAR},
+      search_key = #{record.searchKey,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -342,8 +346,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.fqcheng220.model.ProductSpu">
     update tb_product_spu
     <set>
-      <if test="spunumber != null">
-        spuNumber = #{spunumber,jdbcType=BIGINT},
+      <if test="number != null">
+        number = #{number,jdbcType=BIGINT},
       </if>
       <if test="spuname != null">
         spuName = #{spuname,jdbcType=VARCHAR},
@@ -351,70 +355,66 @@
       <if test="introduce != null">
         introduce = #{introduce,jdbcType=VARCHAR},
       </if>
-      <if test="showinshelve != null">
-        showInShelve = #{showinshelve,jdbcType=TINYINT},
+      <if test="showInShelve != null">
+        show_in_shelve = #{showInShelve,jdbcType=TINYINT},
       </if>
-      <if test="shelvetime != null">
-        shelveTime = #{shelvetime,jdbcType=TIMESTAMP},
+      <if test="shelveTime != null">
+        shelve_time = #{shelveTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="shelveby != null">
-        shelveBy = #{shelveby,jdbcType=VARCHAR},
+      <if test="shelveBy != null">
+        shelve_by = #{shelveBy,jdbcType=VARCHAR},
       </if>
-      <if test="updatetime != null">
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateby != null">
-        updateBy = #{updateby,jdbcType=VARCHAR},
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
       </if>
-      <if test="showintop != null">
-        showInTop = #{showintop,jdbcType=TINYINT},
+      <if test="showInTop != null">
+        show_in_top = #{showInTop,jdbcType=TINYINT},
       </if>
-      <if test="showiinnav != null">
-        showIinNav = #{showiinnav,jdbcType=TINYINT},
+      <if test="showInNav != null">
+        show_in_nav = #{showInNav,jdbcType=TINYINT},
       </if>
-      <if test="showinhot != null">
-        showInHot = #{showinhot,jdbcType=TINYINT},
+      <if test="showInHot != null">
+        show_in_hot = #{showInHot,jdbcType=TINYINT},
       </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createby != null">
-        createBy = #{createby,jdbcType=VARCHAR},
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
       </if>
-      <if test="videointroduce != null">
-        videoIntroduce = #{videointroduce,jdbcType=VARCHAR},
+      <if test="videoIntroduce != null">
+        video_introduce = #{videoIntroduce,jdbcType=VARCHAR},
       </if>
-      <if test="searchkey != null">
-        searchKey = #{searchkey,jdbcType=VARCHAR},
-      </if>
-      <if test="tbProductCategoryCategoryid != null">
-        tb_product_category_categoryId = #{tbProductCategoryCategoryid,jdbcType=BIGINT},
-      </if>
-      <if test="tbProductBrandBrandid != null">
-        tb_product_brand_brandId = #{tbProductBrandBrandid,jdbcType=INTEGER},
+      <if test="searchKey != null">
+        search_key = #{searchKey,jdbcType=VARCHAR},
       </if>
     </set>
-    where spuId = #{spuid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
+      and tb_product_brand_id = #{tbProductBrandId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpu">
     update tb_product_spu
-    set spuNumber = #{spunumber,jdbcType=BIGINT},
+    set number = #{number,jdbcType=BIGINT},
       spuName = #{spuname,jdbcType=VARCHAR},
       introduce = #{introduce,jdbcType=VARCHAR},
-      showInShelve = #{showinshelve,jdbcType=TINYINT},
-      shelveTime = #{shelvetime,jdbcType=TIMESTAMP},
-      shelveBy = #{shelveby,jdbcType=VARCHAR},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      updateBy = #{updateby,jdbcType=VARCHAR},
-      showInTop = #{showintop,jdbcType=TINYINT},
-      showIinNav = #{showiinnav,jdbcType=TINYINT},
-      showInHot = #{showinhot,jdbcType=TINYINT},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      createBy = #{createby,jdbcType=VARCHAR},
-      videoIntroduce = #{videointroduce,jdbcType=VARCHAR},
-      searchKey = #{searchkey,jdbcType=VARCHAR},
-      tb_product_category_categoryId = #{tbProductCategoryCategoryid,jdbcType=BIGINT},
-      tb_product_brand_brandId = #{tbProductBrandBrandid,jdbcType=INTEGER}
-    where spuId = #{spuid,jdbcType=BIGINT}
+      show_in_shelve = #{showInShelve,jdbcType=TINYINT},
+      shelve_time = #{shelveTime,jdbcType=TIMESTAMP},
+      shelve_by = #{shelveBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      show_in_top = #{showInTop,jdbcType=TINYINT},
+      show_in_nav = #{showInNav,jdbcType=TINYINT},
+      show_in_hot = #{showInHot,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      video_introduce = #{videoIntroduce,jdbcType=VARCHAR},
+      search_key = #{searchKey,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and tb_product_category_id = #{tbProductCategoryId,jdbcType=BIGINT}
+      and tb_product_brand_id = #{tbProductBrandId,jdbcType=INTEGER}
   </update>
 </mapper>

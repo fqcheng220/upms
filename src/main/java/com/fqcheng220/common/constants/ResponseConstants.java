@@ -42,4 +42,9 @@ public interface ResponseConstants {
     public static String MSG_SUC_ROLEPERMISSION_LIST = "查询角色-权限成功";
     public static String MSG_SUC_ROLEPERMISSION_ADD = "添加角色-权限成功";
     public static String MSG_SUC_ROLEPERMISSION_DEL = "删除角色-权限成功";
+
+    public static String MSG_SUC_UPDATE_FORMAT = "更新%s成功";
+    public static String MSG_SUC_DEL_FORMAT = "删除%s成功";
+    public static String MSG_SUC_LIST_FORMAT = "查询%s成功";
+    public static String MSG_SUC_ADD_FORMAT = "添加%s成功";
 }
