@@ -46,8 +46,28 @@ public interface UrlPathConstants {
      * ***********************商品子系统***********************
      */
     //分类
-    public static final String CATEGORY_ADD = "/category/add";
-    public static final String CATEGORY_DEL = "/category/del";
-    public static final String CATEGORY_UPDATE = "/category/update";
-    public static final String CATEGORY_LIST = "/category/list/all";
+    public static final String PRODUCT_CATEGORY_ADD = "/product/category/add";
+    public static final String PRODUCT_CATEGORY_DEL = "/product/category/del";
+    public static final String PRODUCT_CATEGORY_UPDATE = "/product/category/update";
+    public static final String PRODUCT_CATEGORY_LIST_ALL = "/product/category/list/all";
+    //属性
+    public static final String PRODUCT_ATTR_ADD = "/product/attr/add";
+    public static final String PRODUCT_ATTR_DEL = "/product/attr/del";
+    public static final String PRODUCT_ATTR_UPDATE = "/product/attr/update";
+    public static final String PRODUCT_ATTR_LIST_ALL = "/product/attr/list/all";
+    //属性值
+    public static final String PRODUCT_ATTRVALUE_ADD = "/product/attrvalue/add";
+    public static final String PRODUCT_ATTRVALUE_DEL = "/product/attrvalue/del";
+    public static final String PRODUCT_ATTRVALUE_UPDATE = "/product/attrvalue/update";
+    public static final String PRODUCT_ATTRVALUE_LIST_ALL = "/product/attrvalue/list/all";
+    //规格
+    public static final String PRODUCT_SPEC_ADD = "/product/spec/add";
+    public static final String PRODUCT_SPEC_DEL = "/product/spec/del";
+    public static final String PRODUCT_SPEC_UPDATE = "/product/spec/update";
+    public static final String PRODUCT_SPEC_LIST_ALL = "/product/spec/list/all";
+    //规格值
+    public static final String PRODUCT_SPECVALUE_ADD = "/product/specvalue/add";
+    public static final String PRODUCT_SPECVALUE_DEL = "/product/specvalue/del";
+    public static final String PRODUCT_SPECVALUE_UPDATE = "/product/specvalue/update";
+    public static final String PRODUCT_SPECVALUE_LIST_ALL = "/product/specvalue/list/all";
 }

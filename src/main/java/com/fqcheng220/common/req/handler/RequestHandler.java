@@ -42,10 +42,30 @@ public class RequestHandler {
          * ***********************商品子系统***********************
          */
         //分类
-        sTypeMap.put(RequestConstants.TYPE_CATEGORY_ADD,UrlPathConstants.CATEGORY_ADD);
-        sTypeMap.put(RequestConstants.TYPE_CATEGORY_DEL,UrlPathConstants.CATEGORY_DEL);
-        sTypeMap.put(RequestConstants.TYPE_CATEGORY_UPDATE,UrlPathConstants.CATEGORY_UPDATE);
-        sTypeMap.put(RequestConstants.TYPE_CATEGORY_LIST,UrlPathConstants.CATEGORY_LIST);
+        sTypeMap.put(RequestConstants.TYPE_CATEGORY_ADD,UrlPathConstants.PRODUCT_CATEGORY_ADD);
+        sTypeMap.put(RequestConstants.TYPE_CATEGORY_DEL,UrlPathConstants.PRODUCT_CATEGORY_DEL);
+        sTypeMap.put(RequestConstants.TYPE_CATEGORY_UPDATE,UrlPathConstants.PRODUCT_CATEGORY_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_CATEGORY_LIST,UrlPathConstants.PRODUCT_CATEGORY_LIST_ALL);
+        //属性
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_ATTR_ADD,UrlPathConstants.PRODUCT_ATTR_ADD);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_ATTR_DEL,UrlPathConstants.PRODUCT_ATTR_DEL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_ATTR_UPDATE,UrlPathConstants.PRODUCT_ATTR_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_ATTR_LIST_ALL,UrlPathConstants.PRODUCT_ATTR_LIST_ALL);
+        //属性值
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_ATTRVALUE_ADD,UrlPathConstants.PRODUCT_ATTRVALUE_ADD);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_ATTRVALUE_DEL,UrlPathConstants.PRODUCT_ATTRVALUE_DEL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_ATTRVALUE_UPDATE,UrlPathConstants.PRODUCT_ATTRVALUE_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_ATTRVALUE_LIST_ALL,UrlPathConstants.PRODUCT_ATTRVALUE_LIST_ALL);
+        //规格
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPEC_ADD,UrlPathConstants.PRODUCT_SPEC_ADD);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPEC_DEL,UrlPathConstants.PRODUCT_SPEC_DEL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPEC_UPDATE,UrlPathConstants.PRODUCT_SPEC_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPEC_LIST_ALL,UrlPathConstants.PRODUCT_SPEC_LIST_ALL);
+        //规格值
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPECVALUE_ADD,UrlPathConstants.PRODUCT_SPECVALUE_ADD);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPECVALUE_DEL,UrlPathConstants.PRODUCT_SPECVALUE_DEL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPECVALUE_UPDATE,UrlPathConstants.PRODUCT_SPECVALUE_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPECVALUE_LIST_ALL,UrlPathConstants.PRODUCT_SPECVALUE_LIST_ALL);
     }
     public static void handle(String pathUrl, BaseRequestBody baseRequestBody) throws Exception{
         //功能号判断

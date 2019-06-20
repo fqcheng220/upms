@@ -42,4 +42,24 @@ public interface RequestConstants {
     public static final int TYPE_CATEGORY_DEL = 23;
     public static final int TYPE_CATEGORY_UPDATE = 24;
     public static final int TYPE_CATEGORY_LIST = 25;
+    //属性
+    public static final int TYPE_PRODUCT_ATTR_ADD = 26;
+    public static final int TYPE_PRODUCT_ATTR_DEL = 27;
+    public static final int TYPE_PRODUCT_ATTR_UPDATE = 28;
+    public static final int TYPE_PRODUCT_ATTR_LIST_ALL = 29;
+    //属性值
+    public static final int TYPE_PRODUCT_ATTRVALUE_ADD = 30;
+    public static final int TYPE_PRODUCT_ATTRVALUE_DEL = 31;
+    public static final int TYPE_PRODUCT_ATTRVALUE_UPDATE = 32;
+    public static final int TYPE_PRODUCT_ATTRVALUE_LIST_ALL = 33;
+    //规格
+    public static final int TYPE_PRODUCT_SPEC_ADD = 34;
+    public static final int TYPE_PRODUCT_SPEC_DEL = 35;
+    public static final int TYPE_PRODUCT_SPEC_UPDATE = 36;
+    public static final int TYPE_PRODUCT_SPEC_LIST_ALL = 37;
+    //规格值
+    public static final int TYPE_PRODUCT_SPECVALUE_ADD = 38;
+    public static final int TYPE_PRODUCT_SPECVALUE_DEL = 39;
+    public static final int TYPE_PRODUCT_SPECVALUE_UPDATE = 40;
+    public static final int TYPE_PRODUCT_SPECVALUE_LIST_ALL = 41;
 }
