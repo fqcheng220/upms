@@ -38,28 +38,31 @@ public interface RequestConstants {
      * ***********************商品子系统***********************
      */
     //分类
-    public static final int TYPE_CATEGORY_ADD = 22;
-    public static final int TYPE_CATEGORY_DEL = 23;
-    public static final int TYPE_CATEGORY_UPDATE = 24;
-    public static final int TYPE_CATEGORY_LIST = 25;
+    public static final int TYPE_CATEGORY_ADD = 222;
+    public static final int TYPE_CATEGORY_DEL = 223;
+    public static final int TYPE_CATEGORY_UPDATE = 224;
+    public static final int TYPE_CATEGORY_LIST = 225;
+
     //属性
-    public static final int TYPE_PRODUCT_ATTR_ADD = 26;
-    public static final int TYPE_PRODUCT_ATTR_DEL = 27;
-    public static final int TYPE_PRODUCT_ATTR_UPDATE = 28;
-    public static final int TYPE_PRODUCT_ATTR_LIST_ALL = 29;
+    public static final int TYPE_PRODUCT_ATTR_ADD = 226;
+    public static final int TYPE_PRODUCT_ATTR_DEL = 227;
+    public static final int TYPE_PRODUCT_ATTR_UPDATE = 228;
+    public static final int TYPE_PRODUCT_ATTR_LIST_ALL = 229;
     //属性值
-    public static final int TYPE_PRODUCT_ATTRVALUE_ADD = 30;
-    public static final int TYPE_PRODUCT_ATTRVALUE_DEL = 31;
-    public static final int TYPE_PRODUCT_ATTRVALUE_UPDATE = 32;
-    public static final int TYPE_PRODUCT_ATTRVALUE_LIST_ALL = 33;
+    public static final int TYPE_PRODUCT_ATTRVALUE_ADD = 230;
+    public static final int TYPE_PRODUCT_ATTRVALUE_DEL = 231;
+    public static final int TYPE_PRODUCT_ATTRVALUE_UPDATE = 232;
+    public static final int TYPE_PRODUCT_ATTRVALUE_LIST_ALL = 233;
     //规格
-    public static final int TYPE_PRODUCT_SPEC_ADD = 34;
-    public static final int TYPE_PRODUCT_SPEC_DEL = 35;
-    public static final int TYPE_PRODUCT_SPEC_UPDATE = 36;
-    public static final int TYPE_PRODUCT_SPEC_LIST_ALL = 37;
+    public static final int TYPE_PRODUCT_SPEC_ADD = 234;
+    public static final int TYPE_PRODUCT_SPEC_DEL = 235;
+    public static final int TYPE_PRODUCT_SPEC_UPDATE = 236;
+    public static final int TYPE_PRODUCT_SPEC_LIST_ALL = 237;
     //规格值
-    public static final int TYPE_PRODUCT_SPECVALUE_ADD = 38;
-    public static final int TYPE_PRODUCT_SPECVALUE_DEL = 39;
-    public static final int TYPE_PRODUCT_SPECVALUE_UPDATE = 40;
-    public static final int TYPE_PRODUCT_SPECVALUE_LIST_ALL = 41;
+    public static final int TYPE_PRODUCT_SPECVALUE_ADD = 238;
+    public static final int TYPE_PRODUCT_SPECVALUE_DEL = 239;
+    public static final int TYPE_PRODUCT_SPECVALUE_UPDATE = 240;
+    public static final int TYPE_PRODUCT_SPECVALUE_LIST_ALL = 241;
+
+    public static final int TYPE_CATEGORY_LIST_CHILD = 242;
 }

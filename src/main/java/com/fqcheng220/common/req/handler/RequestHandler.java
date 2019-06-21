@@ -46,6 +46,7 @@ public class RequestHandler {
         sTypeMap.put(RequestConstants.TYPE_CATEGORY_DEL,UrlPathConstants.PRODUCT_CATEGORY_DEL);
         sTypeMap.put(RequestConstants.TYPE_CATEGORY_UPDATE,UrlPathConstants.PRODUCT_CATEGORY_UPDATE);
         sTypeMap.put(RequestConstants.TYPE_CATEGORY_LIST,UrlPathConstants.PRODUCT_CATEGORY_LIST_ALL);
+        sTypeMap.put(RequestConstants.TYPE_CATEGORY_LIST_CHILD,UrlPathConstants.PRODUCT_CATEGORY_LIST_CHILD);
         //属性
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_ATTR_ADD,UrlPathConstants.PRODUCT_ATTR_ADD);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_ATTR_DEL,UrlPathConstants.PRODUCT_ATTR_DEL);

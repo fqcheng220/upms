@@ -68,4 +68,17 @@ public class ProductCategoryController {
         ProductCategoryExample example = new ProductCategoryExample();
         return BaseController.listAll(requestBody,UrlPathConstants.PRODUCT_CATEGORY_LIST_ALL,mService,example,RESP_MSG);
     }
+
+    /**
+     * 查询分类列表
+     * @return
+     */
+    @RequestMapping(value = UrlPathConstants.PRODUCT_CATEGORY_LIST_CHILD,method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody listChild(@RequestBody BaseRequestBody requestBody,@PathVariable("parentId") Long parentId){
+        ProductCategoryExample example = new ProductCategoryExample();
+        example.createCriteria().andParentIdEqualTo(parentId);
+        return BaseController.listAll(requestBody,UrlPathConstants.PRODUCT_CATEGORY_LIST_CHILD,mService,example,RESP_MSG);
+    }
 }

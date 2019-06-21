@@ -480,22 +480,22 @@ INSERT INTO `tb_product_category` VALUES ('4', '0', '母婴童装', null, '1', '
 INSERT INTO `tb_product_category` VALUES ('5', '0', '家居厨具', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 INSERT INTO `tb_product_category` VALUES ('6', '0', '女装', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 
-INSERT INTO `tb_product_category` VALUES ('7', '2', '手机', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('8', '2', '运营商', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('9', '2', '摄影摄像', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('10', '2', '影音娱乐', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('7', '2', '手机', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('8', '2', '运营商', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('9', '2', '摄影摄像', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('10', '2', '影音娱乐', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 
-INSERT INTO `tb_product_category` VALUES ('11', '4', '童装', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('12', '4', '童鞋', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('13', '4', '妈妈专区', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('11', '4', '童装', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('12', '4', '童鞋', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('13', '4', '妈妈专区', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 
-INSERT INTO `tb_product_category` VALUES ('14', '6', '裙装', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('15', '6', '女士小装', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('16', '6', '外套', null, '2', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('14', '6', '裙装', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('15', '6', '女士小装', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('16', '6', '外套', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 
-INSERT INTO `tb_product_category` VALUES ('17', '16', '防晒衫', null, '3', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('18', '16', '薄外套', null, '3', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('19', '16', '披肩外套', null, '3', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('17', '16', '防晒衫', null, '1', '3', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('18', '16', '薄外套', null, '1', '3', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('19', '16', '披肩外套', null, '1', '3', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 
 INSERT INTO `tb_product_attr` VALUES ('0', '版型', '16');
 INSERT INTO `tb_product_attr` VALUES ('1', '衣长', '16');
