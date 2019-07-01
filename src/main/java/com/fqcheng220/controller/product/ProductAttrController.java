@@ -67,8 +67,9 @@ public class ProductAttrController {
     @RequestMapping(value = UrlPathConstants.PRODUCT_ATTR_LIST_ALL,method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody){
+    public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody,@PathVariable("categoryId") Long categoryId){
         ProductAttrExample example = new ProductAttrExample();
+        example.createCriteria().andTbProductCategoryIdEqualTo(categoryId);
         return BaseController.listAll(requestBody,UrlPathConstants.PRODUCT_ATTR_LIST_ALL,mService,example,RESP_MSG);
     }
 }

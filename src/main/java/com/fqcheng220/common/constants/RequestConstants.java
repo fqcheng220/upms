@@ -65,4 +65,5 @@ public interface RequestConstants {
     public static final int TYPE_PRODUCT_SPECVALUE_LIST_ALL = 241;
 
     public static final int TYPE_CATEGORY_LIST_CHILD = 242;
+    public static final int TYPE_CATEGORY_LIST_ATTR= 243;
 }

@@ -68,8 +68,9 @@ public class ProductAttrValueController {
     @RequestMapping(value = PRODUCT_ATTRVALUE_LIST_ALL,method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody){
+    public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody,@PathVariable("attrId") Integer attrId){
         ProductAttrValueExample example = new ProductAttrValueExample();
+        example.createCriteria().andTbProductAttrIdEqualTo(attrId);
         return BaseController.listAll(requestBody,PRODUCT_ATTRVALUE_LIST_ALL,mService,example,RESP_MSG);
     }
 }

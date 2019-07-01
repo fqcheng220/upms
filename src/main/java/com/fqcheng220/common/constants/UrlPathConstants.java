@@ -51,16 +51,17 @@ public interface UrlPathConstants {
     public static final String PRODUCT_CATEGORY_UPDATE = "/product/category/update";
     public static final String PRODUCT_CATEGORY_LIST_ALL = "/product/category/list/all";
     public static final String PRODUCT_CATEGORY_LIST_CHILD = "/product/category/list/{parentId}";
+    public static final String PRODUCT_CATEGORY_LIST_ATTR = "/product/category/attr/list/{categoryId}";
     //属性
     public static final String PRODUCT_ATTR_ADD = "/product/attr/add";
     public static final String PRODUCT_ATTR_DEL = "/product/attr/del";
     public static final String PRODUCT_ATTR_UPDATE = "/product/attr/update";
-    public static final String PRODUCT_ATTR_LIST_ALL = "/product/attr/list/all";
+    public static final String PRODUCT_ATTR_LIST_ALL = "/product/attr/list/all/{categoryId}";
     //属性值
     public static final String PRODUCT_ATTRVALUE_ADD = "/product/attrvalue/add";
     public static final String PRODUCT_ATTRVALUE_DEL = "/product/attrvalue/del";
     public static final String PRODUCT_ATTRVALUE_UPDATE = "/product/attrvalue/update";
-    public static final String PRODUCT_ATTRVALUE_LIST_ALL = "/product/attrvalue/list/all";
+    public static final String PRODUCT_ATTRVALUE_LIST_ALL = "/product/attrvalue/list/all/{attrId}";
     //规格
     public static final String PRODUCT_SPEC_ADD = "/product/spec/add";
     public static final String PRODUCT_SPEC_DEL = "/product/spec/del";
