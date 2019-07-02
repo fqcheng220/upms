@@ -214,7 +214,7 @@ insert into tb_upms_role_permission values(6,1,5);
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_category` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_category` (
-  `id` BIGINT(20) NOT NULL COMMENT '分类ID',
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '分类ID',
   `parent_id` BIGINT(20) NULL COMMENT '父分类ID',
   `name` VARCHAR(64) NULL COMMENT '分类名称',
   `sort` INT NULL COMMENT '排序',
@@ -241,7 +241,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_attr` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_attr` (
-  `id` INT NOT NULL COMMENT '属性id',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '属性id',
   `name` VARCHAR(45) NULL COMMENT '属性名称',
   `tb_product_category_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`id`),
@@ -260,7 +260,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_attr_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_attr_value` (
-  `id` INT NOT NULL COMMENT '属性值id',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '属性值id',
   `value` VARCHAR(64) NULL COMMENT '属性值',
   `tb_product_attr_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -279,7 +279,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_spec` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spec` (
-  `id` INT NOT NULL COMMENT '规格id',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '规格id',
   `name` VARCHAR(45) NULL COMMENT '规格名称',
   `tb_product_category_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`id`),
@@ -298,7 +298,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_spec_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spec_value` (
-  `id` INT NOT NULL COMMENT '规格值id',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '规格值id',
   `value` VARCHAR(45) NULL COMMENT '规格值',
   `tb_product_spec_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -317,7 +317,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_brand` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_brand` (
-  `id` INT NOT NULL COMMENT '品牌id',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '品牌id',
   `name` VARCHAR(45) NULL COMMENT '品牌名称',
   `descrption` VARCHAR(255) NULL COMMENT '品牌描述',
   PRIMARY KEY (`id`))
@@ -330,7 +330,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_spu` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spu` (
-  `id` BIGINT(20) NOT NULL,
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `number` BIGINT(20) NULL COMMENT 'spu编号',
   `spuName` VARCHAR(64) NULL COMMENT '货品名称',
   `introduce` VARCHAR(64) NULL COMMENT '货品简介',
@@ -370,7 +370,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_sku` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_sku` (
-  `id` BIGINT(20) NOT NULL,
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `number` BIGINT(20) NULL COMMENT 'sku编号',
   `name` VARCHAR(64) NULL COMMENT '商品名称',
   `introduce` VARCHAR(64) NULL COMMENT '商品简介',
@@ -405,7 +405,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_sku_attr_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_sku_attr_value` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `tb_product_attr_value_id` INT NOT NULL,
   `tb_product_sku_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`id`),
@@ -430,7 +430,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_sku_spec_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_sku_spec_value` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `tb_product_spec_value_id` INT NOT NULL,
   `tb_product_sku_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`id`),
@@ -455,7 +455,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_spu_img` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spu_img` (
-  `id` INT NOT NULL COMMENT 'spu图片id',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT 'spu图片id',
   `path` VARCHAR(255) NULL COMMENT 'spu图片路径',
   `sort` INT NULL COMMENT 'spu图片排序',
   `statue` TINYINT(2) NULL COMMENT 'spu图片状态',
@@ -473,69 +473,70 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-INSERT INTO `tb_product_category` VALUES ('1', '0', '全部商品', null, '0', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('2', '0', '手机数码', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('3', '0', '食品生鲜', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('4', '0', '母婴童装', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('5', '0', '家居厨具', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('6', '0', '女装', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+-- 自增id默认从1开始 如果设置为0 则表示自增
+INSERT INTO `tb_product_category` VALUES ('0', '0', '全部商品', null, '0', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '0', '手机数码', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '0', '食品生鲜', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '0', '母婴童装', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '0', '家居厨具', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '0', '女装', null, '1', '1', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 
-INSERT INTO `tb_product_category` VALUES ('7', '2', '手机', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('8', '2', '运营商', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('9', '2', '摄影摄像', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('10', '2', '影音娱乐', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '2', '手机', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '2', '运营商', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '2', '摄影摄像', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '2', '影音娱乐', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 
-INSERT INTO `tb_product_category` VALUES ('11', '4', '童装', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('12', '4', '童鞋', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('13', '4', '妈妈专区', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '4', '童装', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '4', '童鞋', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '4', '妈妈专区', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 
-INSERT INTO `tb_product_category` VALUES ('14', '6', '裙装', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('15', '6', '女士小装', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('16', '6', '外套', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '6', '裙装', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '6', '女士小装', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '6', '外套', null, '1', '2', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 
-INSERT INTO `tb_product_category` VALUES ('17', '16', '防晒衫', null, '1', '3', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('18', '16', '薄外套', null, '1', '3', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
-INSERT INTO `tb_product_category` VALUES ('19', '16', '披肩外套', null, '1', '3', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '16', '防晒衫', null, '1', '3', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '16', '薄外套', null, '1', '3', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
+INSERT INTO `tb_product_category` VALUES ('0', '16', '披肩外套', null, '1', '3', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null);
 
 INSERT INTO `tb_product_attr` VALUES ('0', '版型', '16');
-INSERT INTO `tb_product_attr` VALUES ('1', '衣长', '16');
+INSERT INTO `tb_product_attr` VALUES ('0', '衣长', '16');
 
-INSERT INTO `tb_product_attr_value` VALUES ('0', '超长款', '0');
-INSERT INTO `tb_product_attr_value` VALUES ('1', '中长款', '0');
-INSERT INTO `tb_product_attr_value` VALUES ('2', '长款', '0');
-INSERT INTO `tb_product_attr_value` VALUES ('3', '短款', '0');
-INSERT INTO `tb_product_attr_value` VALUES ('4', '超短款', '0');
-INSERT INTO `tb_product_attr_value` VALUES ('5', '常规款', '0');
+INSERT INTO `tb_product_attr_value` VALUES ('0', '超长款', '1');
+INSERT INTO `tb_product_attr_value` VALUES ('0', '中长款', '1');
+INSERT INTO `tb_product_attr_value` VALUES ('0', '长款', '1');
+INSERT INTO `tb_product_attr_value` VALUES ('0', '短款', '1');
+INSERT INTO `tb_product_attr_value` VALUES ('0', '超短款', '1');
+INSERT INTO `tb_product_attr_value` VALUES ('0', '常规款', '1');
 
-INSERT INTO `tb_product_attr_value` VALUES ('6', '露肩型', '1');
-INSERT INTO `tb_product_attr_value` VALUES ('7', '直筒型', '1');
-INSERT INTO `tb_product_attr_value` VALUES ('8', '修身型', '1');
+INSERT INTO `tb_product_attr_value` VALUES ('0', '露肩型', '2');
+INSERT INTO `tb_product_attr_value` VALUES ('0', '直筒型', '2');
+INSERT INTO `tb_product_attr_value` VALUES ('0', '修身型', '2');
 
 INSERT INTO `tb_product_spec` VALUES ('0', '尺码', '16');
-INSERT INTO `tb_product_spec` VALUES ('1', '颜色', '16');
+INSERT INTO `tb_product_spec` VALUES ('0', '颜色', '16');
 
-INSERT INTO `tb_product_spec_value` VALUES ('0', 'S', '0');
-INSERT INTO `tb_product_spec_value` VALUES ('1', 'M', '0');
-INSERT INTO `tb_product_spec_value` VALUES ('2', 'L', '0');
-INSERT INTO `tb_product_spec_value` VALUES ('3', 'XL', '0');
+INSERT INTO `tb_product_spec_value` VALUES ('0', 'S', '1');
+INSERT INTO `tb_product_spec_value` VALUES ('0', 'M', '1');
+INSERT INTO `tb_product_spec_value` VALUES ('0', 'L', '1');
+INSERT INTO `tb_product_spec_value` VALUES ('0', 'XL', '1');
 
-INSERT INTO `tb_product_spec_value` VALUES ('4', '灰色', '1');
-INSERT INTO `tb_product_spec_value` VALUES ('5', '白色', '1');
-INSERT INTO `tb_product_spec_value` VALUES ('6', '黑色', '1');
+INSERT INTO `tb_product_spec_value` VALUES ('0', '灰色', '2');
+INSERT INTO `tb_product_spec_value` VALUES ('0', '白色', '2');
+INSERT INTO `tb_product_spec_value` VALUES ('0', '黑色', '2');
 
 INSERT INTO `tb_product_brand` VALUES ('0', 'Lily', '');
-INSERT INTO `tb_product_brand` VALUES ('1', 'Gucci', '');
+INSERT INTO `tb_product_brand` VALUES ('0', 'Gucci', '');
 
-INSERT INTO `tb_product_spu` VALUES ('0', '1234567', '普通薄外套女',null,null,null,null,null,null,null,null,null,null,null,'https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/27f3dfef133596732532994049/v.f30.mp4?dockingId=3790b700-2f59-47d0-add4-2c9bc2846fca&storageSource=3',null,'16','0');
+INSERT INTO `tb_product_spu` VALUES ('0', '1234567', '普通薄外套女',null,null,null,null,null,null,null,null,null,null,null,'https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/27f3dfef133596732532994049/v.f30.mp4?dockingId=3790b700-2f59-47d0-add4-2c9bc2846fca&storageSource=3',null,'17','1');
 
-INSERT INTO `tb_product_sku` VALUES ('0', '1234567', '普通薄外套女sku',null,null,null,null,null,null,null,null,null,null,null,null,null,'160.00','20','0');
+INSERT INTO `tb_product_sku` VALUES ('0', '1234567', '普通薄外套女sku',null,null,null,null,null,null,null,null,null,null,null,null,null,'160.00','20','1');
 
-INSERT INTO `tb_product_sku_attr_value` VALUES ('0', '0','0');
-INSERT INTO `tb_product_sku_attr_value` VALUES ('1', '8','0');
+INSERT INTO `tb_product_sku_attr_value` VALUES ('0', '1','1');
+INSERT INTO `tb_product_sku_attr_value` VALUES ('0', '8','1');
 
-INSERT INTO `tb_product_sku_spec_value` VALUES ('0', '0','0');
-INSERT INTO `tb_product_sku_spec_value` VALUES ('1', '6','0');
+INSERT INTO `tb_product_sku_spec_value` VALUES ('0', '1','1');
+INSERT INTO `tb_product_sku_spec_value` VALUES ('0', '6','1');
 
-INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/162/4/3727/83121/5b997bffEa033f072/d0ef923444593847.jpg!q70.jpg.webp',null,null,'0');
-INSERT INTO `tb_product_spu_img` VALUES ('1', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/160/24/3733/77954/5b997bffE0045db72/b5fe450b7a45a3c8.jpg!q70.jpg.webp',null,null,'0');
-INSERT INTO `tb_product_spu_img` VALUES ('2', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/26335/31/3391/75469/5c26e046Eb124a92f/ee4b443eb43c5097.jpg!q70.jpg.webp',null,null,'0');
+INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/162/4/3727/83121/5b997bffEa033f072/d0ef923444593847.jpg!q70.jpg.webp',null,null,'1');
+INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/160/24/3733/77954/5b997bffE0045db72/b5fe450b7a45a3c8.jpg!q70.jpg.webp',null,null,'1');
+INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/26335/31/3391/75469/5c26e046Eb124a92f/ee4b443eb43c5097.jpg!q70.jpg.webp',null,null,'1');
