@@ -242,7 +242,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_attr` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_attr` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '属性id',
-  `name` VARCHAR(45) NULL COMMENT '属性名称',
+  `name` VARCHAR(45) NULL UNIQUE COMMENT '属性名称',
   `tb_product_category_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_tb_product_attr_tb_product_category1_idx` (`tb_product_category_id` ASC),
@@ -261,7 +261,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_attr_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_attr_value` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '属性值id',
-  `value` VARCHAR(64) NULL COMMENT '属性值',
+  `value` VARCHAR(64) NULL UNIQUE COMMENT '属性值',
   `tb_product_attr_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_tb_product_attr_value_tb_product_attr1_idx` (`tb_product_attr_id` ASC),
@@ -280,7 +280,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_spec` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spec` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '规格id',
-  `name` VARCHAR(45) NULL COMMENT '规格名称',
+  `name` VARCHAR(45) NULL UNIQUE COMMENT '规格名称',
   `tb_product_category_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_tb_product_spec_tb_product_category1_idx` (`tb_product_category_id` ASC),
@@ -299,7 +299,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_spec_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spec_value` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '规格值id',
-  `value` VARCHAR(45) NULL COMMENT '规格值',
+  `value` VARCHAR(45) NULL UNIQUE COMMENT '规格值',
   `tb_product_spec_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_tb_product_spec_value_tb_product_spec1_idx` (`tb_product_spec_id` ASC),

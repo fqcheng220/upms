@@ -66,4 +66,5 @@ public interface RequestConstants {
 
     public static final int TYPE_CATEGORY_LIST_CHILD = 242;
     public static final int TYPE_CATEGORY_LIST_ATTR= 243;
+    public static final int TYPE_CATEGORY_LIST_SPEC= 244;
 }

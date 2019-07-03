@@ -7,6 +7,7 @@ import com.fqcheng220.common.req.handler.RequestHandler;
 import com.fqcheng220.common.resp.BaseResponseBody;
 import com.fqcheng220.controller.BaseController;
 import com.fqcheng220.dto.ProductCategoryAttrDto;
+import com.fqcheng220.dto.ProductCategorySpecDto;
 import com.fqcheng220.model.*;
 import com.fqcheng220.service.IBaseService;
 import com.fqcheng220.service.product.IProductAttrService;
@@ -29,6 +30,10 @@ public class ProductCategoryController {
     private IBaseService<ProductAttr, ProductAttrExample> mProductAttrService;
     @Autowired
     private IBaseService<ProductAttrValue, ProductAttrValueExample> mProductAttrValueService;
+    @Autowired
+    private IBaseService<ProductSpec, ProductSpecExample> mProductSpecService;
+    @Autowired
+    private IBaseService<ProductSpecValue, ProductSpecValueExample> mProductSpecValueService;
 
     /**
      * 增加分类
@@ -138,6 +143,54 @@ public class ProductCategoryController {
                 }
                 return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
                         .setmMsg(String.format(ResponseConstants.MSG_SUC_LIST_FORMAT, "分类属性列表"))
+                        .setmResult(list);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * 查询分类规格列表
+     *
+     * @return
+     */
+    @RequestMapping(value = UrlPathConstants.PRODUCT_CATEGORY_LIST_SPEC, method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody listSpec(@RequestBody BaseRequestBody requestBody, @PathVariable("categoryId") Long categoryId) {
+        try {
+            //如何直接获取path??
+            RequestHandler.handle(UrlPathConstants.PRODUCT_CATEGORY_LIST_SPEC, requestBody);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
+        }
+        try {
+            ProductSpecExample productSpecExample = new ProductSpecExample();
+            productSpecExample.createCriteria().andTbProductCategoryIdEqualTo(categoryId);
+            List<ProductSpec> productSpecList = mProductSpecService.selectByExample(productSpecExample);
+            if (productSpecList == null || productSpecList.isEmpty()) {
+                return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
+                        .setmMsg(String.format(ResponseConstants.MSG_SUC_LIST_FORMAT, "分类规格列表"))
+                        .setmResult(null);
+            } else {
+                List<ProductCategorySpecDto> list = new ArrayList<>();
+                for (ProductSpec productSpec : productSpecList) {
+                    ProductSpecValueExample productSpecValueExample = new ProductSpecValueExample();
+                    productSpecValueExample.createCriteria().andTbProductSpecIdEqualTo(productSpec.getId());
+                    List<ProductSpecValue> productSpecValueList = mProductSpecValueService.selectByExample(productSpecValueExample);
+                    if (productSpecValueList == null || productSpecValueList.isEmpty()) {
+                    } else {
+                    }
+                    ProductCategorySpecDto dto = new ProductCategorySpecDto();
+                    dto.mProductSpec = productSpec;
+                    dto.mProductSpecValueList = productSpecValueList;
+                    list.add(dto);
+                }
+                return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
+                        .setmMsg(String.format(ResponseConstants.MSG_SUC_LIST_FORMAT, "分类规格列表"))
                         .setmResult(list);
             }
         } catch (Exception e) {
