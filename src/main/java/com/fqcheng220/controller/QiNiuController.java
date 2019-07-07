@@ -29,18 +29,15 @@ public class QiNiuController {
     @CrossOrigin
     @ResponseBody
     public QiNiuUploadTokenInfoRespBean getUploadToken(@RequestParam(value = "target") Integer target,
-                                                       @RequestParam(value = "userId") String userId) {
+                                                       @RequestParam(value = "id") String id) {
         Auth auth = Auth.create(QiNiuConstants.ACCESS_KEY, QiNiuConstants.SECRET_KEY);
         String key = "";
         switch (target) {
             case QiNiuConstants.BUCKET_CHILD_CATEGORY_USER_AVATER:
-                key = "user/avater/" + userId;
+                key = "user/avater/" + id;
                 break;
             case QiNiuConstants.BUCKET_CHILD_CATEGORY_PRODUCT:
-                key = "imgTest";
-                break;
-            case 3:
-                key = "user/avater/" + userId +"/test.jpg";
+                key = "product/category/icon/" + id;
                 break;
             default:
                 key = "imgTest.jpg";
