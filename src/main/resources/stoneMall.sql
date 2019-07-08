@@ -215,11 +215,11 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_category` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_category` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '分类ID',
-  `parent_id` BIGINT(20) NULL COMMENT '父分类ID',
-  `name` VARCHAR(64) NULL COMMENT '分类名称',
+  `parent_id` BIGINT(20) NOT NULL COMMENT '父分类ID',
+  `name` VARCHAR(64) NOT NULL COMMENT '分类名称',
   `sort` INT NULL COMMENT '排序',
-  `status` TINYINT(2) NULL DEFAULT 0 COMMENT '状态 1-显示 0-隐藏',
-  `type` TINYINT(2) NULL COMMENT '目录类型 2=二级目录/1=一级目录/0=总目录',
+  `status` TINYINT(2) NOT NULL DEFAULT 1 COMMENT '状态 1-显示 0-隐藏',
+  `type` TINYINT(2) NOT NULL COMMENT '目录类型 2=二级目录/1=一级目录/0=总目录',
   `show_in_nav` TINYINT(2) NULL DEFAULT 0 COMMENT '是否导航栏 1=显示/0=隐藏',
   `show_in_top` TINYINT(2) NULL DEFAULT 0 COMMENT '是否置顶 1=置顶/0=默认',
   `show_in_hot` TINYINT(2) NULL DEFAULT 0 COMMENT '是否热门 1=热门/0=默认',
