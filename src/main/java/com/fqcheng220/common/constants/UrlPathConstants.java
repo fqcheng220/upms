@@ -73,4 +73,15 @@ public interface UrlPathConstants {
     public static final String PRODUCT_SPECVALUE_DEL = "/product/specvalue/del";
     public static final String PRODUCT_SPECVALUE_UPDATE = "/product/specvalue/update";
     public static final String PRODUCT_SPECVALUE_LIST_ALL = "/product/specvalue/list/all";
+
+    //货品SPU
+    public static final String PRODUCT_SPU_ADD = "/product/spu/add";
+    public static final String PRODUCT_SPU_DEL = "/product/spu/del";
+    public static final String PRODUCT_SPU_UPDATE = "/product/spu/update";
+    public static final String PRODUCT_SPU_LIST_ALL = "/product/spu/list/all";
+    //货品SPU 图片
+    public static final String PRODUCT_SPU_IMG_ADD = "/product/spu/img/add";
+    public static final String PRODUCT_SPU_IMG_DEL = "/product/spu/img/del";
+    public static final String PRODUCT_SPU_IMG_UPDATE = "/product/spu/img/update";
+    public static final String PRODUCT_SPU_IMG_LIST_ALL = "/product/spu/img/list/all";
 }

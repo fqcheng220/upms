@@ -67,4 +67,15 @@ public interface RequestConstants {
     public static final int TYPE_CATEGORY_LIST_CHILD = 242;
     public static final int TYPE_CATEGORY_LIST_ATTR= 243;
     public static final int TYPE_CATEGORY_LIST_SPEC= 244;
+
+    //货品SPU
+    public static final int TYPE_PRODUCT_SPU_ADD = 300;
+    public static final int TYPE_PRODUCT_SPU_DEL = 301;
+    public static final int TYPE_PRODUCT_SPU_UPDATE = 302;
+    public static final int TYPE_PRODUCT_SPU_LIST_ALL = 303;
+    //货品SPU
+    public static final int TYPE_PRODUCT_SPU_IMG_ADD = 304;
+    public static final int TYPE_PRODUCT_SPU_IMG_DEL = 305;
+    public static final int TYPE_PRODUCT_SPU_IMG_UPDATE = 306;
+    public static final int TYPE_PRODUCT_SPU_IMG_LIST_ALL = 307;
 }
