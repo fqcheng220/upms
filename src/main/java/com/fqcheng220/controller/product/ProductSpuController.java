@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 public class ProductSpuController {
     private final Logger mLogger = LoggerFactory.getLogger(getClass());
@@ -31,6 +33,9 @@ public class ProductSpuController {
     @ResponseBody
     @CrossOrigin
     public BaseResponseBody add(@RequestBody BaseRequestAddBody<ProductSpu> requestBody) {
+        String uuid = UUID.randomUUID().toString();
+        //去掉“-”符号
+        requestBody.mEntity.setNumber(uuid.replaceAll("-", ""));
         return BaseController.add(requestBody, UrlPathConstants.PRODUCT_SPU_ADD, mService, RESP_MSG);
     }
 

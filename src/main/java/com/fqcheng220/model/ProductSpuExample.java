@@ -175,52 +175,62 @@ public class ProductSpuExample {
             return (Criteria) this;
         }
 
-        public Criteria andNumberEqualTo(Long value) {
+        public Criteria andNumberEqualTo(String value) {
             addCriterion("number =", value, "number");
             return (Criteria) this;
         }
 
-        public Criteria andNumberNotEqualTo(Long value) {
+        public Criteria andNumberNotEqualTo(String value) {
             addCriterion("number <>", value, "number");
             return (Criteria) this;
         }
 
-        public Criteria andNumberGreaterThan(Long value) {
+        public Criteria andNumberGreaterThan(String value) {
             addCriterion("number >", value, "number");
             return (Criteria) this;
         }
 
-        public Criteria andNumberGreaterThanOrEqualTo(Long value) {
+        public Criteria andNumberGreaterThanOrEqualTo(String value) {
             addCriterion("number >=", value, "number");
             return (Criteria) this;
         }
 
-        public Criteria andNumberLessThan(Long value) {
+        public Criteria andNumberLessThan(String value) {
             addCriterion("number <", value, "number");
             return (Criteria) this;
         }
 
-        public Criteria andNumberLessThanOrEqualTo(Long value) {
+        public Criteria andNumberLessThanOrEqualTo(String value) {
             addCriterion("number <=", value, "number");
             return (Criteria) this;
         }
 
-        public Criteria andNumberIn(List<Long> values) {
+        public Criteria andNumberLike(String value) {
+            addCriterion("number like", value, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberNotLike(String value) {
+            addCriterion("number not like", value, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumberIn(List<String> values) {
             addCriterion("number in", values, "number");
             return (Criteria) this;
         }
 
-        public Criteria andNumberNotIn(List<Long> values) {
+        public Criteria andNumberNotIn(List<String> values) {
             addCriterion("number not in", values, "number");
             return (Criteria) this;
         }
 
-        public Criteria andNumberBetween(Long value1, Long value2) {
+        public Criteria andNumberBetween(String value1, String value2) {
             addCriterion("number between", value1, value2, "number");
             return (Criteria) this;
         }
 
-        public Criteria andNumberNotBetween(Long value1, Long value2) {
+        public Criteria andNumberNotBetween(String value1, String value2) {
             addCriterion("number not between", value1, value2, "number");
             return (Criteria) this;
         }

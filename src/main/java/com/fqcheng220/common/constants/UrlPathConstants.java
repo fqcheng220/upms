@@ -84,4 +84,5 @@ public interface UrlPathConstants {
     public static final String PRODUCT_SPU_IMG_DEL = "/product/spu/img/del";
     public static final String PRODUCT_SPU_IMG_UPDATE = "/product/spu/img/update";
     public static final String PRODUCT_SPU_IMG_LIST_ALL = "/product/spu/img/list/all";
+    public static final String PRODUCT_SPU_IMG_LIST_BY_SPU = "/product/spu/img/listBySpu/{spuId}";
 }

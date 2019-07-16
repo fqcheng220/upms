@@ -37,7 +37,9 @@ public class ProductCategory {
 
     private String remark;
 
-    public ProductCategory(Long id, Long parentId, String name, Integer sort, Byte status, Byte type, Byte showInNav, Byte showInTop, Byte showInHot, Date createTime, String createBy, Date updateTime, String updateBy, String pageTitle, String pageDescription, String pageKeywords, String remark) {
+    private String iconUrl;
+
+    public ProductCategory(Long id, Long parentId, String name, Integer sort, Byte status, Byte type, Byte showInNav, Byte showInTop, Byte showInHot, Date createTime, String createBy, Date updateTime, String updateBy, String pageTitle, String pageDescription, String pageKeywords, String remark, String iconUrl) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
@@ -55,6 +57,7 @@ public class ProductCategory {
         this.pageDescription = pageDescription;
         this.pageKeywords = pageKeywords;
         this.remark = remark;
+        this.iconUrl = iconUrl;
     }
 
     public ProductCategory() {
@@ -195,5 +198,13 @@ public class ProductCategory {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl == null ? null : iconUrl.trim();
     }
 }

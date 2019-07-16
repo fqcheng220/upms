@@ -332,7 +332,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_spu` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spu` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-  `number` BIGINT(20) NULL COMMENT 'spu编号',
+  `number` VARCHAR(64) NULL COMMENT 'spu编号',
   `spuName` VARCHAR(64) NULL COMMENT '货品名称',
   `introduce` VARCHAR(64) NULL COMMENT '货品简介',
   `show_in_shelve` TINYINT(2) NULL DEFAULT 0 COMMENT '是否上架：1=上架/0=下架',
@@ -348,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_spu` (
   `video_introduce` VARCHAR(255) NULL COMMENT '视频介绍',
   `search_key` VARCHAR(255) NULL COMMENT '搜索关键词',
   `tb_product_category_id` BIGINT(20) NOT NULL,
-  `tb_product_brand_id` INT NOT NULL,
+  `tb_product_brand_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_tb_product_spu_tb_product_category1_idx` (`tb_product_category_id` ASC),
   INDEX `fk_tb_product_spu_tb_product_brand1_idx` (`tb_product_brand_id` ASC),
@@ -372,7 +372,7 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_sku` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_sku` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-  `number` BIGINT(20) NULL COMMENT 'sku编号',
+  `number` VARCHAR(64) NULL COMMENT 'sku编号',
   `name` VARCHAR(64) NULL COMMENT '商品名称',
   `introduce` VARCHAR(64) NULL COMMENT '商品简介',
   `show_in_shelve` TINYINT(2) NULL DEFAULT 0 COMMENT '是否上架：1=上架/0=下架',

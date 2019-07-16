@@ -5,7 +5,7 @@ import java.util.Date;
 public class ProductSpu {
     private Long id;
 
-    private Long number;
+    private String number;
 
     private String spuname;
 
@@ -39,7 +39,7 @@ public class ProductSpu {
 
     private Integer tbProductBrandId;
 
-    public ProductSpu(Long id, Long number, String spuname, String introduce, Byte showInShelve, Date shelveTime, String shelveBy, Date updateTime, String updateBy, Byte showInTop, Byte showInNav, Byte showInHot, Date createTime, String createBy, String videoIntroduce, String searchKey, Long tbProductCategoryId, Integer tbProductBrandId) {
+    public ProductSpu(Long id, String number, String spuname, String introduce, Byte showInShelve, Date shelveTime, String shelveBy, Date updateTime, String updateBy, Byte showInTop, Byte showInNav, Byte showInHot, Date createTime, String createBy, String videoIntroduce, String searchKey, Long tbProductCategoryId, Integer tbProductBrandId) {
         this.id = id;
         this.number = number;
         this.spuname = spuname;
@@ -72,12 +72,12 @@ public class ProductSpu {
         this.id = id;
     }
 
-    public Long getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
-        this.number = number;
+    public void setNumber(String number) {
+        this.number = number == null ? null : number.trim();
     }
 
     public String getSpuname() {

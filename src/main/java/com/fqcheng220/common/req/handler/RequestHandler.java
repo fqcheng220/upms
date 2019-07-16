@@ -80,6 +80,7 @@ public class RequestHandler {
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_DEL,UrlPathConstants.PRODUCT_SPU_IMG_DEL);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_UPDATE,UrlPathConstants.PRODUCT_SPU_IMG_UPDATE);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_LIST_ALL,UrlPathConstants.PRODUCT_SPU_IMG_LIST_ALL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_LIST_BY_SPU,UrlPathConstants.PRODUCT_SPU_IMG_LIST_BY_SPU);
     }
     public static void handle(String pathUrl, BaseRequestBody baseRequestBody) throws Exception{
         //功能号判断

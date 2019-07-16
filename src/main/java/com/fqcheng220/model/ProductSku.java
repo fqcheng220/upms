@@ -6,7 +6,7 @@ import java.util.Date;
 public class ProductSku {
     private Long id;
 
-    private Long number;
+    private String number;
 
     private String name;
 
@@ -42,7 +42,7 @@ public class ProductSku {
 
     private Long tbProductSpuId;
 
-    public ProductSku(Long id, Long number, String name, String introduce, Byte showInShelve, Date shelvetime, String shelveBy, Date updateTime, String updateBy, Byte showInTop, Byte showInNav, Byte showInHot, Date createTime, String createBy, String picImage, String searchKey, BigDecimal price, Integer stock, Long tbProductSpuId) {
+    public ProductSku(Long id, String number, String name, String introduce, Byte showInShelve, Date shelvetime, String shelveBy, Date updateTime, String updateBy, Byte showInTop, Byte showInNav, Byte showInHot, Date createTime, String createBy, String picImage, String searchKey, BigDecimal price, Integer stock, Long tbProductSpuId) {
         this.id = id;
         this.number = number;
         this.name = name;
@@ -76,12 +76,12 @@ public class ProductSku {
         this.id = id;
     }
 
-    public Long getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
-        this.number = number;
+    public void setNumber(String number) {
+        this.number = number == null ? null : number.trim();
     }
 
     public String getName() {
