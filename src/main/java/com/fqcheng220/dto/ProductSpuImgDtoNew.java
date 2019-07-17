@@ -1,19 +1,12 @@
 package com.fqcheng220.dto;
 
-import com.fqcheng220.model.ProductSpu;
 import com.fqcheng220.model.ProductSpuImg;
 
 import java.util.List;
 
-public class ProductSpuImgDto {
+public class ProductSpuImgDtoNew {
 
-    public Integer id;
-
-    public String path;
-
-    public Integer sort;
-
-    public Byte statue;
+    public List<ProductSpuImg> mProductSpuImgList;
 
     public Long tbProductSpuId;
 

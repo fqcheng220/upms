@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fqcheng220.dao.ProductSpuMapper">
+  <resultMap id="listEnhancedResultMap" type="com.fqcheng220.dto.ProductSpuImgDtoNew">
+    <result column="tb_product_spu_id" property="tbProductSpuId" jdbcType="BIGINT"/>
+    <result column="tb_product_spu_name" property="tbProductSpuName" jdbcType="VARCHAR"/>
+    <result column="tb_product_category_id" property="tbProductCategoryId" jdbcType="BIGINT"/>
+    <result column="tb_product_category_name" property="tbProductCategoryName" jdbcType="VARCHAR"/>
+    <collection property="mProductSpuImgList" javaType="java.util.List" ofType="com.fqcheng220.model.ProductSpuImg">
+      <id column="tb_product_spu_img_id" property="id" jdbcType="INTEGER"/>
+      <result column="tb_product_spu_img_path" property="path" jdbcType="VARCHAR"/>
+      <result column="tb_product_spu_img_sort" property="sort" jdbcType="INTEGER"/>
+      <result column="tb_product_spu_img_statue" property="statue" jdbcType="TINYINT"/>
+    </collection>
+  </resultMap>
+  <select id="listEnhanced" resultMap="listEnhancedResultMap">
+    select
+    a.id as tb_product_spu_id,
+    a.number as tb_product_spu_number,
+    a.spuName as tb_product_spu_name,
+    b.id as tb_product_spu_img_id,
+    b.path as tb_product_spu_img_path,
+    b.sort as tb_product_spu_img_sort,
+    b.statue as tb_product_spu_img_statue,
+    c.id as tb_product_category_id,
+    c.name as tb_product_category_name
+    from tb_product_spu a
+    right outer join tb_product_spu_img b
+    on b.tb_product_spu_id = a.id
+    left outer join tb_product_category c
+    on c.id = a.tb_product_category_id
+    order by tb_product_spu_img_sort asc ;
+  </select>
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSpu">
     <constructor>
       <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="number" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="number" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="spuName" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="show_in_shelve" javaType="java.lang.Byte" jdbcType="TINYINT" />
@@ -124,7 +154,7 @@
       create_time, create_by, video_introduce, 
       search_key, tb_product_category_id, tb_product_brand_id
       )
-    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=BIGINT}, #{spuname,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=VARCHAR}, #{spuname,jdbcType=VARCHAR}, 
       #{introduce,jdbcType=VARCHAR}, #{showInShelve,jdbcType=TINYINT}, #{shelveTime,jdbcType=TIMESTAMP}, 
       #{shelveBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
       #{showInTop,jdbcType=TINYINT}, #{showInNav,jdbcType=TINYINT}, #{showInHot,jdbcType=TINYINT}, 
@@ -195,7 +225,7 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="number != null">
-        #{number,jdbcType=BIGINT},
+        #{number,jdbcType=VARCHAR},
       </if>
       <if test="spuname != null">
         #{spuname,jdbcType=VARCHAR},
@@ -260,7 +290,7 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.number != null">
-        number = #{record.number,jdbcType=BIGINT},
+        number = #{record.number,jdbcType=VARCHAR},
       </if>
       <if test="record.spuname != null">
         spuName = #{record.spuname,jdbcType=VARCHAR},
@@ -318,7 +348,7 @@
   <update id="updateByExample" parameterType="map">
     update tb_product_spu
     set id = #{record.id,jdbcType=BIGINT},
-      number = #{record.number,jdbcType=BIGINT},
+      number = #{record.number,jdbcType=VARCHAR},
       spuName = #{record.spuname,jdbcType=VARCHAR},
       introduce = #{record.introduce,jdbcType=VARCHAR},
       show_in_shelve = #{record.showInShelve,jdbcType=TINYINT},
@@ -343,7 +373,7 @@
     update tb_product_spu
     <set>
       <if test="number != null">
-        number = #{number,jdbcType=BIGINT},
+        number = #{number,jdbcType=VARCHAR},
       </if>
       <if test="spuname != null">
         spuName = #{spuname,jdbcType=VARCHAR},
@@ -398,7 +428,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductSpu">
     update tb_product_spu
-    set number = #{number,jdbcType=BIGINT},
+    set number = #{number,jdbcType=VARCHAR},
       spuName = #{spuname,jdbcType=VARCHAR},
       introduce = #{introduce,jdbcType=VARCHAR},
       show_in_shelve = #{showInShelve,jdbcType=TINYINT},

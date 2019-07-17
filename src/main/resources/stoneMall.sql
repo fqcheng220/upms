@@ -529,6 +529,7 @@ INSERT INTO `tb_product_brand` VALUES ('0', 'Lily', '');
 INSERT INTO `tb_product_brand` VALUES ('0', 'Gucci', '');
 
 INSERT INTO `tb_product_spu` VALUES ('0', '1234567', '普通薄外套女',null,null,null,null,null,null,null,null,null,null,null,'https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/27f3dfef133596732532994049/v.f30.mp4?dockingId=3790b700-2f59-47d0-add4-2c9bc2846fca&storageSource=3',null,'17','1');
+INSERT INTO `tb_product_spu` VALUES ('0', '1234567', '披肩外套SPU',null,null,null,null,null,null,null,null,null,null,null,'https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/27f3dfef133596732532994049/v.f30.mp4?dockingId=3790b700-2f59-47d0-add4-2c9bc2846fca&storageSource=3',null,'18','1');
 
 INSERT INTO `tb_product_sku` VALUES ('0', '1234567', '普通薄外套女sku',null,null,null,null,null,null,null,null,null,null,null,null,null,'160.00','20','1');
 
@@ -538,6 +539,9 @@ INSERT INTO `tb_product_sku_attr_value` VALUES ('0', '8','1');
 INSERT INTO `tb_product_sku_spec_value` VALUES ('0', '1','1');
 INSERT INTO `tb_product_sku_spec_value` VALUES ('0', '6','1');
 
-INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/162/4/3727/83121/5b997bffEa033f072/d0ef923444593847.jpg!q70.jpg.webp',null,null,'1');
-INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/160/24/3733/77954/5b997bffE0045db72/b5fe450b7a45a3c8.jpg!q70.jpg.webp',null,null,'1');
-INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/26335/31/3391/75469/5c26e046Eb124a92f/ee4b443eb43c5097.jpg!q70.jpg.webp',null,null,'1');
+INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/162/4/3727/83121/5b997bffEa033f072/d0ef923444593847.jpg!q70.jpg.webp',1,null,'1');
+INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/160/24/3733/77954/5b997bffE0045db72/b5fe450b7a45a3c8.jpg!q70.jpg.webp',2,null,'1');
+INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/26335/31/3391/75469/5c26e046Eb124a92f/ee4b443eb43c5097.jpg!q70.jpg.webp',3,null,'1');
+INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://test5',5,null,'1');
+INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://test4',4,null,'1');
+INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://test6',null,null,'2');

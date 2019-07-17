@@ -75,12 +75,16 @@ public class RequestHandler {
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_DEL,UrlPathConstants.PRODUCT_SPU_DEL);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_UPDATE,UrlPathConstants.PRODUCT_SPU_UPDATE);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_LIST_ALL,UrlPathConstants.PRODUCT_SPU_LIST_ALL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_ENHANCED_LIST_ALL,UrlPathConstants.PRODUCT_SPU_ENHANCED_LIST_ALL);
         //货品SPU 图片
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_ADD,UrlPathConstants.PRODUCT_SPU_IMG_ADD);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_DEL,UrlPathConstants.PRODUCT_SPU_IMG_DEL);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_UPDATE,UrlPathConstants.PRODUCT_SPU_IMG_UPDATE);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_LIST_ALL,UrlPathConstants.PRODUCT_SPU_IMG_LIST_ALL);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_LIST_BY_SPU,UrlPathConstants.PRODUCT_SPU_IMG_LIST_BY_SPU);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_UPDATE_ENHANCED,UrlPathConstants.PRODUCT_SPU_IMG_UPDATE_ENHANCED);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_DEL_ENHANCEDD,UrlPathConstants.PRODUCT_SPU_IMG_DEL_ENHANCED);
+
     }
     public static void handle(String pathUrl, BaseRequestBody baseRequestBody) throws Exception{
         //功能号判断

@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSku">
     <constructor>
       <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="number" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="number" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="show_in_shelve" javaType="java.lang.Byte" jdbcType="TINYINT" />
@@ -125,7 +125,7 @@
       create_time, create_by, pic_image, 
       search_key, price, stock, 
       tb_product_spu_id)
-    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{introduce,jdbcType=VARCHAR}, #{showInShelve,jdbcType=TINYINT}, #{shelvetime,jdbcType=TIMESTAMP}, 
       #{shelveBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
       #{showInTop,jdbcType=TINYINT}, #{showInNav,jdbcType=TINYINT}, #{showInHot,jdbcType=TINYINT}, 
@@ -199,7 +199,7 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="number != null">
-        #{number,jdbcType=BIGINT},
+        #{number,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -267,7 +267,7 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.number != null">
-        number = #{record.number,jdbcType=BIGINT},
+        number = #{record.number,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -328,7 +328,7 @@
   <update id="updateByExample" parameterType="map">
     update tb_product_sku
     set id = #{record.id,jdbcType=BIGINT},
-      number = #{record.number,jdbcType=BIGINT},
+      number = #{record.number,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       introduce = #{record.introduce,jdbcType=VARCHAR},
       show_in_shelve = #{record.showInShelve,jdbcType=TINYINT},
@@ -354,7 +354,7 @@
     update tb_product_sku
     <set>
       <if test="number != null">
-        number = #{number,jdbcType=BIGINT},
+        number = #{number,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -412,7 +412,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductSku">
     update tb_product_sku
-    set number = #{number,jdbcType=BIGINT},
+    set number = #{number,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       introduce = #{introduce,jdbcType=VARCHAR},
       show_in_shelve = #{showInShelve,jdbcType=TINYINT},

@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fqcheng220.dao.ProductSpuImgMapper">
+  <resultMap id="ListBySpuResultMap" type="com.fqcheng220.dto.ProductSpuImgDto">
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="path" property="path" jdbcType="VARCHAR"/>
+    <result column="sort" property="sort" jdbcType="INTEGER"/>
+    <result column="statue" property="statue" jdbcType="TINYINT"/>
+    <result column="tb_product_spu_id" property="tbProductSpuId" jdbcType="BIGINT"/>
+    <result column="tb_product_spu_name" property="tbProductSpuName" jdbcType="VARCHAR"/>
+    <result column="tb_product_category_id" property="tbProductCategoryId" jdbcType="BIGINT"/>
+    <result column="tb_product_category_name" property="tbProductCategoryName" jdbcType="VARCHAR"/>
+  </resultMap>
+  <select id="listBySpu" resultMap="ListBySpuResultMap">
+    select
+    a.*,
+    b.spuName as tb_product_spu_name,
+    c.id as tb_product_category_id,
+    c.name as tb_product_category_name
+    from tb_product_spu_img a
+    left outer join tb_product_spu b
+    on a.tb_product_spu_id = b.id
+    left outer join tb_product_category c
+    on c.id = b.tb_product_category_id;
+  </select>
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSpuImg">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />

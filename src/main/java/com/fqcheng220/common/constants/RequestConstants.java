@@ -79,4 +79,8 @@ public interface RequestConstants {
     public static final int TYPE_PRODUCT_SPU_IMG_UPDATE = 306;
     public static final int TYPE_PRODUCT_SPU_IMG_LIST_ALL = 307;
     public static final int TYPE_PRODUCT_SPU_IMG_LIST_BY_SPU = 308;
+
+    public static final int TYPE_PRODUCT_SPU_ENHANCED_LIST_ALL = 309;
+    public static final int TYPE_PRODUCT_SPU_IMG_UPDATE_ENHANCED = 310;
+    public static final int TYPE_PRODUCT_SPU_IMG_DEL_ENHANCEDD = 311;
 }

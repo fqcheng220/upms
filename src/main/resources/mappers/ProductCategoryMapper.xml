@@ -20,6 +20,7 @@
       <arg column="page_description" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="Page_keywords" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="icon_url" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -82,7 +83,8 @@
   </sql>
   <sql id="Base_Column_List">
     id, parent_id, name, sort, status, type, show_in_nav, show_in_top, show_in_hot, create_time, 
-    create_by, update_time, update_by, page_title, page_description, Page_keywords, remark
+    create_by, update_time, update_by, page_title, page_description, Page_keywords, remark, 
+    icon_url
   </sql>
   <select id="selectByExample" parameterType="com.fqcheng220.model.ProductCategoryExample" resultMap="BaseResultMap">
     select
@@ -121,13 +123,15 @@
       show_in_nav, show_in_top, show_in_hot, 
       create_time, create_by, update_time, 
       update_by, page_title, page_description, 
-      Page_keywords, remark)
+      Page_keywords, remark, icon_url
+      )
     values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{sort,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, 
       #{showInNav,jdbcType=TINYINT}, #{showInTop,jdbcType=TINYINT}, #{showInHot,jdbcType=TINYINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{updateBy,jdbcType=VARCHAR}, #{pageTitle,jdbcType=VARCHAR}, #{pageDescription,jdbcType=VARCHAR}, 
-      #{pageKeywords,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+      #{pageKeywords,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{iconUrl,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductCategory">
     insert into tb_product_category
@@ -183,6 +187,9 @@
       <if test="remark != null">
         remark,
       </if>
+      <if test="iconUrl != null">
+        icon_url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -235,6 +242,9 @@
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="iconUrl != null">
+        #{iconUrl,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -298,6 +308,9 @@
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
+      <if test="record.iconUrl != null">
+        icon_url = #{record.iconUrl,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -321,7 +334,8 @@
       page_title = #{record.pageTitle,jdbcType=VARCHAR},
       page_description = #{record.pageDescription,jdbcType=VARCHAR},
       Page_keywords = #{record.pageKeywords,jdbcType=VARCHAR},
-      remark = #{record.remark,jdbcType=VARCHAR}
+      remark = #{record.remark,jdbcType=VARCHAR},
+      icon_url = #{record.iconUrl,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -377,6 +391,9 @@
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="iconUrl != null">
+        icon_url = #{iconUrl,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -397,7 +414,8 @@
       page_title = #{pageTitle,jdbcType=VARCHAR},
       page_description = #{pageDescription,jdbcType=VARCHAR},
       Page_keywords = #{pageKeywords,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR}
+      remark = #{remark,jdbcType=VARCHAR},
+      icon_url = #{iconUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -10,6 +10,7 @@ import com.fqcheng220.common.req.handler.RequestHandler;
 import com.fqcheng220.common.resp.BaseResponseBody;
 import com.fqcheng220.controller.BaseController;
 import com.fqcheng220.dto.ProductSpuImgDto;
+import com.fqcheng220.dto.ProductSpuImgDtoNew;
 import com.fqcheng220.model.ProductSpu;
 import com.fqcheng220.model.ProductSpuExample;
 import com.fqcheng220.model.ProductSpuImg;
@@ -108,28 +109,91 @@ public class ProductSpuImgController {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
         }
-        try{
-            ProductSpuImgDto dto = new ProductSpuImgDto();
-            ProductSpuImgExample example = new ProductSpuImgExample();
-            if(!StringUtils.isEmpty(spuId)){
-                example.createCriteria().andIdEqualTo(spuId);
-            }
-            example.setOrderByClause("tb_product_spu_id asc,sort asc");
-            List<ProductSpuImg> productSpuImgList = mService.selectByExample(example);
-            dto.productSpuId = spuId;
-            dto.mPathList = new ArrayList<>();
-            for(ProductSpuImg productSpuImg:productSpuImgList){
-                dto.mPathList.add(productSpuImg.getPath());
-            }
-
-            ProductSpuExample productSpuExample = new ProductSpuExample();
-            List<ProductSpuImg> productSpuImgList = mIProductSpuService.selectByExample(productSpuExample);
+        try {
+            List<ProductSpuImgDto> list = mService.listBySpu();
             return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg(String.format(ResponseConstants.MSG_SUC_LIST_FORMAT, "查询货品SPU 图片列表(根据spuid)"))
-                    .setmResult(Arrays.asList(dto));
-        }catch (Exception e){
+                    .setmMsg(String.format(ResponseConstants.MSG_SUC_LIST_FORMAT,"查询货品SPU 图片列表(根据spuid)"))
+                    .setmResult(list);
+        } catch (Exception e) {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
+        }
+    }
+
+    /**
+     * 更新货品SPU 图片（图片列表）
+     *
+     * @param requestBody
+     * @return
+     */
+    @RequestMapping(value = UrlPathConstants.PRODUCT_SPU_IMG_UPDATE_ENHANCED, method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody updateEnchanced(@RequestBody BaseRequestUpdateBody<ProductSpuImgDtoNew> requestBody) {
+        try {
+            //如何直接获取path??
+            RequestHandler.handle(UrlPathConstants.PRODUCT_SPU_IMG_UPDATE_ENHANCED, requestBody);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
+        }
+        if(requestBody == null || requestBody.mEntity == null){
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(ResponseConstants.MSG_ERROR_REQ_ARGS);
+        }
+        int deleteResult = 0;
+        int insertResult = 0;
+        //粗暴的删除 再新增
+        try {
+            ProductSpuImgExample example = new ProductSpuImgExample();
+            example.createCriteria().andTbProductSpuIdEqualTo(requestBody.mEntity.tbProductSpuId);
+            deleteResult = mService.deleteByExample(example);
+            if (requestBody.mEntity != null && requestBody.mEntity.mProductSpuImgList != null) {
+                for (ProductSpuImg productSpuImg : requestBody.mEntity.mProductSpuImgList) {
+                    productSpuImg.setId(0);
+                    productSpuImg.setTbProductSpuId(requestBody.mEntity.tbProductSpuId);
+                    insertResult += mService.insert(productSpuImg);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
+        }
+        return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
+                .setmMsg(String.format(ResponseConstants.MSG_SUC_UPDATE_FORMAT, String.format("更新货品SPU 图片（图片列表） 删除%s 新增%s ",deleteResult,insertResult)))
+                .setmResult(Arrays.asList(requestBody.mEntity));
+    }
+
+    /**
+     * 删除货品SPU 图片（图片列表）
+     *
+     * @param requestBody
+     * @return
+     */
+    @RequestMapping(value = UrlPathConstants.PRODUCT_SPU_IMG_DEL_ENHANCED, method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody delEnhanced(@RequestBody AbstractBaseRequestDelBody<Long> requestBody) {
+        try {
+            //如何直接获取path??
+            RequestHandler.handle(UrlPathConstants.PRODUCT_SPU_IMG_DEL_ENHANCED, requestBody);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
+        }
+        int result = -1;
+        try {
+            ProductSpuImgExample example = new ProductSpuImgExample();
+            example.createCriteria().andTbProductSpuIdIn(requestBody.mEntityList);
+            result = mService.deleteByExample(example);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
+        }
+        if (result > 0) {
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
+                    .setmMsg("删除货品SPU 图片（图片列表）");
+        } else {
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
         }
     }
 }
