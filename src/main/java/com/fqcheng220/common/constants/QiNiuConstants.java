@@ -19,4 +19,6 @@ public class QiNiuConstants {
     //存储分类 用户头像
     public static final int BUCKET_CHILD_CATEGORY_USER_AVATER = 100;
     public static final int BUCKET_CHILD_CATEGORY_PRODUCT = 200;
+    //货品SPU
+    public static final int BUCKET_CHILD_CATEGORY_PRODUCT_SPU = 300;
 }

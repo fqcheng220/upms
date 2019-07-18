@@ -39,6 +39,9 @@ public class QiNiuController {
             case QiNiuConstants.BUCKET_CHILD_CATEGORY_PRODUCT:
                 key = "product/category/icon/" + id;
                 break;
+            case QiNiuConstants.BUCKET_CHILD_CATEGORY_PRODUCT_SPU:
+                key = "product/spu/" + id;
+                break;
             default:
                 key = "imgTest.jpg";
         }
