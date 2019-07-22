@@ -11,6 +11,7 @@
       <result column="tb_product_spu_img_path" property="path" jdbcType="VARCHAR"/>
       <result column="tb_product_spu_img_sort" property="sort" jdbcType="INTEGER"/>
       <result column="tb_product_spu_img_statue" property="statue" jdbcType="TINYINT"/>
+      <result column="tb_product_spu_id" property="tbProductSpuId" jdbcType="TINYINT"/>
     </collection>
   </resultMap>
   <select id="listEnhanced" resultMap="listEnhancedResultMap">

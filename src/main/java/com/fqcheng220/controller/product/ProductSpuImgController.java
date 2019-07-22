@@ -148,8 +148,11 @@ public class ProductSpuImgController {
             example.createCriteria().andTbProductSpuIdEqualTo(requestBody.mEntity.tbProductSpuId);
             deleteResult = mService.deleteByExample(example);
             if (requestBody.mEntity != null && requestBody.mEntity.mProductSpuImgList != null) {
+                int index = -1;
                 for (ProductSpuImg productSpuImg : requestBody.mEntity.mProductSpuImgList) {
                     productSpuImg.setId(0);
+                    productSpuImg.setSort(++index);
+                    productSpuImg.setStatue((byte)1);
                     productSpuImg.setTbProductSpuId(requestBody.mEntity.tbProductSpuId);
                     insertResult += mService.insert(productSpuImg);
                 }
@@ -159,7 +162,7 @@ public class ProductSpuImgController {
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
         }
         return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
-                .setmMsg(String.format(ResponseConstants.MSG_SUC_UPDATE_FORMAT, String.format("更新货品SPU 图片（图片列表） 删除%s 新增%s ",deleteResult,insertResult)))
+                .setmMsg(String.format(ResponseConstants.MSG_SUC_UPDATE_FORMAT, String.format("货品SPU 图片（图片列表） 删除%s 新增%s ",deleteResult,insertResult)))
                 .setmResult(Arrays.asList(requestBody.mEntity));
     }
 
@@ -180,18 +183,18 @@ public class ProductSpuImgController {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
         }
-        int result = -1;
+        int deleteResult = -1;
         try {
             ProductSpuImgExample example = new ProductSpuImgExample();
             example.createCriteria().andTbProductSpuIdIn(requestBody.mEntityList);
-            result = mService.deleteByExample(example);
+            deleteResult = mService.deleteByExample(example);
         } catch (Exception e) {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
         }
-        if (result > 0) {
+        if (deleteResult > 0) {
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
-                    .setmMsg("删除货品SPU 图片（图片列表）");
+                    .setmMsg(String.format("货品SPU 图片（图片列表） 删除%s ",deleteResult));
         } else {
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(ResponseConstants.MSG_ERROR_SQL_HANDLE);
         }
