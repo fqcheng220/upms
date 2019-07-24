@@ -88,4 +88,20 @@ public interface UrlPathConstants {
     public static final String PRODUCT_SPU_IMG_UPDATE_ENHANCED = "/product/spu/img/updateEnhanced";
     public static final String PRODUCT_SPU_IMG_LIST_ALL = "/product/spu/img/list/all";
     public static final String PRODUCT_SPU_IMG_LIST_BY_SPU = "/product/spu/img/listEnhanced/{spuId}";
+    //商品SKU
+    public static final String PRODUCT_SKU_ADD = "/product/sku/add";
+    public static final String PRODUCT_SKU_DEL = "/product/sku/del";
+    public static final String PRODUCT_SKU_UPDATE = "/product/sku/update";
+    public static final String PRODUCT_SKU_LIST_ALL = "/product/sku/list/all";
+    public static final String PRODUCT_SKU_ENHANCED_LIST_ALL = "/product/sku-enhanced/list/all";
+    //商品SKU属性值
+    public static final String PRODUCT_SKU_ATTRVALUE_ADD = "/product/sku/attrvalue/add";
+    public static final String PRODUCT_SKU_ATTRVALUE_DEL = "/product/sku/attrvalue/del";
+    public static final String PRODUCT_SKU_ATTRVALUE_UPDATE = "/product/sku/attrvalue/update";
+    public static final String PRODUCT_SKU_ATTRVALUE_LIST_ALL = "/product/sku/attrvalue/list/all";
+    //商品SKU规格值
+    public static final String PRODUCT_SKU_SPECVALUE_ADD = "/product/sku/specvalue/add";
+    public static final String PRODUCT_SKU_SPECVALUE_DEL = "/product/sku/specvalue/del";
+    public static final String PRODUCT_SKU_SPECVALUE_UPDATE = "/product/sku/specvalue/update";
+    public static final String PRODUCT_SKU_SPECVALUE_LIST_ALL = "/product/sku/specvalue/list/all";
 }

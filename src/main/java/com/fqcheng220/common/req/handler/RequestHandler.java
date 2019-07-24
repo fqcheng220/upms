@@ -84,6 +84,22 @@ public class RequestHandler {
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_LIST_BY_SPU,UrlPathConstants.PRODUCT_SPU_IMG_LIST_BY_SPU);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_UPDATE_ENHANCED,UrlPathConstants.PRODUCT_SPU_IMG_UPDATE_ENHANCED);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SPU_IMG_DEL_ENHANCEDD,UrlPathConstants.PRODUCT_SPU_IMG_DEL_ENHANCED);
+        //商品SKU
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ADD,UrlPathConstants.PRODUCT_SKU_ADD);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_DEL,UrlPathConstants.PRODUCT_SKU_DEL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_UPDATE,UrlPathConstants.PRODUCT_SKU_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_LIST_ALL,UrlPathConstants.PRODUCT_SKU_LIST_ALL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ENHANCED_LIST_ALL,UrlPathConstants.PRODUCT_SKU_ENHANCED_LIST_ALL);
+        //商品SKU属性值
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ATTRVALUE_ADD,UrlPathConstants.PRODUCT_SKU_ATTRVALUE_ADD);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ATTRVALUE_DEL,UrlPathConstants.PRODUCT_SKU_ATTRVALUE_DEL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ATTRVALUE_UPDATE,UrlPathConstants.PRODUCT_SKU_ATTRVALUE_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ATTRVALUE_LIST_ALL,UrlPathConstants.PRODUCT_SKU_ATTRVALUE_LIST_ALL);
+        //商品SKU规格值
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_SPECVALUE_ADD,UrlPathConstants.PRODUCT_SKU_SPECVALUE_ADD);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_SPECVALUE_DEL,UrlPathConstants.PRODUCT_SKU_SPECVALUE_DEL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_SPECVALUE_UPDATE,UrlPathConstants.PRODUCT_SKU_SPECVALUE_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_SPECVALUE_LIST_ALL,UrlPathConstants.PRODUCT_SKU_SPECVALUE_LIST_ALL);
 
     }
     public static void handle(String pathUrl, BaseRequestBody baseRequestBody) throws Exception{

@@ -83,4 +83,20 @@ public interface RequestConstants {
     public static final int TYPE_PRODUCT_SPU_ENHANCED_LIST_ALL = 309;
     public static final int TYPE_PRODUCT_SPU_IMG_UPDATE_ENHANCED = 310;
     public static final int TYPE_PRODUCT_SPU_IMG_DEL_ENHANCEDD = 311;
+    //商品SKU
+    public static final int TYPE_PRODUCT_SKU_ADD = 312;
+    public static final int TYPE_PRODUCT_SKU_DEL = 313;
+    public static final int TYPE_PRODUCT_SKU_UPDATE = 314;
+    public static final int TYPE_PRODUCT_SKU_LIST_ALL = 315;
+    public static final int TYPE_PRODUCT_SKU_ENHANCED_LIST_ALL = 316;
+    //商品SKU属性值
+    public static final int TYPE_PRODUCT_SKU_ATTRVALUE_ADD = 317;
+    public static final int TYPE_PRODUCT_SKU_ATTRVALUE_DEL = 318;
+    public static final int TYPE_PRODUCT_SKU_ATTRVALUE_UPDATE = 319;
+    public static final int TYPE_PRODUCT_SKU_ATTRVALUE_LIST_ALL = 320;
+    //商品SKU规格值
+    public static final int TYPE_PRODUCT_SKU_SPECVALUE_ADD = 321;
+    public static final int TYPE_PRODUCT_SKU_SPECVALUE_DEL = 322;
+    public static final int TYPE_PRODUCT_SKU_SPECVALUE_UPDATE = 323;
+    public static final int TYPE_PRODUCT_SKU_SPECVALUE_LIST_ALL = 324;
 }

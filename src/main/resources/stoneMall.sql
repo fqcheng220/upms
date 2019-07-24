@@ -407,12 +407,19 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_sku_attr_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_sku_attr_value` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `tb_product_attr_id` INT NOT NULL,
   `tb_product_attr_value_id` INT NOT NULL,
   `tb_product_sku_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`id`),
+  INDEX `fk_tb_product_sku_attr_value_tb_product_attr_idx` (`tb_product_attr_id` ASC),
   INDEX `fk_tb_product_sku_attr_value_tb_product_attr_value1_idx` (`tb_product_attr_value_id` ASC),
   INDEX `fk_tb_product_sku_attr_value_tb_product_sku1_idx` (`tb_product_sku_id` ASC),
-  CONSTRAINT `fk_tb_product_sku_attr_value_tb_product_attr_value1`
+  CONSTRAINT `fk_tb_product_sku_attr_value_tb_product_attr`
+    FOREIGN KEY (`tb_product_attr_id`)
+    REFERENCES `db_stone_mall`.`tb_product_attr` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_product_sku_attr_value_tb_product_attr_value`
     FOREIGN KEY (`tb_product_attr_value_id`)
     REFERENCES `db_stone_mall`.`tb_product_attr_value` (`id`)
     ON DELETE NO ACTION
