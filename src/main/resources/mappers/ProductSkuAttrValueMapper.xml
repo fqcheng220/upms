@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSkuAttrValue">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tb_product_attr_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="tb_product_attr_value_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="tb_product_sku_id" javaType="java.lang.Long" jdbcType="BIGINT" />
     </constructor>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, tb_product_attr_value_id, tb_product_sku_id
+    id, tb_product_attr_id, tb_product_attr_value_id, tb_product_sku_id
   </sql>
   <select id="selectByExample" parameterType="com.fqcheng220.model.ProductSkuAttrValueExample" resultMap="BaseResultMap">
     select
@@ -100,16 +101,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fqcheng220.model.ProductSkuAttrValue">
-    insert into tb_product_sku_attr_value (id, tb_product_attr_value_id, tb_product_sku_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{tbProductAttrValueId,jdbcType=INTEGER}, #{tbProductSkuId,jdbcType=BIGINT}
-      )
+    insert into tb_product_sku_attr_value (id, tb_product_attr_id, tb_product_attr_value_id, 
+      tb_product_sku_id)
+    values (#{id,jdbcType=INTEGER}, #{tbProductAttrId,jdbcType=INTEGER}, #{tbProductAttrValueId,jdbcType=INTEGER}, 
+      #{tbProductSkuId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.fqcheng220.model.ProductSkuAttrValue">
     insert into tb_product_sku_attr_value
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="tbProductAttrId != null">
+        tb_product_attr_id,
       </if>
       <if test="tbProductAttrValueId != null">
         tb_product_attr_value_id,
@@ -121,6 +125,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tbProductAttrId != null">
+        #{tbProductAttrId,jdbcType=INTEGER},
       </if>
       <if test="tbProductAttrValueId != null">
         #{tbProductAttrValueId,jdbcType=INTEGER},
@@ -142,6 +149,9 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
+      <if test="record.tbProductAttrId != null">
+        tb_product_attr_id = #{record.tbProductAttrId,jdbcType=INTEGER},
+      </if>
       <if test="record.tbProductAttrValueId != null">
         tb_product_attr_value_id = #{record.tbProductAttrValueId,jdbcType=INTEGER},
       </if>
@@ -156,6 +166,7 @@
   <update id="updateByExample" parameterType="map">
     update tb_product_sku_attr_value
     set id = #{record.id,jdbcType=INTEGER},
+      tb_product_attr_id = #{record.tbProductAttrId,jdbcType=INTEGER},
       tb_product_attr_value_id = #{record.tbProductAttrValueId,jdbcType=INTEGER},
       tb_product_sku_id = #{record.tbProductSkuId,jdbcType=BIGINT}
     <if test="_parameter != null">
@@ -165,6 +176,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.fqcheng220.model.ProductSkuAttrValue">
     update tb_product_sku_attr_value
     <set>
+      <if test="tbProductAttrId != null">
+        tb_product_attr_id = #{tbProductAttrId,jdbcType=INTEGER},
+      </if>
       <if test="tbProductAttrValueId != null">
         tb_product_attr_value_id = #{tbProductAttrValueId,jdbcType=INTEGER},
       </if>
@@ -176,7 +190,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fqcheng220.model.ProductSkuAttrValue">
     update tb_product_sku_attr_value
-    set tb_product_attr_value_id = #{tbProductAttrValueId,jdbcType=INTEGER},
+    set tb_product_attr_id = #{tbProductAttrId,jdbcType=INTEGER},
+      tb_product_attr_value_id = #{tbProductAttrValueId,jdbcType=INTEGER},
       tb_product_sku_id = #{tbProductSkuId,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>

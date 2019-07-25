@@ -14,7 +14,7 @@ public class ProductSku {
 
     private Byte showInShelve;
 
-    private Date shelvetime;
+    private Date shelveTime;
 
     private String shelveBy;
 
@@ -42,13 +42,13 @@ public class ProductSku {
 
     private Long tbProductSpuId;
 
-    public ProductSku(Long id, String number, String name, String introduce, Byte showInShelve, Date shelvetime, String shelveBy, Date updateTime, String updateBy, Byte showInTop, Byte showInNav, Byte showInHot, Date createTime, String createBy, String picImage, String searchKey, BigDecimal price, Integer stock, Long tbProductSpuId) {
+    public ProductSku(Long id, String number, String name, String introduce, Byte showInShelve, Date shelveTime, String shelveBy, Date updateTime, String updateBy, Byte showInTop, Byte showInNav, Byte showInHot, Date createTime, String createBy, String picImage, String searchKey, BigDecimal price, Integer stock, Long tbProductSpuId) {
         this.id = id;
         this.number = number;
         this.name = name;
         this.introduce = introduce;
         this.showInShelve = showInShelve;
-        this.shelvetime = shelvetime;
+        this.shelveTime = shelveTime;
         this.shelveBy = shelveBy;
         this.updateTime = updateTime;
         this.updateBy = updateBy;
@@ -108,12 +108,12 @@ public class ProductSku {
         this.showInShelve = showInShelve;
     }
 
-    public Date getShelvetime() {
-        return shelvetime;
+    public Date getShelveTime() {
+        return shelveTime;
     }
 
-    public void setShelvetime(Date shelvetime) {
-        this.shelvetime = shelvetime;
+    public void setShelveTime(Date shelveTime) {
+        this.shelveTime = shelveTime;
     }
 
     public String getShelveBy() {

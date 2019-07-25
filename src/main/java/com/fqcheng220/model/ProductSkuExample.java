@@ -436,63 +436,63 @@ public class ProductSkuExample {
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeIsNull() {
-            addCriterion("shelveTime is null");
+        public Criteria andShelveTimeIsNull() {
+            addCriterion("shelve_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeIsNotNull() {
-            addCriterion("shelveTime is not null");
+        public Criteria andShelveTimeIsNotNull() {
+            addCriterion("shelve_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeEqualTo(Date value) {
-            addCriterion("shelveTime =", value, "shelvetime");
+        public Criteria andShelveTimeEqualTo(Date value) {
+            addCriterion("shelve_time =", value, "shelveTime");
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeNotEqualTo(Date value) {
-            addCriterion("shelveTime <>", value, "shelvetime");
+        public Criteria andShelveTimeNotEqualTo(Date value) {
+            addCriterion("shelve_time <>", value, "shelveTime");
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeGreaterThan(Date value) {
-            addCriterion("shelveTime >", value, "shelvetime");
+        public Criteria andShelveTimeGreaterThan(Date value) {
+            addCriterion("shelve_time >", value, "shelveTime");
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("shelveTime >=", value, "shelvetime");
+        public Criteria andShelveTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("shelve_time >=", value, "shelveTime");
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeLessThan(Date value) {
-            addCriterion("shelveTime <", value, "shelvetime");
+        public Criteria andShelveTimeLessThan(Date value) {
+            addCriterion("shelve_time <", value, "shelveTime");
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeLessThanOrEqualTo(Date value) {
-            addCriterion("shelveTime <=", value, "shelvetime");
+        public Criteria andShelveTimeLessThanOrEqualTo(Date value) {
+            addCriterion("shelve_time <=", value, "shelveTime");
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeIn(List<Date> values) {
-            addCriterion("shelveTime in", values, "shelvetime");
+        public Criteria andShelveTimeIn(List<Date> values) {
+            addCriterion("shelve_time in", values, "shelveTime");
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeNotIn(List<Date> values) {
-            addCriterion("shelveTime not in", values, "shelvetime");
+        public Criteria andShelveTimeNotIn(List<Date> values) {
+            addCriterion("shelve_time not in", values, "shelveTime");
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeBetween(Date value1, Date value2) {
-            addCriterion("shelveTime between", value1, value2, "shelvetime");
+        public Criteria andShelveTimeBetween(Date value1, Date value2) {
+            addCriterion("shelve_time between", value1, value2, "shelveTime");
             return (Criteria) this;
         }
 
-        public Criteria andShelvetimeNotBetween(Date value1, Date value2) {
-            addCriterion("shelveTime not between", value1, value2, "shelvetime");
+        public Criteria andShelveTimeNotBetween(Date value1, Date value2) {
+            addCriterion("shelve_time not between", value1, value2, "shelveTime");
             return (Criteria) this;
         }
 

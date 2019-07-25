@@ -15,4 +15,5 @@ import java.util.List;
 public class ProductCategorySpecDto {
     public ProductSpec mProductSpec;
     public List<ProductSpecValue> mProductSpecValueList;
+    public ProductSpecValue mProductSpecValue;
 }

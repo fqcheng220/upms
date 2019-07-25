@@ -164,6 +164,66 @@ public class ProductSkuAttrValueExample {
             return (Criteria) this;
         }
 
+        public Criteria andTbProductAttrIdIsNull() {
+            addCriterion("tb_product_attr_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTbProductAttrIdIsNotNull() {
+            addCriterion("tb_product_attr_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTbProductAttrIdEqualTo(Integer value) {
+            addCriterion("tb_product_attr_id =", value, "tbProductAttrId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTbProductAttrIdNotEqualTo(Integer value) {
+            addCriterion("tb_product_attr_id <>", value, "tbProductAttrId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTbProductAttrIdGreaterThan(Integer value) {
+            addCriterion("tb_product_attr_id >", value, "tbProductAttrId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTbProductAttrIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("tb_product_attr_id >=", value, "tbProductAttrId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTbProductAttrIdLessThan(Integer value) {
+            addCriterion("tb_product_attr_id <", value, "tbProductAttrId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTbProductAttrIdLessThanOrEqualTo(Integer value) {
+            addCriterion("tb_product_attr_id <=", value, "tbProductAttrId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTbProductAttrIdIn(List<Integer> values) {
+            addCriterion("tb_product_attr_id in", values, "tbProductAttrId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTbProductAttrIdNotIn(List<Integer> values) {
+            addCriterion("tb_product_attr_id not in", values, "tbProductAttrId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTbProductAttrIdBetween(Integer value1, Integer value2) {
+            addCriterion("tb_product_attr_id between", value1, value2, "tbProductAttrId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTbProductAttrIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("tb_product_attr_id not between", value1, value2, "tbProductAttrId");
+            return (Criteria) this;
+        }
+
         public Criteria andTbProductAttrValueIdIsNull() {
             addCriterion("tb_product_attr_value_id is null");
             return (Criteria) this;

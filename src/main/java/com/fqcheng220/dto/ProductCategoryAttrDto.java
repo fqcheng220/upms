@@ -15,4 +15,5 @@ import java.util.List;
 public class ProductCategoryAttrDto {
     public ProductAttr mProductAttr;
     public List<ProductAttrValue> mProductAttrValueList;
+    public ProductAttrValue mProductAttrValue;
 }

@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fqcheng220.dao.ProductSkuMapper">
+  <resultMap id="listEnhancedResultMap" type="com.fqcheng220.dto.ProductSkuDto">
+    <result column="tb_product_spu_id" property="tbProductSpuId" jdbcType="BIGINT"/>
+    <result column="tb_product_spu_name" property="tbProductSpuName" jdbcType="VARCHAR"/>
+    <result column="tb_product_category_id" property="tbProductCategoryId" jdbcType="BIGINT"/>
+    <result column="tb_product_category_name" property="tbProductCategoryName" jdbcType="VARCHAR"/>
+    <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku">
+      <id column="tb_product_sku_id" property="id" jdbcType="BIGINT"/>
+      <result column="tb_product_sku_name" property="name" jdbcType="VARCHAR"/>
+    </association>
+    <collection property="mProductCategoryAttrDtoList" javaType="java.util.List" ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategoryAttrDto">
+      <association property="mProductAttr" javaType="com.fqcheng220.model.ProductAttr">
+        <id column="tb_product_attr_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_attr_name" property="name" jdbcType="VARCHAR"/>
+      </association>
+      <association property="mProductAttrValue" javaType="com.fqcheng220.model.ProductAttrValue">
+        <id column="tb_product_attr_value_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_attr_value_value" property="value" jdbcType="VARCHAR"/>
+      </association>
+    </collection>
+    <collection property="mProductCategorySpecDtoList" javaType="java.util.List" ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategorySpecDto">
+      <association property="mProductSpec" javaType="com.fqcheng220.model.ProductSpec">
+        <id column="tb_product_spec_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_spec_name" property="name" jdbcType="VARCHAR"/>
+      </association>
+      <association property="mProductSpecValue" javaType="com.fqcheng220.model.ProductSpecValue">
+        <id column="tb_product_spec_value_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_spec_value_value" property="value" jdbcType="VARCHAR"/>
+      </association>
+    </collection>
+  </resultMap>
+
+  <!--association不能写在开头-->
+  <!--<resultMap id="listEnhancedResultMap" type="com.fqcheng220.dto.ProductSkuDto">
+    <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku">
+      <id column="tb_product_sku_id" property="id" jdbcType="BIGINT"/>
+      <result column="tb_product_sku_name" property="name" jdbcType="VARCHAR"/>
+    </association>
+    <result column="tb_product_spu_id" property="tbProductSpuId" jdbcType="BIGINT"/>
+    <result column="tb_product_spu_name" property="tbProductSpuName" jdbcType="VARCHAR"/>
+    <result column="tb_product_category_id" property="tbProductCategoryId" jdbcType="BIGINT"/>
+    <result column="tb_product_category_name" property="tbProductCategoryName" jdbcType="VARCHAR"/>
+    <collection property="mProductCategoryAttrDtoList" javaType="java.util.List" ofType="com.fqcheng220.dto.ProductSkuDto.ProductCategoryAttrDto">
+      <association property="mProductAttr" javaType="com.fqcheng220.model.ProductAttr">
+        <id column="tb_product_attr_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_attr_name" property="name" jdbcType="VARCHAR"/>
+      </association>
+      <association property="mProductAttrValue" javaType="com.fqcheng220.model.ProductAttrValue">
+        <id column="tb_product_attr_value_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_attr_value_value" property="value" jdbcType="VARCHAR"/>
+      </association>
+    </collection>
+    <collection property="mProductCategorySpecDtoList" javaType="java.util.List" ofType="com.fqcheng220.dto.ProductSkuDto.ProductCategorySpecDto">
+      <association property="mProductSpec" javaType="com.fqcheng220.model.ProductSpec">
+        <id column="tb_product_spec_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_spec_name" property="name" jdbcType="VARCHAR"/>
+      </association>
+      <association property="mProductSpecValue" javaType="com.fqcheng220.model.ProductSpecValue">
+        <id column="tb_product_spec_value_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_spec_value_value" property="value" jdbcType="VARCHAR"/>
+      </association>
+    </collection>
+  </resultMap>-->
+
+  <select id="listEnhanced" resultMap="listEnhancedResultMap">
+    select
+    a.id as tb_product_sku_id,
+    a.name as tb_product_sku_name,
+
+    b.id as tb_product_spu_id,
+    b.spuName as tb_product_spu_name,
+
+    c.id as tb_product_category_id,
+    c.name as tb_product_category_name,
+
+    d.id as tb_product_attr_id,
+    d.name as tb_product_attr_name,
+
+    e.id as tb_product_attr_value_id,
+    e.value as tb_product_attr_value_value,
+
+    g.id as tb_product_spec_id,
+    g.name as tb_product_spec_name,
+
+    h.id as tb_product_spec_value_id,
+    h.value as tb_product_spec_value_value
+
+    from tb_product_sku a
+    left outer join tb_product_spu b
+    on a.tb_product_spu_id = b.id
+    left outer join tb_product_category c
+    on c.id = b.tb_product_category_id
+
+    left outer join tb_product_attr d
+    on c.id = d.tb_product_category_id
+    left outer join tb_product_attr_value e
+    on d.id = e.tb_product_attr_id
+    right outer join tb_product_sku_attr_value f
+    on (d.id = f.tb_product_attr_id AND e.id = f.tb_product_attr_value_id)
+
+    left outer join tb_product_spec g
+    on c.id = g.tb_product_category_id
+    left outer join tb_product_spec_value h
+    on g.id = h.tb_product_spec_id
+    right outer join tb_product_sku_spec_value i
+    on (g.id = i.tb_product_spec_id AND h.id = i.tb_product_spec_value_id);
+  </select>
+
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSku">
     <constructor>
       <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
@@ -8,7 +115,7 @@
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="show_in_shelve" javaType="java.lang.Byte" jdbcType="TINYINT" />
-      <arg column="shelveTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="shelve_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="shelve_by" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="update_by" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -83,7 +190,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, number, name, introduce, show_in_shelve, shelveTime, shelve_by, update_time, 
+    id, number, name, introduce, show_in_shelve, shelve_time, shelve_by, update_time, 
     update_by, show_in_top, show_in_nav, show_in_hot, create_time, create_by, pic_image, 
     search_key, price, stock, tb_product_spu_id
   </sql>
@@ -119,14 +226,14 @@
   </delete>
   <insert id="insert" parameterType="com.fqcheng220.model.ProductSku">
     insert into tb_product_sku (id, number, name, 
-      introduce, show_in_shelve, shelveTime, 
+      introduce, show_in_shelve, shelve_time, 
       shelve_by, update_time, update_by, 
       show_in_top, show_in_nav, show_in_hot, 
       create_time, create_by, pic_image, 
       search_key, price, stock, 
       tb_product_spu_id)
     values (#{id,jdbcType=BIGINT}, #{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{introduce,jdbcType=VARCHAR}, #{showInShelve,jdbcType=TINYINT}, #{shelvetime,jdbcType=TIMESTAMP}, 
+      #{introduce,jdbcType=VARCHAR}, #{showInShelve,jdbcType=TINYINT}, #{shelveTime,jdbcType=TIMESTAMP}, 
       #{shelveBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
       #{showInTop,jdbcType=TINYINT}, #{showInNav,jdbcType=TINYINT}, #{showInHot,jdbcType=TINYINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{picImage,jdbcType=VARCHAR}, 
@@ -151,8 +258,8 @@
       <if test="showInShelve != null">
         show_in_shelve,
       </if>
-      <if test="shelvetime != null">
-        shelveTime,
+      <if test="shelveTime != null">
+        shelve_time,
       </if>
       <if test="shelveBy != null">
         shelve_by,
@@ -210,8 +317,8 @@
       <if test="showInShelve != null">
         #{showInShelve,jdbcType=TINYINT},
       </if>
-      <if test="shelvetime != null">
-        #{shelvetime,jdbcType=TIMESTAMP},
+      <if test="shelveTime != null">
+        #{shelveTime,jdbcType=TIMESTAMP},
       </if>
       <if test="shelveBy != null">
         #{shelveBy,jdbcType=VARCHAR},
@@ -278,8 +385,8 @@
       <if test="record.showInShelve != null">
         show_in_shelve = #{record.showInShelve,jdbcType=TINYINT},
       </if>
-      <if test="record.shelvetime != null">
-        shelveTime = #{record.shelvetime,jdbcType=TIMESTAMP},
+      <if test="record.shelveTime != null">
+        shelve_time = #{record.shelveTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.shelveBy != null">
         shelve_by = #{record.shelveBy,jdbcType=VARCHAR},
@@ -332,7 +439,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       introduce = #{record.introduce,jdbcType=VARCHAR},
       show_in_shelve = #{record.showInShelve,jdbcType=TINYINT},
-      shelveTime = #{record.shelvetime,jdbcType=TIMESTAMP},
+      shelve_time = #{record.shelveTime,jdbcType=TIMESTAMP},
       shelve_by = #{record.shelveBy,jdbcType=VARCHAR},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       update_by = #{record.updateBy,jdbcType=VARCHAR},
@@ -365,8 +472,8 @@
       <if test="showInShelve != null">
         show_in_shelve = #{showInShelve,jdbcType=TINYINT},
       </if>
-      <if test="shelvetime != null">
-        shelveTime = #{shelvetime,jdbcType=TIMESTAMP},
+      <if test="shelveTime != null">
+        shelve_time = #{shelveTime,jdbcType=TIMESTAMP},
       </if>
       <if test="shelveBy != null">
         shelve_by = #{shelveBy,jdbcType=VARCHAR},
@@ -416,7 +523,7 @@
       name = #{name,jdbcType=VARCHAR},
       introduce = #{introduce,jdbcType=VARCHAR},
       show_in_shelve = #{showInShelve,jdbcType=TINYINT},
-      shelveTime = #{shelvetime,jdbcType=TIMESTAMP},
+      shelve_time = #{shelveTime,jdbcType=TIMESTAMP},
       shelve_by = #{shelveBy,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       update_by = #{updateBy,jdbcType=VARCHAR},

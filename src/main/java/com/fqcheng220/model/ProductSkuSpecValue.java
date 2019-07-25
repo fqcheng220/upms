@@ -3,12 +3,15 @@ package com.fqcheng220.model;
 public class ProductSkuSpecValue {
     private Integer id;
 
+    private Integer tbProductSpecId;
+
     private Integer tbProductSpecValueId;
 
     private Long tbProductSkuId;
 
-    public ProductSkuSpecValue(Integer id, Integer tbProductSpecValueId, Long tbProductSkuId) {
+    public ProductSkuSpecValue(Integer id, Integer tbProductSpecId, Integer tbProductSpecValueId, Long tbProductSkuId) {
         this.id = id;
+        this.tbProductSpecId = tbProductSpecId;
         this.tbProductSpecValueId = tbProductSpecValueId;
         this.tbProductSkuId = tbProductSkuId;
     }
@@ -23,6 +26,14 @@ public class ProductSkuSpecValue {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getTbProductSpecId() {
+        return tbProductSpecId;
+    }
+
+    public void setTbProductSpecId(Integer tbProductSpecId) {
+        this.tbProductSpecId = tbProductSpecId;
     }
 
     public Integer getTbProductSpecValueId() {

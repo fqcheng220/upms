@@ -376,7 +376,7 @@ CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_sku` (
   `name` VARCHAR(64) NULL COMMENT '商品名称',
   `introduce` VARCHAR(64) NULL COMMENT '商品简介',
   `show_in_shelve` TINYINT(2) NULL DEFAULT 0 COMMENT '是否上架：1=上架/0=下架',
-  `shelveTime` DATETIME(6) NULL COMMENT '上架时间',
+  `shelve_time` DATETIME(6) NULL COMMENT '上架时间',
   `shelve_by` VARCHAR(45) NULL COMMENT '上架人',
   `update_time` DATETIME(6) NULL COMMENT '更新时间',
   `update_by` VARCHAR(45) NULL COMMENT '更新者',
@@ -439,11 +439,18 @@ DROP TABLE IF EXISTS `db_stone_mall`.`tb_product_sku_spec_value` ;
 
 CREATE TABLE IF NOT EXISTS `db_stone_mall`.`tb_product_sku_spec_value` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `tb_product_spec_id` INT NOT NULL,
   `tb_product_spec_value_id` INT NOT NULL,
   `tb_product_sku_id` BIGINT(20) NOT NULL,
   PRIMARY KEY (`id`),
+  INDEX `fk_tb_product_sku_spec_value_tb_product_spec_idx` (`tb_product_spec_id` ASC),
   INDEX `fk_tb_product_sku_spec_value_tb_product_spec_value1_idx` (`tb_product_spec_value_id` ASC),
   INDEX `fk_tb_product_sku_spec_value_tb_product_sku1_idx` (`tb_product_sku_id` ASC),
+  CONSTRAINT `fk_tb_product_sku_spec_value_tb_product_spec_id`
+    FOREIGN KEY (`tb_product_spec_id`)
+    REFERENCES `db_stone_mall`.`tb_product_spec` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_tb_product_sku_spec_value_tb_product_spec_value1`
     FOREIGN KEY (`tb_product_spec_value_id`)
     REFERENCES `db_stone_mall`.`tb_product_spec_value` (`id`)
@@ -506,8 +513,8 @@ INSERT INTO `tb_product_category` VALUES ('0', '15', '防晒衫', null, '1', '3'
 INSERT INTO `tb_product_category` VALUES ('0', '15', '薄外套', null, '1', '3', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null, null);
 INSERT INTO `tb_product_category` VALUES ('0', '15', '披肩外套', null, '1', '3', '0', '0', '0', '2017-02-25 21:44:43', 'test', '2017-02-25 21:44:48', 'test', '全部商品', null, null, null, null);
 
-INSERT INTO `tb_product_attr` VALUES ('0', '版型', '16');
-INSERT INTO `tb_product_attr` VALUES ('0', '衣长', '16');
+INSERT INTO `tb_product_attr` VALUES ('0', '衣长', '17');
+INSERT INTO `tb_product_attr` VALUES ('0', '版型', '17');
 
 INSERT INTO `tb_product_attr_value` VALUES ('0', '超长款', '1');
 INSERT INTO `tb_product_attr_value` VALUES ('0', '中长款', '1');
@@ -520,8 +527,8 @@ INSERT INTO `tb_product_attr_value` VALUES ('0', '露肩型', '2');
 INSERT INTO `tb_product_attr_value` VALUES ('0', '直筒型', '2');
 INSERT INTO `tb_product_attr_value` VALUES ('0', '修身型', '2');
 
-INSERT INTO `tb_product_spec` VALUES ('0', '尺码', '16');
-INSERT INTO `tb_product_spec` VALUES ('0', '颜色', '16');
+INSERT INTO `tb_product_spec` VALUES ('0', '尺码', '17');
+INSERT INTO `tb_product_spec` VALUES ('0', '颜色', '17');
 
 INSERT INTO `tb_product_spec_value` VALUES ('0', 'S', '1');
 INSERT INTO `tb_product_spec_value` VALUES ('0', 'M', '1');
@@ -540,11 +547,11 @@ INSERT INTO `tb_product_spu` VALUES ('0', '1234567', '披肩外套SPU',null,null
 
 INSERT INTO `tb_product_sku` VALUES ('0', '1234567', '普通薄外套女sku',null,null,null,null,null,null,null,null,null,null,null,null,null,'160.00','20','1');
 
-INSERT INTO `tb_product_sku_attr_value` VALUES ('0', '1','1');
-INSERT INTO `tb_product_sku_attr_value` VALUES ('0', '8','1');
+INSERT INTO `tb_product_sku_attr_value` VALUES ('0', '2', '8','1');
+INSERT INTO `tb_product_sku_attr_value` VALUES ('0', '1', '1','1');
 
-INSERT INTO `tb_product_sku_spec_value` VALUES ('0', '1','1');
-INSERT INTO `tb_product_sku_spec_value` VALUES ('0', '6','1');
+INSERT INTO `tb_product_sku_spec_value` VALUES ('0', '1', '1','1');
+INSERT INTO `tb_product_sku_spec_value` VALUES ('0', '2', '6','1');
 
 INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/162/4/3727/83121/5b997bffEa033f072/d0ef923444593847.jpg!q70.jpg.webp',1,null,'1');
 INSERT INTO `tb_product_spu_img` VALUES ('0', 'https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/160/24/3733/77954/5b997bffE0045db72/b5fe450b7a45a3c8.jpg!q70.jpg.webp',2,null,'1');
