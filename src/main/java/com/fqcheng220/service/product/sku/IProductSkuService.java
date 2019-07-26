@@ -9,4 +9,9 @@ import java.util.List;
 
 public interface IProductSkuService extends IBaseService<ProductSku,ProductSkuExample> {
     List<ProductSkuDto> listEnhanced();
+    List<ProductSkuDto> listEnhancedBySpec();
+    List<ProductSkuDto> listEnhancedByAttr();
+
+    List<ProductSkuDto> listEnhancedByAttrSimpleValuesList();
+    List<ProductSkuDto> listEnhancedByAttrSimpleValue();
 }

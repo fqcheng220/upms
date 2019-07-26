@@ -8,4 +8,9 @@ import java.util.List;
 
 public interface ProductSkuMapper extends IBaseMapper<ProductSku,ProductSkuExample>{
     List<ProductSkuDto> listEnhanced();
+    List<ProductSkuDto> listEnhancedBySpec();
+    List<ProductSkuDto> listEnhancedByAttr();
+
+    List<ProductSkuDto> listEnhancedByAttrSimpleValuesList();
+    List<ProductSkuDto> listEnhancedByAttrSimpleValue();
 }

@@ -515,6 +515,10 @@ INSERT INTO `tb_product_category` VALUES ('0', '15', '披肩外套', null, '1', 
 
 INSERT INTO `tb_product_attr` VALUES ('0', '衣长', '17');
 INSERT INTO `tb_product_attr` VALUES ('0', '版型', '17');
+INSERT INTO `tb_product_attr` VALUES ('0', '风格', '17');
+INSERT INTO `tb_product_attr` VALUES ('0', '材质', '17');
+INSERT INTO `tb_product_attr` VALUES ('0', '流行元素', '17');
+INSERT INTO `tb_product_attr` VALUES ('0', '上市时间', '17');
 
 INSERT INTO `tb_product_attr_value` VALUES ('0', '超长款', '1');
 INSERT INTO `tb_product_attr_value` VALUES ('0', '中长款', '1');
@@ -529,6 +533,8 @@ INSERT INTO `tb_product_attr_value` VALUES ('0', '修身型', '2');
 
 INSERT INTO `tb_product_spec` VALUES ('0', '尺码', '17');
 INSERT INTO `tb_product_spec` VALUES ('0', '颜色', '17');
+INSERT INTO `tb_product_spec` VALUES ('0', '主要材质', '17');
+INSERT INTO `tb_product_spec` VALUES ('0', '领袖', '17');
 
 INSERT INTO `tb_product_spec_value` VALUES ('0', 'S', '1');
 INSERT INTO `tb_product_spec_value` VALUES ('0', 'M', '1');
@@ -545,7 +551,9 @@ INSERT INTO `tb_product_brand` VALUES ('0', 'Gucci', '');
 INSERT INTO `tb_product_spu` VALUES ('0', '1234567', '普通薄外套女',null,null,null,null,null,null,null,null,null,null,null,'https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/27f3dfef133596732532994049/v.f30.mp4?dockingId=3790b700-2f59-47d0-add4-2c9bc2846fca&storageSource=3',null,'17','1');
 INSERT INTO `tb_product_spu` VALUES ('0', '1234567', '披肩外套SPU',null,null,null,null,null,null,null,null,null,null,null,'https://vod.300hu.com/4c1f7a6atransbjngwcloud1oss/27f3dfef133596732532994049/v.f30.mp4?dockingId=3790b700-2f59-47d0-add4-2c9bc2846fca&storageSource=3',null,'18','1');
 
-INSERT INTO `tb_product_sku` VALUES ('0', '1234567', '普通薄外套女sku',null,null,null,null,null,null,null,null,null,null,null,null,null,'160.00','20','1');
+INSERT INTO `tb_product_sku` VALUES ('0', '1234567', '普通薄外套女sku0',null,null,null,null,null,null,null,null,null,null,null,null,null,'160.00','20','1');
+INSERT INTO `tb_product_sku` VALUES ('0', '1234567', '普通薄外套女sku1',null,null,null,null,null,null,null,null,null,null,null,null,null,'160.00','20','1');
+INSERT INTO `tb_product_sku` VALUES ('0', '1234567', '普通薄外套女sku2',null,null,null,null,null,null,null,null,null,null,null,null,null,'160.00','20','1');
 
 INSERT INTO `tb_product_sku_attr_value` VALUES ('0', '2', '8','1');
 INSERT INTO `tb_product_sku_attr_value` VALUES ('0', '1', '1','1');

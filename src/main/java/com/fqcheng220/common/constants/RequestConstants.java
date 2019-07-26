@@ -99,4 +99,9 @@ public interface RequestConstants {
     public static final int TYPE_PRODUCT_SKU_SPECVALUE_DEL = 322;
     public static final int TYPE_PRODUCT_SKU_SPECVALUE_UPDATE = 323;
     public static final int TYPE_PRODUCT_SKU_SPECVALUE_LIST_ALL = 324;
+
+    public static final int TYPE_PRODUCT_SKU_ENHANCED_ATTR_LIST_ALL = 325;
+    public static final int TYPE_PRODUCT_SKU_ENHANCED_SPEC_LIST_ALL = 326;
+    public static final int TYPE_PRODUCT_SKU_ENHANCED_COMB_LIST_ALL = 327;
+    public static final int TYPE_PRODUCT_SKU_ENHANCED_COMB_NEW_LIST_ALL = 328;
 }

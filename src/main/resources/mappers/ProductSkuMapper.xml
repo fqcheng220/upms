@@ -1,34 +1,353 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fqcheng220.dao.ProductSkuMapper">
-  <resultMap id="listEnhancedResultMap" type="com.fqcheng220.dto.ProductSkuDto">
+  <!--连接查询效率 性能待考虑-->
+  <!--假设K个分类 每个分类有L个sku 每个sku对应M个属性 每个属性对应N个属性值 此sql会返回K*L*M*N条记录-->
+  <!--如果分开两条sql查询 -->
+  <!--查询sku对应属性值 会返回K*L*M条记录-->
+  <!--查询sku对应分类属性支持的取值 会返回K*M*N条记录 最后做记录拼接是否效率更高？？？-->
+
+  <!--attr属性复合查询 每个属性对应的属性值列表（可以为空） 以及当前每个sku对应的当前属性取值（可以为空）-->
+  <resultMap id="listEnhancedByAttrResultMap" type="com.fqcheng220.dto.ProductSkuDto">
+    <!--由于我们select中没有显示指定ProductSku表的字段 使用*代替 -->
+    <!--非常重要 不然不能去重 此处id为ProductSku表的主键-->
+    <id column="id" jdbcType="BIGINT"/>
     <result column="tb_product_spu_id" property="tbProductSpuId" jdbcType="BIGINT"/>
     <result column="tb_product_spu_name" property="tbProductSpuName" jdbcType="VARCHAR"/>
     <result column="tb_product_category_id" property="tbProductCategoryId" jdbcType="BIGINT"/>
     <result column="tb_product_category_name" property="tbProductCategoryName" jdbcType="VARCHAR"/>
-    <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku">
-      <id column="tb_product_sku_id" property="id" jdbcType="BIGINT"/>
-      <result column="tb_product_sku_name" property="name" jdbcType="VARCHAR"/>
+    <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku"  resultMap="BaseResultMap">
     </association>
-    <collection property="mProductCategoryAttrDtoList" javaType="java.util.List" ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategoryAttrDto">
+    <collection property="mProductCategoryAttrDtoList" javaType="java.util.List"
+                ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategoryAttrDto">
+      <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
+                   可以不设置property-->
+      <id column="tb_product_attr_id" jdbcType="BIGINT"/>
       <association property="mProductAttr" javaType="com.fqcheng220.model.ProductAttr">
         <id column="tb_product_attr_id" property="id" jdbcType="BIGINT"/>
         <result column="tb_product_attr_name" property="name" jdbcType="VARCHAR"/>
       </association>
-      <association property="mProductAttrValue" javaType="com.fqcheng220.model.ProductAttrValue">
-        <id column="tb_product_attr_value_id" property="id" jdbcType="BIGINT"/>
-        <result column="tb_product_attr_value_value" property="value" jdbcType="VARCHAR"/>
+      <association property="mProductAttrValue" javaType="com.fqcheng220.model.ProductAttrValue"
+                   resultMap="productAttrValue">
       </association>
+      <collection property="mProductAttrValueList" javaType="java.util.List"
+                  ofType="com.fqcheng220.model.ProductAttrValue" resultMap="productAttrValue" columnPrefix="enum_">
+      </collection>
     </collection>
-    <collection property="mProductCategorySpecDtoList" javaType="java.util.List" ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategorySpecDto">
+  </resultMap>
+
+  <resultMap id="productAttrValue" type="com.fqcheng220.model.ProductAttrValue">
+    <id column="tb_product_attr_value_id" property="id" jdbcType="BIGINT"/>
+    <result column="tb_product_attr_value_value" property="value" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="listEnhancedByAttr" resultMap="listEnhancedByAttrResultMap">
+    select
+    a.*,
+
+    b.id as tb_product_spu_id,
+    b.spuName as tb_product_spu_name,
+
+    c.id as tb_product_category_id,
+    c.name as tb_product_category_name,
+
+    d.id as tb_product_attr_id,
+    d.name as tb_product_attr_name,
+
+    e.id as tb_product_attr_value_id,
+    e.value as tb_product_attr_value_value,
+
+    e1.id as enum_tb_product_attr_value_id,
+    e1.value as enum_tb_product_attr_value_value
+
+    from tb_product_sku a
+    left outer join tb_product_spu b
+    on a.tb_product_spu_id = b.id
+    left outer join tb_product_category c
+    on c.id = b.tb_product_category_id
+
+    left outer join tb_product_attr d
+    on c.id = d.tb_product_category_id
+    left outer join tb_product_sku_attr_value f
+    on f.tb_product_attr_id = d.id AND f.tb_product_sku_id = a.id
+    left outer join tb_product_attr_value e
+    on e.tb_product_attr_id = d.id AND e.id = f.tb_product_attr_value_id
+
+    left outer join tb_product_attr_value e1
+    on e1.tb_product_attr_id = d.id
+    order by tb_product_attr_id asc,a.id asc
+    ;
+  </select>
+
+  <!--连接查询效率 性能待考虑-->
+  <!--attr属性复合查询 每个属性对应的属性值列表（可以为空）-->
+  <resultMap id="listEnhancedByAttrSimpleValuesListResultMap" type="com.fqcheng220.dto.ProductSkuDto">
+    <!--由于我们select中没有显示指定ProductSku表的字段 使用*代替 -->
+    <!--非常重要 不然不能去重 此处id为ProductSku表的主键-->
+    <id column="id" jdbcType="BIGINT"/>
+    <result column="tb_product_spu_id" property="tbProductSpuId" jdbcType="BIGINT"/>
+    <result column="tb_product_spu_name" property="tbProductSpuName" jdbcType="VARCHAR"/>
+    <result column="tb_product_category_id" property="tbProductCategoryId" jdbcType="BIGINT"/>
+    <result column="tb_product_category_name" property="tbProductCategoryName" jdbcType="VARCHAR"/>
+    <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku"  resultMap="BaseResultMap">
+    </association>
+    <collection property="mProductCategoryAttrDtoList" javaType="java.util.List"
+                ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategoryAttrDto">
+      <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
+                   可以不设置property-->
+      <id column="tb_product_attr_id" jdbcType="BIGINT"/>
+      <association property="mProductAttr" javaType="com.fqcheng220.model.ProductAttr">
+        <id column="tb_product_attr_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_attr_name" property="name" jdbcType="VARCHAR"/>
+      </association>
+      <association property="mProductAttrValue" javaType="com.fqcheng220.model.ProductAttrValue"
+                   resultMap="productAttrValue">
+      </association>
+      <collection property="mProductAttrValueList" javaType="java.util.List"
+                  ofType="com.fqcheng220.model.ProductAttrValue" resultMap="productAttrValue" columnPrefix="enum_">
+      </collection>
+    </collection>
+  </resultMap>
+
+  <select id="listEnhancedByAttrSimpleValuesList" resultMap="listEnhancedByAttrResultMap">
+    select
+    a.*,
+
+    b.id as tb_product_spu_id,
+    b.spuName as tb_product_spu_name,
+
+    c.id as tb_product_category_id,
+    c.name as tb_product_category_name,
+
+    d.id as tb_product_attr_id,
+    d.name as tb_product_attr_name,
+
+    e1.id as enum_tb_product_attr_value_id,
+    e1.value as enum_tb_product_attr_value_value
+
+    from tb_product_sku a
+    left outer join tb_product_spu b
+    on a.tb_product_spu_id = b.id
+    left outer join tb_product_category c
+    on c.id = b.tb_product_category_id
+
+    left outer join tb_product_attr d
+    on c.id = d.tb_product_category_id
+
+    left outer join tb_product_attr_value e1
+    on e1.tb_product_attr_id = d.id
+    order by tb_product_attr_id asc,a.id asc
+    ;
+  </select>
+
+  <!--连接查询效率 性能待考虑-->
+  <!--attr属性复合查询 当前每个sku对应的当前属性取值（可以为空）-->
+  <resultMap id="listEnhancedByAttrSimpleValueResultMap" type="com.fqcheng220.dto.ProductSkuDto">
+    <!--由于我们select中没有显示指定ProductSku表的字段 使用*代替 -->
+    <!--非常重要 不然不能去重 此处id为ProductSku表的主键-->
+    <id column="id" jdbcType="BIGINT"/>
+    <result column="tb_product_spu_id" property="tbProductSpuId" jdbcType="BIGINT"/>
+    <result column="tb_product_spu_name" property="tbProductSpuName" jdbcType="VARCHAR"/>
+    <result column="tb_product_category_id" property="tbProductCategoryId" jdbcType="BIGINT"/>
+    <result column="tb_product_category_name" property="tbProductCategoryName" jdbcType="VARCHAR"/>
+    <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku"  resultMap="BaseResultMap">
+    </association>
+    <collection property="mProductCategoryAttrDtoList" javaType="java.util.List"
+                ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategoryAttrDto">
+      <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
+                   可以不设置property-->
+      <id column="tb_product_attr_id" jdbcType="BIGINT"/>
+      <association property="mProductAttr" javaType="com.fqcheng220.model.ProductAttr">
+        <id column="tb_product_attr_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_attr_name" property="name" jdbcType="VARCHAR"/>
+      </association>
+      <association property="mProductAttrValue" javaType="com.fqcheng220.model.ProductAttrValue"
+                   resultMap="productAttrValue">
+      </association>
+      <collection property="mProductAttrValueList" javaType="java.util.List"
+                  ofType="com.fqcheng220.model.ProductAttrValue" resultMap="productAttrValue" columnPrefix="enum_">
+      </collection>
+    </collection>
+  </resultMap>
+
+  <select id="listEnhancedByAttrSimpleValue" resultMap="listEnhancedByAttrResultMap">
+    select
+    a.*,
+
+    b.id as tb_product_spu_id,
+    b.spuName as tb_product_spu_name,
+
+    c.id as tb_product_category_id,
+    c.name as tb_product_category_name,
+
+    d.id as tb_product_attr_id,
+    d.name as tb_product_attr_name,
+
+    e.id as tb_product_attr_value_id,
+    e.value as tb_product_attr_value_value
+
+    from tb_product_sku a
+    left outer join tb_product_spu b
+    on a.tb_product_spu_id = b.id
+    left outer join tb_product_category c
+    on c.id = b.tb_product_category_id
+
+    left outer join tb_product_attr d
+    on c.id = d.tb_product_category_id
+    left outer join tb_product_sku_attr_value f
+    on f.tb_product_attr_id = d.id AND f.tb_product_sku_id = a.id
+    left outer join tb_product_attr_value e
+    on e.tb_product_attr_id = d.id AND e.id = f.tb_product_attr_value_id
+    order by tb_product_attr_id asc,a.id asc
+    ;
+  </select>
+
+  <!--<select id="listEnhancedByAttr" resultMap="listEnhancedByAttrResultMap">
+    select
+    a.id as tb_product_sku_id,
+    a.name as tb_product_sku_name,
+
+    b.id as tb_product_spu_id,
+    b.spuName as tb_product_spu_name,
+
+    c.id as tb_product_category_id,
+    c.name as tb_product_category_name,
+
+    d.id as tb_product_attr_id,
+    d.name as tb_product_attr_name,
+
+    e.id as tb_product_attr_value_id,
+    e.value as tb_product_attr_value_value
+
+    from tb_product_sku a
+    left outer join tb_product_spu b
+    on a.tb_product_spu_id = b.id
+    left outer join tb_product_category c
+    on c.id = b.tb_product_category_id
+
+    left outer join tb_product_attr d
+    on c.id = d.tb_product_category_id
+    left outer join tb_product_attr_value e
+    on d.id = e.tb_product_attr_id
+    left outer join tb_product_sku_attr_value f
+    on (d.id = f.tb_product_attr_id AND e.id = f.tb_product_attr_value_id);
+  </select>-->
+
+  <!--连接查询效率 性能待考虑-->
+  <!--spec规格复合查询 每个规格对应的规格值列表（可以为空） 以及当前每个sku对应的当前规格取值（可以为空）-->
+  <resultMap id="listEnhancedBySpecResultMap" type="com.fqcheng220.dto.ProductSkuDto">
+    <!--由于我们select中没有显示指定ProductSku表的字段 使用*代替 -->
+    <!--非常重要 不然不能去重 此处id为ProductSku表的主键-->
+   <id column="id" jdbcType="BIGINT"/>
+   <result column="tb_product_spu_id" property="tbProductSpuId" jdbcType="BIGINT"/>
+   <result column="tb_product_spu_name" property="tbProductSpuName" jdbcType="VARCHAR"/>
+   <result column="tb_product_category_id" property="tbProductCategoryId" jdbcType="BIGINT"/>
+   <result column="tb_product_category_name" property="tbProductCategoryName" jdbcType="VARCHAR"/>
+   <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku"  resultMap="BaseResultMap">
+   </association>
+   <collection property="mProductCategorySpecDtoList" javaType="java.util.List"
+               ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategorySpecDto">
+     <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
+                  可以不设置property-->
+      <id column="tb_product_spec_id" jdbcType="BIGINT"/>
       <association property="mProductSpec" javaType="com.fqcheng220.model.ProductSpec">
         <id column="tb_product_spec_id" property="id" jdbcType="BIGINT"/>
         <result column="tb_product_spec_name" property="name" jdbcType="VARCHAR"/>
       </association>
-      <association property="mProductSpecValue" javaType="com.fqcheng220.model.ProductSpecValue">
-        <id column="tb_product_spec_value_id" property="id" jdbcType="BIGINT"/>
-        <result column="tb_product_spec_value_value" property="value" jdbcType="VARCHAR"/>
+      <association property="mProductSpecValue" javaType="com.fqcheng220.model.ProductSpecValue" resultMap="productSpecValue">
       </association>
+      <collection property="mProductSpecValueList" javaType="java.util.List"
+                  ofType="com.fqcheng220.model.ProductSpecValue" resultMap="productSpecValue" columnPrefix="enum_">
+      </collection>
+    </collection>
+  </resultMap>
+
+  <resultMap id="productSpecValue" type="com.fqcheng220.model.ProductSpecValue">
+    <id column="tb_product_spec_value_id" property="id" jdbcType="BIGINT"/>
+    <result column="tb_product_spec_value_value" property="value" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="listEnhancedBySpec" resultMap="listEnhancedBySpecResultMap">
+    select
+    a.*,
+
+    b.id as tb_product_spu_id,
+    b.spuName as tb_product_spu_name,
+
+    c.id as tb_product_category_id,
+    c.name as tb_product_category_name,
+
+    g.id as tb_product_spec_id,
+    g.name as tb_product_spec_name,
+
+    h.id as tb_product_spec_value_id,
+    h.value as tb_product_spec_value_value,
+
+    h1.id as enum_tb_product_spec_value_id,
+    h1.value as enum_tb_product_spec_value_value
+
+    from tb_product_sku a
+    left outer join tb_product_spu b
+    on a.tb_product_spu_id = b.id
+    left outer join tb_product_category c
+    on c.id = b.tb_product_category_id
+
+    left outer join tb_product_spec g
+    on c.id = g.tb_product_category_id
+    left outer join tb_product_sku_spec_value i
+    on i.tb_product_spec_id = g.id AND i.tb_product_sku_id = a.id
+    left outer join tb_product_spec_value h
+    on h.tb_product_spec_id = g.id AND h.id = i.tb_product_spec_value_id
+
+    left outer join tb_product_spec_value h1
+    on h1.tb_product_spec_id = g.id
+    order by tb_product_spec_id asc,a.id asc
+    ;
+  </select>
+
+  <!--指数级别的连接查询效率 性能待考虑-->
+  <!--attr属性复合查询 每个属性对应的属性值列表（可以为空） 以及当前每个sku对应的当前属性取值（可以为空）-->
+  <!--spec规格复合查询 每个规格对应的规格值列表（可以为空） 以及当前每个sku对应的当前规格取值（可以为空）-->
+  <resultMap id="listEnhancedResultMap" type="com.fqcheng220.dto.ProductSkuDto">
+    <!--由于我们select中没有显示指定ProductSku表的字段 使用*代替 -->
+    <!--非常重要 不然不能去重 此处id为ProductSku表的主键-->
+    <id column="id" jdbcType="BIGINT"/>
+    <result column="tb_product_spu_id" property="tbProductSpuId" jdbcType="BIGINT"/>
+    <result column="tb_product_spu_name" property="tbProductSpuName" jdbcType="VARCHAR"/>
+    <result column="tb_product_category_id" property="tbProductCategoryId" jdbcType="BIGINT"/>
+    <result column="tb_product_category_name" property="tbProductCategoryName" jdbcType="VARCHAR"/>
+    <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku"  resultMap="BaseResultMap">
+    </association>
+    <collection property="mProductCategoryAttrDtoList" javaType="java.util.List"
+                ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategoryAttrDto">
+      <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
+                   可以不设置property-->
+      <id column="tb_product_attr_id" jdbcType="BIGINT"/>
+      <association property="mProductAttr" javaType="com.fqcheng220.model.ProductAttr">
+        <id column="tb_product_attr_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_attr_name" property="name" jdbcType="VARCHAR"/>
+      </association>
+      <association property="mProductAttrValue" javaType="com.fqcheng220.model.ProductAttrValue"
+                   resultMap="productAttrValue">
+      </association>
+      <collection property="mProductAttrValueList" javaType="java.util.List"
+                  ofType="com.fqcheng220.model.ProductAttrValue" resultMap="productAttrValue" columnPrefix="enum_">
+      </collection>
+    </collection>
+    <collection property="mProductCategorySpecDtoList" javaType="java.util.List"
+                ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategorySpecDto">
+      <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
+                   可以不设置property-->
+      <id column="tb_product_spec_id" jdbcType="BIGINT"/>
+      <association property="mProductSpec" javaType="com.fqcheng220.model.ProductSpec">
+        <id column="tb_product_spec_id" property="id" jdbcType="BIGINT"/>
+        <result column="tb_product_spec_name" property="name" jdbcType="VARCHAR"/>
+      </association>
+      <association property="mProductSpecValue" javaType="com.fqcheng220.model.ProductSpecValue" resultMap="productSpecValue">
+      </association>
+      <collection property="mProductSpecValueList" javaType="java.util.List"
+                  ofType="com.fqcheng220.model.ProductSpecValue" resultMap="productSpecValue" columnPrefix="enum_">
+      </collection>
     </collection>
   </resultMap>
 
@@ -66,8 +385,7 @@
 
   <select id="listEnhanced" resultMap="listEnhancedResultMap">
     select
-    a.id as tb_product_sku_id,
-    a.name as tb_product_sku_name,
+    a.*,
 
     b.id as tb_product_spu_id,
     b.spuName as tb_product_spu_name,
@@ -81,11 +399,17 @@
     e.id as tb_product_attr_value_id,
     e.value as tb_product_attr_value_value,
 
+    e1.id as enum_tb_product_attr_value_id,
+    e1.value as enum_tb_product_attr_value_value,
+
     g.id as tb_product_spec_id,
     g.name as tb_product_spec_name,
 
     h.id as tb_product_spec_value_id,
-    h.value as tb_product_spec_value_value
+    h.value as tb_product_spec_value_value,
+
+    h1.id as enum_tb_product_spec_value_id,
+    h1.value as enum_tb_product_spec_value_value
 
     from tb_product_sku a
     left outer join tb_product_spu b
@@ -95,17 +419,24 @@
 
     left outer join tb_product_attr d
     on c.id = d.tb_product_category_id
+    left outer join tb_product_sku_attr_value f
+    on f.tb_product_attr_id = d.id AND f.tb_product_sku_id = a.id
     left outer join tb_product_attr_value e
-    on d.id = e.tb_product_attr_id
-    right outer join tb_product_sku_attr_value f
-    on (d.id = f.tb_product_attr_id AND e.id = f.tb_product_attr_value_id)
+    on e.tb_product_attr_id = d.id AND e.id = f.tb_product_attr_value_id
+
+    left outer join tb_product_attr_value e1
+    on e1.tb_product_attr_id = d.id
 
     left outer join tb_product_spec g
     on c.id = g.tb_product_category_id
+    left outer join tb_product_sku_spec_value i
+    on i.tb_product_spec_id = g.id AND i.tb_product_sku_id = a.id
     left outer join tb_product_spec_value h
-    on g.id = h.tb_product_spec_id
-    right outer join tb_product_sku_spec_value i
-    on (g.id = i.tb_product_spec_id AND h.id = i.tb_product_spec_value_id);
+    on h.tb_product_spec_id = g.id AND h.id = i.tb_product_spec_value_id
+
+    left outer join tb_product_spec_value h1
+    on h1.tb_product_spec_id = g.id
+    order by tb_product_spec_id asc,tb_product_attr_id asc;
   </select>
 
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSku">

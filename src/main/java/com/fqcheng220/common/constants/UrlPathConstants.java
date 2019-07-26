@@ -94,6 +94,10 @@ public interface UrlPathConstants {
     public static final String PRODUCT_SKU_UPDATE = "/product/sku/update";
     public static final String PRODUCT_SKU_LIST_ALL = "/product/sku/list/all";
     public static final String PRODUCT_SKU_ENHANCED_LIST_ALL = "/product/sku-enhanced/list/all";
+    public static final String PRODUCT_SKU_ENHANCED_COMB_LIST_ALL = "/product/sku-enhanced-comb/list/all";
+    public static final String PRODUCT_SKU_ENHANCED_COMB_NEW_LIST_ALL = "/product/sku-enhanced-comb-new/list/all";
+    public static final String PRODUCT_SKU_ENHANCED_ATTR_LIST_ALL = "/product/sku-enhanced-attr/list/all";
+    public static final String PRODUCT_SKU_ENHANCED_SPEC_LIST_ALL = "/product/sku-enhanced-spec/list/all";
     //商品SKU属性值
     public static final String PRODUCT_SKU_ATTRVALUE_ADD = "/product/sku/attrvalue/add";
     public static final String PRODUCT_SKU_ATTRVALUE_DEL = "/product/sku/attrvalue/del";

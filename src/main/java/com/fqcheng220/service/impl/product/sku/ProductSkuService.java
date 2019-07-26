@@ -16,4 +16,24 @@ public class ProductSkuService extends BaseService<ProductSkuMapper,ProductSku,P
     public List<ProductSkuDto> listEnhanced() {
         return mapper.listEnhanced();
     }
+
+    @Override
+    public List<ProductSkuDto> listEnhancedBySpec() {
+        return mapper.listEnhancedBySpec();
+    }
+
+    @Override
+    public List<ProductSkuDto> listEnhancedByAttr() {
+        return mapper.listEnhancedByAttr();
+    }
+
+    @Override
+    public List<ProductSkuDto> listEnhancedByAttrSimpleValuesList() {
+        return mapper.listEnhancedByAttrSimpleValuesList();
+    }
+
+    @Override
+    public List<ProductSkuDto> listEnhancedByAttrSimpleValue() {
+        return mapper.listEnhancedByAttrSimpleValue();
+    }
 }

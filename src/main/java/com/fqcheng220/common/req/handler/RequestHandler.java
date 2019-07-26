@@ -90,6 +90,11 @@ public class RequestHandler {
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_UPDATE,UrlPathConstants.PRODUCT_SKU_UPDATE);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_LIST_ALL,UrlPathConstants.PRODUCT_SKU_LIST_ALL);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ENHANCED_LIST_ALL,UrlPathConstants.PRODUCT_SKU_ENHANCED_LIST_ALL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ENHANCED_COMB_LIST_ALL,UrlPathConstants.PRODUCT_SKU_ENHANCED_COMB_LIST_ALL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ENHANCED_COMB_NEW_LIST_ALL,UrlPathConstants.PRODUCT_SKU_ENHANCED_COMB_NEW_LIST_ALL);
+
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ENHANCED_ATTR_LIST_ALL,UrlPathConstants.PRODUCT_SKU_ENHANCED_ATTR_LIST_ALL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ENHANCED_SPEC_LIST_ALL,UrlPathConstants.PRODUCT_SKU_ENHANCED_SPEC_LIST_ALL);
         //商品SKU属性值
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ATTRVALUE_ADD,UrlPathConstants.PRODUCT_SKU_ATTRVALUE_ADD);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ATTRVALUE_DEL,UrlPathConstants.PRODUCT_SKU_ATTRVALUE_DEL);
