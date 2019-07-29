@@ -19,7 +19,7 @@
     <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku"  resultMap="BaseResultMap">
     </association>
     <collection property="mProductCategoryAttrDtoList" javaType="java.util.List"
-                ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategoryAttrDto">
+                ofType="com.fqcheng220.dto.ProductCategoryAttrDto">
       <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
                    可以不设置property-->
       <id column="tb_product_attr_id" jdbcType="BIGINT"/>
@@ -41,7 +41,7 @@
     <result column="tb_product_attr_value_value" property="value" jdbcType="VARCHAR"/>
   </resultMap>
 
-  <select id="listEnhancedByAttr" resultMap="listEnhancedByAttrResultMap">
+  <select id="listEnhancedByAttr"  resultMap="listEnhancedByAttrResultMap">
     select
     a.*,
 
@@ -75,6 +75,10 @@
 
     left outer join tb_product_attr_value e1
     on e1.tb_product_attr_id = d.id
+
+    <if test="_parameter != null">
+      where a.id = #{_parameter,jdbcType=BIGINT}
+    </if>
     order by tb_product_attr_id asc,a.id asc
     ;
   </select>
@@ -92,7 +96,7 @@
     <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku"  resultMap="BaseResultMap">
     </association>
     <collection property="mProductCategoryAttrDtoList" javaType="java.util.List"
-                ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategoryAttrDto">
+                ofType="com.fqcheng220.dto.ProductCategoryAttrDto">
       <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
                    可以不设置property-->
       <id column="tb_product_attr_id" jdbcType="BIGINT"/>
@@ -153,7 +157,7 @@
     <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku"  resultMap="BaseResultMap">
     </association>
     <collection property="mProductCategoryAttrDtoList" javaType="java.util.List"
-                ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategoryAttrDto">
+                ofType="com.fqcheng220.dto.ProductCategoryAttrDto">
       <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
                    可以不设置property-->
       <id column="tb_product_attr_id" jdbcType="BIGINT"/>
@@ -246,7 +250,7 @@
    <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku"  resultMap="BaseResultMap">
    </association>
    <collection property="mProductCategorySpecDtoList" javaType="java.util.List"
-               ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategorySpecDto">
+               ofType="com.fqcheng220.dto.ProductCategorySpecDto">
      <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
                   可以不设置property-->
       <id column="tb_product_spec_id" jdbcType="BIGINT"/>
@@ -301,6 +305,10 @@
 
     left outer join tb_product_spec_value h1
     on h1.tb_product_spec_id = g.id
+
+    <if test="_parameter != null">
+      where a.id = #{_parameter,jdbcType=BIGINT}
+    </if>
     order by tb_product_spec_id asc,a.id asc
     ;
   </select>
@@ -319,7 +327,7 @@
     <association property="mProductSku" javaType="com.fqcheng220.model.ProductSku"  resultMap="BaseResultMap">
     </association>
     <collection property="mProductCategoryAttrDtoList" javaType="java.util.List"
-                ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategoryAttrDto">
+                ofType="com.fqcheng220.dto.ProductCategoryAttrDto">
       <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
                    可以不设置property-->
       <id column="tb_product_attr_id" jdbcType="BIGINT"/>
@@ -335,7 +343,7 @@
       </collection>
     </collection>
     <collection property="mProductCategorySpecDtoList" javaType="java.util.List"
-                ofType="com.fqcheng220.dto.ProductSkuDto$ProductCategorySpecDto">
+                ofType="com.fqcheng220.dto.ProductCategorySpecDto">
       <!--非常重要 不然不会在嵌套list中去重！！！ 本条resultMap目的就是构造二层嵌套list 详见官网http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html
                    可以不设置property-->
       <id column="tb_product_spec_id" jdbcType="BIGINT"/>

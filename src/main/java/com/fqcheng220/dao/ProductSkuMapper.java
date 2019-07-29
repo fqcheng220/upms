@@ -9,7 +9,9 @@ import java.util.List;
 public interface ProductSkuMapper extends IBaseMapper<ProductSku,ProductSkuExample>{
     List<ProductSkuDto> listEnhanced();
     List<ProductSkuDto> listEnhancedBySpec();
+    List<ProductSkuDto> listEnhancedBySpec(long skuId);
     List<ProductSkuDto> listEnhancedByAttr();
+    List<ProductSkuDto> listEnhancedByAttr(long skuId);
 
     List<ProductSkuDto> listEnhancedByAttrSimpleValuesList();
     List<ProductSkuDto> listEnhancedByAttrSimpleValue();

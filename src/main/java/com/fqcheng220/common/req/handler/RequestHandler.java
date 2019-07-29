@@ -88,6 +88,7 @@ public class RequestHandler {
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ADD,UrlPathConstants.PRODUCT_SKU_ADD);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_DEL,UrlPathConstants.PRODUCT_SKU_DEL);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_UPDATE,UrlPathConstants.PRODUCT_SKU_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_UPDATE_ENHANCED,UrlPathConstants.PRODUCT_SKU_UPDATE_ENHANCED);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_LIST_ALL,UrlPathConstants.PRODUCT_SKU_LIST_ALL);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ENHANCED_LIST_ALL,UrlPathConstants.PRODUCT_SKU_ENHANCED_LIST_ALL);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ENHANCED_COMB_LIST_ALL,UrlPathConstants.PRODUCT_SKU_ENHANCED_COMB_LIST_ALL);
@@ -99,11 +100,13 @@ public class RequestHandler {
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ATTRVALUE_ADD,UrlPathConstants.PRODUCT_SKU_ATTRVALUE_ADD);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ATTRVALUE_DEL,UrlPathConstants.PRODUCT_SKU_ATTRVALUE_DEL);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ATTRVALUE_UPDATE,UrlPathConstants.PRODUCT_SKU_ATTRVALUE_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ATTRVALUE_UPDATE_ENHANCED,UrlPathConstants.PRODUCT_SKU_ATTRVALUE_UPDATE_ENHANCED);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ATTRVALUE_LIST_ALL,UrlPathConstants.PRODUCT_SKU_ATTRVALUE_LIST_ALL);
         //商品SKU规格值
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_SPECVALUE_ADD,UrlPathConstants.PRODUCT_SKU_SPECVALUE_ADD);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_SPECVALUE_DEL,UrlPathConstants.PRODUCT_SKU_SPECVALUE_DEL);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_SPECVALUE_UPDATE,UrlPathConstants.PRODUCT_SKU_SPECVALUE_UPDATE);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_SPECVALUE_UPDATE_ENHANCED,UrlPathConstants.PRODUCT_SKU_SPECVALUE_UPDATE_ENHANCED);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_SPECVALUE_LIST_ALL,UrlPathConstants.PRODUCT_SKU_SPECVALUE_LIST_ALL);
 
     }

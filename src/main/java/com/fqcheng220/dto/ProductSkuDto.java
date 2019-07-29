@@ -21,15 +21,15 @@ public class ProductSkuDto {
 
     public String tbProductCategoryName;
 
-    public static class ProductCategoryAttrDto{
-        public ProductAttr mProductAttr;
-        public List<ProductAttrValue> mProductAttrValueList;
-        public ProductAttrValue mProductAttrValue;
-    }
+//    public static class ProductCategoryAttrDto{
+//        public ProductAttr mProductAttr;
+//        public List<ProductAttrValue> mProductAttrValueList;
+//        public ProductAttrValue mProductAttrValue;
+//    }
 
-    public static class ProductCategorySpecDto{
-        public ProductSpec mProductSpec;
-        public List<ProductSpecValue> mProductSpecValueList;
-        public ProductSpecValue mProductSpecValue;
-    }
+//    public static class ProductCategorySpecDto{
+//        public ProductSpec mProductSpec;
+//        public List<ProductSpecValue> mProductSpecValueList;
+//        public ProductSpecValue mProductSpecValue;
+//    }
 }
