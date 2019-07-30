@@ -13,9 +13,7 @@ import com.fqcheng220.common.resp.ProductSkuSpecValueUpdateResult;
 import com.fqcheng220.controller.BaseController;
 import com.fqcheng220.dto.ProductCategoryAttrDto;
 import com.fqcheng220.dto.ProductSkuDto;
-import com.fqcheng220.dto.ProductSpuImgDtoNew;
-import com.fqcheng220.model.ProductSku;
-import com.fqcheng220.model.ProductSkuExample;
+import com.fqcheng220.model.*;
 import com.fqcheng220.service.product.sku.IProductSkuAttrValueService;
 import com.fqcheng220.service.product.sku.IProductSkuService;
 import com.fqcheng220.service.product.sku.IProductSkuSpecValueService;
@@ -24,8 +22,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -98,7 +94,7 @@ public class ProductSkuController {
      *
      * @return
      */
-    @RequestMapping(value = UrlPathConstants.PRODUCT_SKU_ENHANCED_LIST_ALL, method = RequestMethod.POST)
+    /*@RequestMapping(value = UrlPathConstants.PRODUCT_SKU_ENHANCED_LIST_ALL, method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
     public BaseResponseBody listEnhancedAll(@RequestBody BaseRequestBody requestBody) {
@@ -120,7 +116,7 @@ public class ProductSkuController {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
         }
-    }
+    }*/
 
     /**
      * 查询商品SKU列表Comb(包含属性-属性值 规格-规格值)
@@ -139,29 +135,10 @@ public class ProductSkuController {
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
         }
         try {
-//            List<ProductSkuDto> list = new ArrayList<>();
-            long start = System.currentTimeMillis();
-            List<ProductSkuDto> listEnhancedByAttr = mService.listEnhancedByAttr();
-            long middle = System.currentTimeMillis();
-            mLogger.info("listEnhancedCombAll attr cost time " + (middle - start));
-            List<ProductSkuDto> listEnhancedBySpec = mService.listEnhancedBySpec();
-            mLogger.info("listEnhancedCombAll spec cost time " + (System.currentTimeMillis() - middle));
-            if(listEnhancedByAttr != null){
-                for(ProductSkuDto productSkuDto:listEnhancedByAttr){
-                    if(listEnhancedBySpec != null){
-                        for(ProductSkuDto productSkuDtoInner:listEnhancedBySpec){
-                            if(productSkuDto.mProductSku != null && productSkuDto.mProductSku.getId() == productSkuDtoInner.mProductSku.getId()){
-                                productSkuDto.mProductCategorySpecDtoList = productSkuDtoInner.mProductCategorySpecDtoList;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-            mLogger.info("listEnhancedCombAll total cost time " + (System.currentTimeMillis() - start));
+            List<ProductSkuDto> retList = mService.listEnhancedCombAll();
             return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
                     .setmMsg(String.format(ResponseConstants.MSG_SUC_LIST_FORMAT,"查询商品SKU列表Comb(包含属性-属性值 规格-规格值)"))
-                    .setmResult(listEnhancedByAttr);
+                    .setmResult(retList);
         } catch (Exception e) {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
@@ -188,6 +165,7 @@ public class ProductSkuController {
         if(requestBody == null || requestBody.mEntity == null){
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(ResponseConstants.MSG_ERROR_REQ_ARGS);
         }
+        int updateResultSku = 0;
         int deleteResultAttr = 0;
         int insertResultAttr = 0;
         int updateResultAttr = 0;
@@ -195,8 +173,9 @@ public class ProductSkuController {
         int insertResultSpec = 0;
         int updateResultSpec = 0;
         List<ProductSkuDto> retList = null;
-        //查询不到则新增，查询到了则更新，为空则删除
         try {
+            updateResultSku = mService.updateByPrimaryKeySelective(requestBody.mEntity.mProductSku);
+            //查询不到则新增，查询到了则更新，为空则删除
             ProductSkuAttrValueUpdateResult result = mIProductSkuAttrValueService.updateEnhanced(requestBody.mEntity);
             insertResultAttr = result.mInsertResult;
             deleteResultAttr = result.mDeleteResult;
@@ -215,10 +194,52 @@ public class ProductSkuController {
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
         }
         return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
-                .setmMsg(String.format(ResponseConstants.MSG_SUC_UPDATE_FORMAT, String.format("商品SKU列表(包含属性-属性值 规格-规格值) 属性值删除%s 更新%s 新增%s ，规格值删除%s 更新%s 新增%s ",
+                .setmMsg(String.format(ResponseConstants.MSG_SUC_UPDATE_FORMAT, String.format("商品SKU列表(包含属性-属性值 规格-规格值) 商品SKU更新%s , 属性值删除%s 更新%s 新增%s ，规格值删除%s 更新%s 新增%s ",
+                        updateResultSku,
                         deleteResultAttr,updateResultAttr,insertResultAttr,
                         deleteResultSpec,updateResultSpec,insertResultSpec)))
                 .setmResult(retList);
+    }
+
+    /**
+     * 删除商品SKU列表(包含属性-属性值 规格-规格值)
+     *
+     * @param requestBody
+     * @return
+     */
+    @RequestMapping(value = UrlPathConstants.PRODUCT_SKU_DEL_ENHANCED, method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody delEnhanced(@RequestBody AbstractBaseRequestDelBody<Long> requestBody) {
+        try {
+            //如何直接获取path??
+            RequestHandler.handle(UrlPathConstants.PRODUCT_SKU_DEL_ENHANCED, requestBody);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
+        }
+        int delResultSku = 0;
+        int delResultSkuAttr = 0;
+        int delResultSkuSpec = 0;
+        try {
+            ProductSkuAttrValueExample productSkuAttrValueExample = new ProductSkuAttrValueExample();
+            productSkuAttrValueExample.createCriteria().andTbProductSkuIdIn(requestBody.mEntityList);
+            delResultSkuAttr = mIProductSkuAttrValueService.deleteByExample(productSkuAttrValueExample);
+
+            ProductSkuSpecValueExample productSkuSpecValueExample = new ProductSkuSpecValueExample();
+            productSkuSpecValueExample.createCriteria().andTbProductSkuIdIn(requestBody.mEntityList);
+            delResultSkuSpec = mIProductSkuSpecValueService.deleteByExample(productSkuSpecValueExample);
+
+            ProductSkuExample example = new ProductSkuExample();
+            example.createCriteria().andIdIn(requestBody.mEntityList);
+            delResultSku = mService.deleteByExample(example);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
+        }
+        return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
+                .setmMsg(String.format(ResponseConstants.MSG_SUC_DEL_FORMAT, String.format("商品SKU列表(包含属性-属性值 规格-规格值) 商品SKU删除%s , 属性值删除%s ，规格值删除%s ",
+                        delResultSku,delResultSkuAttr,delResultSkuSpec)));
     }
 
     private void combineProductAttrValueList(List<ProductCategoryAttrDto> dest,List<ProductCategoryAttrDto> source) {

@@ -107,4 +107,5 @@ public interface RequestConstants {
     public static final int TYPE_PRODUCT_SKU_ATTRVALUE_UPDATE_ENHANCED = 329;
     public static final int TYPE_PRODUCT_SKU_SPECVALUE_UPDATE_ENHANCED = 330;
     public static final int TYPE_PRODUCT_SKU_UPDATE_ENHANCED = 331;
+    public static final int TYPE_PRODUCT_SKU_DEL_ENHANCED = 332;
 }

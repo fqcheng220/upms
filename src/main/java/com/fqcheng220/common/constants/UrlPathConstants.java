@@ -91,6 +91,7 @@ public interface UrlPathConstants {
     //商品SKU
     public static final String PRODUCT_SKU_ADD = "/product/sku/add";
     public static final String PRODUCT_SKU_DEL = "/product/sku/del";
+    public static final String PRODUCT_SKU_DEL_ENHANCED  = "/product/sku/del-enhanced";
     public static final String PRODUCT_SKU_UPDATE = "/product/sku/update";
     public static final String PRODUCT_SKU_UPDATE_ENHANCED  = "/product/sku/update-enhanced";
     public static final String PRODUCT_SKU_LIST_ALL = "/product/sku/list/all";

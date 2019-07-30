@@ -87,6 +87,7 @@ public class RequestHandler {
         //商品SKU
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_ADD,UrlPathConstants.PRODUCT_SKU_ADD);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_DEL,UrlPathConstants.PRODUCT_SKU_DEL);
+        sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_DEL_ENHANCED,UrlPathConstants.PRODUCT_SKU_DEL_ENHANCED);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_UPDATE,UrlPathConstants.PRODUCT_SKU_UPDATE);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_UPDATE_ENHANCED,UrlPathConstants.PRODUCT_SKU_UPDATE_ENHANCED);
         sTypeMap.put(RequestConstants.TYPE_PRODUCT_SKU_LIST_ALL,UrlPathConstants.PRODUCT_SKU_LIST_ALL);

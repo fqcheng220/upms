@@ -8,6 +8,8 @@ import com.fqcheng220.common.req.BaseRequestBody;
 import com.fqcheng220.common.req.BaseRequestUpdateBody;
 import com.fqcheng220.common.req.handler.RequestHandler;
 import com.fqcheng220.common.resp.BaseResponseBody;
+import com.fqcheng220.common.resp.ProductSkuAttrValueUpdateResult;
+import com.fqcheng220.common.resp.ProductSpuImgUpdateResult;
 import com.fqcheng220.controller.BaseController;
 import com.fqcheng220.dto.ProductSpuImgDto;
 import com.fqcheng220.dto.ProductSpuImgDtoNew;
@@ -129,7 +131,7 @@ public class ProductSpuImgController {
     @RequestMapping(value = UrlPathConstants.PRODUCT_SPU_IMG_UPDATE_ENHANCED, method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public BaseResponseBody updateEnchanced(@RequestBody BaseRequestUpdateBody<ProductSpuImgDtoNew> requestBody) {
+    public BaseResponseBody updateEnhanced(@RequestBody BaseRequestUpdateBody<ProductSpuImgDtoNew> requestBody) {
         try {
             //如何直接获取path??
             RequestHandler.handle(UrlPathConstants.PRODUCT_SPU_IMG_UPDATE_ENHANCED, requestBody);
@@ -137,32 +139,22 @@ public class ProductSpuImgController {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
         }
-        if(requestBody == null || requestBody.mEntity == null){
+        if (requestBody == null || requestBody.mEntity == null) {
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(ResponseConstants.MSG_ERROR_REQ_ARGS);
         }
         int deleteResult = 0;
         int insertResult = 0;
         //粗暴的删除 再新增
         try {
-            ProductSpuImgExample example = new ProductSpuImgExample();
-            example.createCriteria().andTbProductSpuIdEqualTo(requestBody.mEntity.tbProductSpuId);
-            deleteResult = mService.deleteByExample(example);
-            if (requestBody.mEntity != null && requestBody.mEntity.mProductSpuImgList != null) {
-                int index = -1;
-                for (ProductSpuImg productSpuImg : requestBody.mEntity.mProductSpuImgList) {
-                    productSpuImg.setId(0);
-                    productSpuImg.setSort(++index);
-                    productSpuImg.setStatue((byte)1);
-                    productSpuImg.setTbProductSpuId(requestBody.mEntity.tbProductSpuId);
-                    insertResult += mService.insert(productSpuImg);
-                }
-            }
+            ProductSpuImgUpdateResult result = mService.updateEnhanced(requestBody.mEntity);
+            deleteResult = result.mDeleteResult;
+            insertResult = result.mInsertResult;
         } catch (Exception e) {
             e.printStackTrace();
             return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
         }
         return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_SUC)
-                .setmMsg(String.format(ResponseConstants.MSG_SUC_UPDATE_FORMAT, String.format("货品SPU 图片（图片列表） 删除%s 新增%s ",deleteResult,insertResult)))
+                .setmMsg(String.format(ResponseConstants.MSG_SUC_UPDATE_FORMAT, String.format("货品SPU 图片（图片列表） 删除%s 新增%s ", deleteResult, insertResult)))
                 .setmResult(Arrays.asList(requestBody.mEntity));
     }
 
