@@ -447,6 +447,55 @@
     order by tb_product_spec_id asc,tb_product_attr_id asc;
   </select>
 
+  <resultMap id="listEnhancedSelfResultMap" type="com.fqcheng220.dto.ProductSkuSelfDto">
+    <constructor>
+    <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+    <arg column="number" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="show_in_shelve" javaType="java.lang.Byte" jdbcType="TINYINT" />
+    <arg column="shelve_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    <arg column="shelve_by" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    <arg column="update_by" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="show_in_top" javaType="java.lang.Byte" jdbcType="TINYINT" />
+    <arg column="show_in_nav" javaType="java.lang.Byte" jdbcType="TINYINT" />
+    <arg column="show_in_hot" javaType="java.lang.Byte" jdbcType="TINYINT" />
+    <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    <arg column="create_by" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="pic_image" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="search_key" javaType="java.lang.String" jdbcType="VARCHAR" />
+    <arg column="price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    <arg column="stock" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    <arg column="tb_product_spu_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+    <arg column="tb_product_spu_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <arg column="tb_product_category_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+    <arg column="tb_product_category_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </constructor>
+  </resultMap>
+
+  <select id="listEnhancedSelf"  resultMap="listEnhancedSelfResultMap">
+    select
+    a.*,
+
+    b.spuName as tb_product_spu_name,
+
+    c.id as tb_product_category_id,
+    c.name as tb_product_category_name
+
+    from tb_product_sku a
+    left outer join tb_product_spu b
+    on a.tb_product_spu_id = b.id
+    left outer join tb_product_category c
+    on c.id = b.tb_product_category_id
+
+    <if test="_parameter != null">
+      where a.id = #{_parameter,jdbcType=BIGINT}
+    </if>
+    order by a.id asc
+    ;
+  </select>
+
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSku">
     <constructor>
       <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />

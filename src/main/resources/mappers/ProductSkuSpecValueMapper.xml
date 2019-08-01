@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fqcheng220.dao.ProductSkuSpecValueMapper">
+  <resultMap id="listEnhancedSelfResultMap" type="com.fqcheng220.dto.ProductSkuSpecValueSelfDto">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tb_product_spec_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tb_product_spec_value_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tb_product_sku_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+
+      <arg column="tb_product_category_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+      <arg column="tb_product_category_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+      <arg column="tb_product_spu_id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+      <arg column="tb_product_spu_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+      <arg column="tb_product_sku_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+      <arg column="tb_product_spec_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+      <arg column="tb_product_sku_value_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </constructor>
+  </resultMap>
+
+  <select id="listEnhancedSelf"  resultMap="listEnhancedSelfResultMap">
+    select
+    a.*,
+
+    b.name  as tb_product_sku_name ,
+    c.id  as tb_product_spu_id ,
+    c.spuname  as tb_product_spu_name ,
+    d.id as tb_product_category_id,
+    d.name as tb_product_category_name,
+
+    e.name as tb_product_spec_name,
+
+    f.value as tb_product_sku_value_name
+
+    from tb_product_sku_spec_value a
+    left outer join tb_product_sku b
+    on a.tb_product_sku_id = b.id
+    left outer join tb_product_spu c
+    on b.tb_product_spu_id = c.id
+    left outer join tb_product_category d
+    on c.tb_product_category_id= d.id
+
+    left outer join tb_product_spec e
+    on e.id= a.tb_product_spec_id
+    left outer join tb_product_spec_value f
+    on f.id= a.tb_product_spec_value_id
+
+    <if test="_parameter != null">
+      where a.id = #{_parameter,jdbcType=BIGINT}
+    </if>
+    order by a.id asc
+    ;
+  </select>
+
   <resultMap id="BaseResultMap" type="com.fqcheng220.model.ProductSkuSpecValue">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
