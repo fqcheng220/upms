@@ -66,11 +66,23 @@ public class ProductSpecValueController {
      * 查询规格值列表
      * @return
      */
+    @RequestMapping(value = PRODUCT_SPECVALUE_LIST,method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody list(@RequestBody BaseRequestBody requestBody){
+        ProductSpecValueExample example = new ProductSpecValueExample();
+        return BaseController.listAll(requestBody, PRODUCT_SPECVALUE_LIST,mService,example,RESP_MSG);
+    }
+
+    /**
+     * 查询规格值列表
+     * @return
+     */
     @RequestMapping(value = PRODUCT_SPECVALUE_LIST_ALL,method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
     public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody){
         ProductSpecValueExample example = new ProductSpecValueExample();
-        return BaseController.listAll(requestBody,PRODUCT_SPECVALUE_LIST_ALL,mService,example,RESP_MSG);
+        return BaseController.listAll(requestBody, PRODUCT_SPECVALUE_LIST_ALL,mService,example,RESP_MSG);
     }
 }

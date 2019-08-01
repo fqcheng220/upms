@@ -10,6 +10,7 @@ import com.fqcheng220.common.req.handler.RequestHandler;
 import com.fqcheng220.common.resp.BaseResponseBody;
 import com.fqcheng220.common.resp.ProductSkuAttrValueUpdateResult;
 import com.fqcheng220.controller.BaseController;
+import com.fqcheng220.dto.ProductSkuAttrValueSelfDto;
 import com.fqcheng220.dto.ProductSkuDto;
 import com.fqcheng220.model.ProductSkuAttrValue;
 import com.fqcheng220.model.ProductSkuAttrValueExample;
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 @RestController
 public class ProductSkuAttrValueController {
@@ -118,5 +120,32 @@ public class ProductSkuAttrValueController {
     public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody) {
         ProductSkuAttrValueExample example = new ProductSkuAttrValueExample();
         return BaseController.listAll(requestBody, UrlPathConstants.PRODUCT_SKU_ATTRVALUE_LIST_ALL, mService, example, RESP_MSG);
+    }
+
+    /**
+     * 查询商品SKU属性值列表(增强版)
+     *
+     * @return
+     */
+    @RequestMapping(value = UrlPathConstants.PRODUCT_SKU_ATTRVALUE_ENHANCED_SELF_LIST_ALL, method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody listEnhancedSelf(@RequestBody BaseRequestBody requestBody) {
+        try {
+            //如何直接获取path??
+            RequestHandler.handle(UrlPathConstants.PRODUCT_SKU_ATTRVALUE_ENHANCED_SELF_LIST_ALL, requestBody);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
+        }
+        try {
+            List<ProductSkuAttrValueSelfDto> list = mService.listEnhancedSelf();
+            return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
+                    .setmMsg(String.format(ResponseConstants.MSG_SUC_LIST_FORMAT,"商品SKU属性值列表(增强版)"))
+                    .setmResult(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
+        }
     }
 }

@@ -65,12 +65,24 @@ public class ProductAttrValueController {
      * 查询属性值列表
      * @return
      */
+    @RequestMapping(value = PRODUCT_ATTRVALUE_LIST,method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody list(@RequestBody BaseRequestBody requestBody,@PathVariable("attrId") Integer attrId){
+        ProductAttrValueExample example = new ProductAttrValueExample();
+        example.createCriteria().andTbProductAttrIdEqualTo(attrId);
+        return BaseController.listAll(requestBody,PRODUCT_ATTRVALUE_LIST,mService,example,RESP_MSG);
+    }
+
+    /**
+     * 查询属性值列表
+     * @return
+     */
     @RequestMapping(value = PRODUCT_ATTRVALUE_LIST_ALL,method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody,@PathVariable("attrId") Integer attrId){
+    public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody){
         ProductAttrValueExample example = new ProductAttrValueExample();
-        example.createCriteria().andTbProductAttrIdEqualTo(attrId);
         return BaseController.listAll(requestBody,PRODUCT_ATTRVALUE_LIST_ALL,mService,example,RESP_MSG);
     }
 }

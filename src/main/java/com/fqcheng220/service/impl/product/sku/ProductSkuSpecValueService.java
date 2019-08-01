@@ -4,6 +4,7 @@ import com.fqcheng220.common.resp.ProductSkuSpecValueUpdateResult;
 import com.fqcheng220.dao.ProductSkuSpecValueMapper;
 import com.fqcheng220.dto.ProductCategorySpecDto;
 import com.fqcheng220.dto.ProductSkuDto;
+import com.fqcheng220.dto.ProductSkuSpecValueSelfDto;
 import com.fqcheng220.model.ProductSkuSpecValue;
 import com.fqcheng220.model.ProductSkuSpecValueExample;
 import com.fqcheng220.service.impl.BaseService;
@@ -57,5 +58,10 @@ public class ProductSkuSpecValueService extends BaseService<ProductSkuSpecValueM
         result.mDeleteResult = deleteResult;
         result.mUpdateResult = updateResult;
         return result;
+    }
+
+    @Override
+    public List<ProductSkuSpecValueSelfDto> listEnhancedSelf() {
+        return mapper.listEnhancedSelf();
     }
 }

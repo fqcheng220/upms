@@ -47,26 +47,31 @@ public interface RequestConstants {
     public static final int TYPE_PRODUCT_ATTR_ADD = 226;
     public static final int TYPE_PRODUCT_ATTR_DEL = 227;
     public static final int TYPE_PRODUCT_ATTR_UPDATE = 228;
-    public static final int TYPE_PRODUCT_ATTR_LIST_ALL = 229;
+    public static final int TYPE_PRODUCT_ATTR_LIST = 229;
     //属性值
     public static final int TYPE_PRODUCT_ATTRVALUE_ADD = 230;
     public static final int TYPE_PRODUCT_ATTRVALUE_DEL = 231;
     public static final int TYPE_PRODUCT_ATTRVALUE_UPDATE = 232;
-    public static final int TYPE_PRODUCT_ATTRVALUE_LIST_ALL = 233;
+    public static final int TYPE_PRODUCT_ATTRVALUE_LIST = 233;
     //规格
     public static final int TYPE_PRODUCT_SPEC_ADD = 234;
     public static final int TYPE_PRODUCT_SPEC_DEL = 235;
     public static final int TYPE_PRODUCT_SPEC_UPDATE = 236;
-    public static final int TYPE_PRODUCT_SPEC_LIST_ALL = 237;
+    public static final int TYPE_PRODUCT_SPEC_LIST = 237;
     //规格值
     public static final int TYPE_PRODUCT_SPECVALUE_ADD = 238;
     public static final int TYPE_PRODUCT_SPECVALUE_DEL = 239;
     public static final int TYPE_PRODUCT_SPECVALUE_UPDATE = 240;
-    public static final int TYPE_PRODUCT_SPECVALUE_LIST_ALL = 241;
+    public static final int TYPE_PRODUCT_SPECVALUE_LIST = 241;
 
     public static final int TYPE_CATEGORY_LIST_CHILD = 242;
     public static final int TYPE_CATEGORY_LIST_ATTR= 243;
     public static final int TYPE_CATEGORY_LIST_SPEC= 244;
+
+    public static final int TYPE_PRODUCT_ATTR_LIST_ALL = 245;
+    public static final int TYPE_PRODUCT_ATTRVALUE_LIST_ALL = 246;
+    public static final int TYPE_PRODUCT_SPEC_LIST_ALL = 247;
+    public static final int TYPE_PRODUCT_SPECVALUE_LIST_ALL = 248;
 
     //货品SPU
     public static final int TYPE_PRODUCT_SPU_ADD = 300;
@@ -108,4 +113,8 @@ public interface RequestConstants {
     public static final int TYPE_PRODUCT_SKU_SPECVALUE_UPDATE_ENHANCED = 330;
     public static final int TYPE_PRODUCT_SKU_UPDATE_ENHANCED = 331;
     public static final int TYPE_PRODUCT_SKU_DEL_ENHANCED = 332;
+    public static final int TYPE_PRODUCT_SKU_ENHANCED_SELF_LIST_ALL = 333;
+
+    public static final int TYPE_PRODUCT_SKU_ATTRVALUE_ENHANCED_SELF_LIST_ALL = 334;
+    public static final int TYPE_PRODUCT_SKU_SPECVALUE_ENHANCED_SELF_LIST_ALL = 335;
 }

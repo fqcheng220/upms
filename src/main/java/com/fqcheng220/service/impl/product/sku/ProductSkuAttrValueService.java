@@ -3,6 +3,7 @@ package com.fqcheng220.service.impl.product.sku;
 import com.fqcheng220.common.resp.ProductSkuAttrValueUpdateResult;
 import com.fqcheng220.dao.ProductSkuAttrValueMapper;
 import com.fqcheng220.dto.ProductCategoryAttrDto;
+import com.fqcheng220.dto.ProductSkuAttrValueSelfDto;
 import com.fqcheng220.dto.ProductSkuDto;
 import com.fqcheng220.model.ProductSkuAttrValue;
 import com.fqcheng220.model.ProductSkuAttrValueExample;
@@ -57,5 +58,10 @@ public class ProductSkuAttrValueService extends BaseService<ProductSkuAttrValueM
         result.mDeleteResult = deleteResult;
         result.mUpdateResult = updateResult;
         return result;
+    }
+
+    @Override
+    public List<ProductSkuAttrValueSelfDto> listEnhancedSelf() {
+        return mapper.listEnhancedSelf();
     }
 }

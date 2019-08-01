@@ -8,10 +8,10 @@ import com.fqcheng220.common.req.BaseRequestBody;
 import com.fqcheng220.common.req.BaseRequestUpdateBody;
 import com.fqcheng220.common.req.handler.RequestHandler;
 import com.fqcheng220.common.resp.BaseResponseBody;
-import com.fqcheng220.common.resp.ProductSkuAttrValueUpdateResult;
 import com.fqcheng220.common.resp.ProductSkuSpecValueUpdateResult;
 import com.fqcheng220.controller.BaseController;
 import com.fqcheng220.dto.ProductSkuDto;
+import com.fqcheng220.dto.ProductSkuSpecValueSelfDto;
 import com.fqcheng220.model.ProductSkuSpecValue;
 import com.fqcheng220.model.ProductSkuSpecValueExample;
 import com.fqcheng220.service.product.sku.IProductSkuSpecValueService;
@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 @RestController
 public class ProductSkuSpecValueController {
@@ -119,5 +120,32 @@ public class ProductSkuSpecValueController {
     public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody) {
         ProductSkuSpecValueExample example = new ProductSkuSpecValueExample();
         return BaseController.listAll(requestBody, UrlPathConstants.PRODUCT_SKU_SPECVALUE_LIST_ALL, mService, example, RESP_MSG);
+    }
+
+    /**
+     * 查询商品SKU规格值列表(增强版)
+     *
+     * @return
+     */
+    @RequestMapping(value = UrlPathConstants.PRODUCT_SKU_SPECVALUE_ENHANCED_SELF_LIST_ALL, method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody listEnhancedSelf(@RequestBody BaseRequestBody requestBody) {
+        try {
+            //如何直接获取path??
+            RequestHandler.handle(UrlPathConstants.PRODUCT_SKU_SPECVALUE_ENHANCED_SELF_LIST_ALL, requestBody);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
+        }
+        try {
+            List<ProductSkuSpecValueSelfDto> list = mService.listEnhancedSelf();
+            return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
+                    .setmMsg(String.format(ResponseConstants.MSG_SUC_LIST_FORMAT,"商品SKU规格值列表(增强版)"))
+                    .setmResult(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
+        }
     }
 }

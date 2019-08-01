@@ -2,6 +2,7 @@ package com.fqcheng220.service.impl.product.sku;
 
 import com.fqcheng220.dao.ProductSkuMapper;
 import com.fqcheng220.dto.ProductSkuDto;
+import com.fqcheng220.dto.ProductSkuSelfDto;
 import com.fqcheng220.model.ProductSku;
 import com.fqcheng220.model.ProductSkuExample;
 import com.fqcheng220.service.impl.BaseService;
@@ -15,6 +16,11 @@ import java.util.List;
 @Service
 public class ProductSkuService extends BaseService<ProductSkuMapper,ProductSku,ProductSkuExample> implements IProductSkuService {
     private final Logger mLogger = LoggerFactory.getLogger(getClass());
+
+    @Override
+    public List<ProductSkuSelfDto> listEnhancedSelf() {
+        return mapper.listEnhancedSelf();
+    }
 
     @Override
     public List<ProductSkuDto> listEnhanced() {

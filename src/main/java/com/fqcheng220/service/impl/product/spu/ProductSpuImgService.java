@@ -42,10 +42,10 @@ public class ProductSpuImgService extends BaseService<ProductSpuImgMapper,Produc
                     insertResult += mapper.insert(productSpuImg);
                 }
             }
-            ProductSpuImgUpdateResult result = new ProductSpuImgUpdateResult();
-            result.mInsertResult = insertResult;
-            result.mDeleteResult = deleteResult;
-            return result;
         }
+        ProductSpuImgUpdateResult result = new ProductSpuImgUpdateResult();
+        result.mInsertResult = insertResult;
+        result.mDeleteResult = deleteResult;
+        return result;
     }
 }

@@ -57,21 +57,26 @@ public interface UrlPathConstants {
     public static final String PRODUCT_ATTR_ADD = "/product/attr/add";
     public static final String PRODUCT_ATTR_DEL = "/product/attr/del";
     public static final String PRODUCT_ATTR_UPDATE = "/product/attr/update";
-    public static final String PRODUCT_ATTR_LIST_ALL = "/product/attr/list/all/{categoryId}";
+    public static final String PRODUCT_ATTR_LIST = "/product/attr/list/{categoryId}";
+    public static final String PRODUCT_ATTR_LIST_ALL = "/product/attr/list/all";
+
     //属性值
     public static final String PRODUCT_ATTRVALUE_ADD = "/product/attrvalue/add";
     public static final String PRODUCT_ATTRVALUE_DEL = "/product/attrvalue/del";
     public static final String PRODUCT_ATTRVALUE_UPDATE = "/product/attrvalue/update";
-    public static final String PRODUCT_ATTRVALUE_LIST_ALL = "/product/attrvalue/list/all/{attrId}";
+    public static final String PRODUCT_ATTRVALUE_LIST = "/product/attrvalue/list/{attrId}";
+    public static final String PRODUCT_ATTRVALUE_LIST_ALL = "/product/attrvalue/list/all";
     //规格
     public static final String PRODUCT_SPEC_ADD = "/product/spec/add";
     public static final String PRODUCT_SPEC_DEL = "/product/spec/del";
     public static final String PRODUCT_SPEC_UPDATE = "/product/spec/update";
+    public static final String PRODUCT_SPEC_LIST = "/product/spec/list";
     public static final String PRODUCT_SPEC_LIST_ALL = "/product/spec/list/all";
     //规格值
     public static final String PRODUCT_SPECVALUE_ADD = "/product/specvalue/add";
     public static final String PRODUCT_SPECVALUE_DEL = "/product/specvalue/del";
     public static final String PRODUCT_SPECVALUE_UPDATE = "/product/specvalue/update";
+    public static final String PRODUCT_SPECVALUE_LIST = "/product/specvalue/list";
     public static final String PRODUCT_SPECVALUE_LIST_ALL = "/product/specvalue/list/all";
 
     //货品SPU
@@ -95,6 +100,7 @@ public interface UrlPathConstants {
     public static final String PRODUCT_SKU_UPDATE = "/product/sku/update";
     public static final String PRODUCT_SKU_UPDATE_ENHANCED  = "/product/sku/update-enhanced";
     public static final String PRODUCT_SKU_LIST_ALL = "/product/sku/list/all";
+    public static final String PRODUCT_SKU_ENHANCED_SELF_LIST_ALL = "/product/sku-enhanced-self/list/all";
     public static final String PRODUCT_SKU_ENHANCED_LIST_ALL = "/product/sku-enhanced/list/all";
     public static final String PRODUCT_SKU_ENHANCED_COMB_LIST_ALL = "/product/sku-enhanced-comb/list/all";
     public static final String PRODUCT_SKU_ENHANCED_COMB_NEW_LIST_ALL = "/product/sku-enhanced-comb-new/list/all";
@@ -106,10 +112,12 @@ public interface UrlPathConstants {
     public static final String PRODUCT_SKU_ATTRVALUE_UPDATE = "/product/sku/attrvalue/update";
     public static final String PRODUCT_SKU_ATTRVALUE_UPDATE_ENHANCED = "/product/sku/attrvalue/update-enhanced";
     public static final String PRODUCT_SKU_ATTRVALUE_LIST_ALL = "/product/sku/attrvalue/list/all";
+    public static final String PRODUCT_SKU_ATTRVALUE_ENHANCED_SELF_LIST_ALL = "/product/sku/attrvalue-enhanced-self/list/all";
     //商品SKU规格值
     public static final String PRODUCT_SKU_SPECVALUE_ADD = "/product/sku/specvalue/add";
     public static final String PRODUCT_SKU_SPECVALUE_DEL = "/product/sku/specvalue/del";
     public static final String PRODUCT_SKU_SPECVALUE_UPDATE = "/product/sku/specvalue/update";
     public static final String PRODUCT_SKU_SPECVALUE_UPDATE_ENHANCED = "/product/sku/specvalue/update-enhanced";
     public static final String PRODUCT_SKU_SPECVALUE_LIST_ALL = "/product/sku/specvalue/list/all";
+    public static final String PRODUCT_SKU_SPECVALUE_ENHANCED_SELF_LIST_ALL = "/product/sku/specvalue-enhanced-self/list/all";
 }

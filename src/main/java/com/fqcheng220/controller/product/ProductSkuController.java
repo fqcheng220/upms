@@ -13,6 +13,7 @@ import com.fqcheng220.common.resp.ProductSkuSpecValueUpdateResult;
 import com.fqcheng220.controller.BaseController;
 import com.fqcheng220.dto.ProductCategoryAttrDto;
 import com.fqcheng220.dto.ProductSkuDto;
+import com.fqcheng220.dto.ProductSkuSelfDto;
 import com.fqcheng220.model.*;
 import com.fqcheng220.service.product.sku.IProductSkuAttrValueService;
 import com.fqcheng220.service.product.sku.IProductSkuService;
@@ -87,6 +88,33 @@ public class ProductSkuController {
     public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody) {
         ProductSkuExample example = new ProductSkuExample();
         return BaseController.listAll(requestBody, UrlPathConstants.PRODUCT_SKU_LIST_ALL, mService, example, RESP_MSG);
+    }
+
+    /**
+     * 查询商品SKU列表(包含categoryName spuName)
+     *
+     * @return
+     */
+    @RequestMapping(value = UrlPathConstants.PRODUCT_SKU_ENHANCED_SELF_LIST_ALL, method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody listEnhancedSelfAll(@RequestBody BaseRequestBody requestBody) {
+        try {
+            //如何直接获取path??
+            RequestHandler.handle(UrlPathConstants.PRODUCT_SKU_ENHANCED_SELF_LIST_ALL, requestBody);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_REQ_VAL).setmMsg(e.getMessage());
+        }
+        try {
+            List<ProductSkuSelfDto> retList = mService.listEnhancedSelf();
+            return new BaseResponseBody().setmStatusCode(ResponseConstants.STATUS_SUC)
+                    .setmMsg(String.format(ResponseConstants.MSG_SUC_LIST_FORMAT,"查询商品SKU列表(包含categoryName spuName)"))
+                    .setmResult(retList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new BaseResponseBody<>().setmStatusCode(ResponseConstants.STATUS_FAIL_SQL_HANDLE).setmMsg(e.getLocalizedMessage());
+        }
     }
 
     /**

@@ -64,12 +64,24 @@ public class ProductAttrController {
      * 查询属性列表
      * @return
      */
+    @RequestMapping(value = UrlPathConstants.PRODUCT_ATTR_LIST,method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public BaseResponseBody list(@RequestBody BaseRequestBody requestBody,@PathVariable("categoryId") Long categoryId){
+        ProductAttrExample example = new ProductAttrExample();
+        example.createCriteria().andTbProductCategoryIdEqualTo(categoryId);
+        return BaseController.listAll(requestBody,UrlPathConstants.PRODUCT_ATTR_LIST,mService,example,RESP_MSG);
+    }
+
+    /**
+     * 查询属性列表
+     * @return
+     */
     @RequestMapping(value = UrlPathConstants.PRODUCT_ATTR_LIST_ALL,method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody,@PathVariable("categoryId") Long categoryId){
+    public BaseResponseBody listAll(@RequestBody BaseRequestBody requestBody){
         ProductAttrExample example = new ProductAttrExample();
-        example.createCriteria().andTbProductCategoryIdEqualTo(categoryId);
         return BaseController.listAll(requestBody,UrlPathConstants.PRODUCT_ATTR_LIST_ALL,mService,example,RESP_MSG);
     }
 }
